@@ -11,18 +11,52 @@ every container track, so it should not change later.
 
 ## 2. Generate the stanza
 
+Containers are **comparisons**, not file groupings. Which profiles belong side by side is
+a judgement — a haploid against a diploid, one platform against another, a mutant against
+its wild type — and the same track legitimately appears in more than one comparison. That
+cannot be inferred from filenames, so it is declared in a spec file per dataset and the
+generator only renders it.
+
+Start from a generated skeleton, one container per track:
+
+```bash
+python3 bin/make_trackhub.py --init \
+    --hub-root . --genome sacCer3 --dataset mystudy2026 \
+    --bigwig-dir /path/to/pipeline/results/bigwig \
+    --spec docs/containers_mystudy2026.json
+```
+
+Then edit that file: merge tracks into comparison containers, give each a `shortLabel`
+and `longLabel`, set `graphType` (`bar` for a time course, `points` otherwise), set
+`viewLimits`, and choose colours. Render it:
+
 ```bash
 python3 bin/make_trackhub.py \
-    --hub-root . \
-    --genome sacCer3 \
-    --dataset muller2014 \
+    --hub-root . --genome sacCer3 --dataset mystudy2026 \
+    --spec docs/containers_mystudy2026.json \
     --bigwig-dir /path/to/pipeline/results/bigwig \
-    --descriptions descriptions.tsv \
     --dataset-json /path/to/dataset.json
 ```
 
-`descriptions.tsv` is two columns — track name, then the long label a reader sees. Without
-it the track name is used, which is serviceable but terse.
+Every container is rendered as a `multiWig` `solidOverlay`, because overlaying the
+profiles being compared is what makes a difference visible — stacked rows leave the eye
+to do a subtraction it cannot do.
+
+### Settings that matter more than they look
+
+`maxHeightPixels` is `max:default:min` and the **middle** value is the height actually
+drawn. A default of 32 renders a signal track at a third of its usable size, which is the
+usual reason a track looks cramped. The hub uses `100:100:8`.
+
+`graphTypeDefault` is `bar` or `points`, nothing else. Filled bars suit a dense time
+course where the envelope is the message; points suit a comparison of two or three
+profiles, where fills would hide each other.
+
+`negateValues on` flips the sign of the data. The Trep track uses it so that *early*
+replication plots high, consistent with the copy-number tracks where high means more
+replicated — otherwise an origin that is a peak everywhere else becomes a trough in Trep.
+Note that UCSC draws negative values in `altColor` rather than `color`, so a negated track
+needs both set.
 
 The generator copies the bigWigs in, writes `<genome>/<dataset>/trackDb.txt`, and rewrites
 `<genome>/trackDb.txt` as one `include` per dataset directory present. Re-running it for an

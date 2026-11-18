@@ -129,6 +129,13 @@ def main():
                         errors.append(f"{name}: sequences absent from the assembly or of the "
                                       f"wrong length: {sorted(bad)[:4]}")
                 vl = s.get("viewLimits") or _inherited(stanzas, s, "viewLimits")
+                negate = (s.get("negateValues") or
+                          _inherited(stanzas, s, "negateValues")) == "on"
+                if negate:
+                    # The axis is the negated data, so compare against negated values -
+                    # and negating swaps which end is the minimum.
+                    hdr = dict(hdr, minVal=-hdr["maxVal"], maxVal=-hdr["minVal"],
+                               mean=-hdr["mean"])
                 if vl and ":" in vl:
                     lo, hi = (float(x) for x in vl.split(":"))
                     # Some clipping is intentional: a smoothed copy-number profile
