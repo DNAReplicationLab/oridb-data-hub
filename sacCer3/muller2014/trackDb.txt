@@ -13,7 +13,7 @@ priority 3
 
     track hu_CAY106
     parent muller2014_hu on
-    bigDataUrl hu_CAY106.smooth.bw
+    bigDataUrl muller2014/hu_CAY106.smooth.bw
     shortLabel hu_CAY106
     longLabel HU-stalled fork origin mapping: rad53 sml1 CAY106
     type bigWig
@@ -32,7 +32,7 @@ priority 3
 
     track mfaseq_T7107
     parent muller2014_mfaseq on
-    bigDataUrl mfaseq_T7107.smooth.bw
+    bigDataUrl muller2014/mfaseq_T7107.smooth.bw
     shortLabel mfaseq_T7107
     longLabel MFA-seq: exponential vs stationary phase T7107
     type bigWig
@@ -51,7 +51,7 @@ priority 1
 
     track sortseq_T7107_SOLiD
     parent muller2014_sortseq on
-    bigDataUrl sortseq_T7107_SOLiD.smooth.bw
+    bigDataUrl muller2014/sortseq_T7107_SOLiD.smooth.bw
     shortLabel sortseq_T7107_SOL
     longLabel Sort-seq: wild-type haploid T7107 (SOLiD)
     type bigWig
@@ -59,7 +59,7 @@ priority 1
 
     track sortseq_T9475_Illumina
     parent muller2014_sortseq on
-    bigDataUrl sortseq_T9475_Illumina.smooth.bw
+    bigDataUrl muller2014/sortseq_T9475_Illumina.smooth.bw
     shortLabel sortseq_T9475_Ill
     longLabel Sort-seq: diploid T9475 (Illumina replicate)
     type bigWig
@@ -67,7 +67,7 @@ priority 1
 
     track sortseq_T9475_SOLiD
     parent muller2014_sortseq on
-    bigDataUrl sortseq_T9475_SOLiD.smooth.bw
+    bigDataUrl muller2014/sortseq_T9475_SOLiD.smooth.bw
     shortLabel sortseq_T9475_SOL
     longLabel Sort-seq: diploid T9475 (SOLiD)
     type bigWig
@@ -89,7 +89,7 @@ priority 2
 
     track syncseq_AUY077_25min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_25min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_25min.smooth.bw
     shortLabel 25 min
     longLabel Sync-seq: 25 min after alpha-factor release (light blue)
     type bigWig
@@ -97,7 +97,7 @@ priority 2
 
     track syncseq_AUY077_30min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_30min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_30min.smooth.bw
     shortLabel 30 min
     longLabel Sync-seq: 30 min after alpha-factor release (red)
     type bigWig
@@ -105,7 +105,7 @@ priority 2
 
     track syncseq_AUY077_35min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_35min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_35min.smooth.bw
     shortLabel 35 min
     longLabel Sync-seq: 35 min after alpha-factor release (blue)
     type bigWig
@@ -113,7 +113,7 @@ priority 2
 
     track syncseq_AUY077_40min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_40min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_40min.smooth.bw
     shortLabel 40 min
     longLabel Sync-seq: 40 min after alpha-factor release (gold)
     type bigWig
@@ -121,7 +121,7 @@ priority 2
 
     track syncseq_AUY077_45min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_45min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_45min.smooth.bw
     shortLabel 45 min
     longLabel Sync-seq: 45 min after alpha-factor release (green)
     type bigWig
@@ -129,7 +129,7 @@ priority 2
 
     track syncseq_AUY077_50min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_50min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_50min.smooth.bw
     shortLabel 50 min
     longLabel Sync-seq: 50 min after alpha-factor release (purple)
     type bigWig
@@ -137,7 +137,7 @@ priority 2
 
     track syncseq_AUY077_90min
     parent muller2014_syncseq on
-    bigDataUrl syncseq_AUY077_90min.smooth.bw
+    bigDataUrl muller2014/syncseq_AUY077_90min.smooth.bw
     shortLabel 90 min
     longLabel Sync-seq: 90 min after alpha-factor release (grey)
     type bigWig
@@ -156,7 +156,7 @@ priority 3
 
     track syncseq
     parent muller2014_trep on
-    bigDataUrl syncseq.trep.bw
+    bigDataUrl muller2014/syncseq.trep.bw
     shortLabel syncseq
     longLabel Median replication time (Trep) from the AUY077 sync-seq time course
     type bigWig

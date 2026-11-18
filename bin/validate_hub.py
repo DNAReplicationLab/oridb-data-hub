@@ -103,9 +103,15 @@ def main():
                     errors.append(f"{name}: parent {parent!r} is not defined")
             if "bigDataUrl" in s:
                 total += 1
-                p = os.path.join(s["_dir"], s["bigDataUrl"])
+                # Resolve the way UCSC does: relative to the trackDb declared in
+                # genomes.txt, not relative to the file an `include` pulled the stanza
+                # from. Getting this wrong makes a hub validate locally and then fail in
+                # the browser with "couldn't open <genome>/<file>".
+                p = os.path.join(os.path.dirname(tdb), s["bigDataUrl"])
                 if not os.path.exists(p):
-                    errors.append(f"{name}: bigDataUrl {s['bigDataUrl']} not found")
+                    errors.append(f"{name}: bigDataUrl {s['bigDataUrl']} resolves to "
+                                  f"{os.path.relpath(p, a.hub_root)}, which does not exist "
+                                  f"(paths are relative to {genome}/trackDb.txt)")
                     continue
                 try:
                     import pyBigWig

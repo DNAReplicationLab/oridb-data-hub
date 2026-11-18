@@ -111,10 +111,14 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
                 colour = FALLBACK_COLOURS[i % len(FALLBACK_COLOURS)]
                 short = name[:17]
                 long_ = descriptions.get(name, name)
+            # UCSC resolves bigDataUrl relative to the trackDb named in genomes.txt -
+            # <genome>/trackDb.txt - NOT relative to the file an `include` pulled it from.
+            # The dataset directory therefore has to be part of the path, or the browser
+            # looks for <genome>/<file>.bw and reports that it cannot open the track.
             out.append(
                 f"    track {name}\n"
                 f"    parent {parent} on\n"
-                f"    bigDataUrl {bw}\n"
+                f"    bigDataUrl {dataset}/{bw}\n"
                 f"    shortLabel {short}\n"
                 f"    longLabel {long_}\n"
                 f"    type bigWig\n"

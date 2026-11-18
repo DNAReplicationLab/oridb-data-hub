@@ -74,8 +74,10 @@ themselves are wrong.
 python3 bin/validate_hub.py --hub-root . --chrom-sizes sacCer3.chrom.sizes
 ```
 
-It follows the `include` chain, checks every `bigDataUrl` resolves, every subtrack has a
-parent, and every track's sequence names and lengths match the assembly. A hub that is
+It follows the `include` chain, checks every `bigDataUrl` resolves **the way UCSC resolves
+it** — relative to the trackDb named in `genomes.txt`, not relative to the included file —
+checks every subtrack has a parent, and checks every track's sequence names and lengths
+match the assembly. A hub that is
 wrong in any of these ways fails in the browser with a message naming a line in a file the
 reader has never seen, so it is worth catching here.
 

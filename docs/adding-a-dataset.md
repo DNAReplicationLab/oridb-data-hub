@@ -28,6 +28,24 @@ The generator copies the bigWigs in, writes `<genome>/<dataset>/trackDb.txt`, an
 `<genome>/trackDb.txt` as one `include` per dataset directory present. Re-running it for an
 existing dataset refreshes that dataset only.
 
+### One path rule to know
+
+UCSC resolves the two kinds of relative path in a hub differently, and the difference is
+easy to get wrong:
+
+- an `include` path is relative to **the file containing it**, so `sacCer3/trackDb.txt`
+  carrying `include muller2014/trackDb.txt` reads `sacCer3/muller2014/trackDb.txt`, as you
+  would expect;
+- a `bigDataUrl` is relative to **the trackDb declared in `genomes.txt`** — that is
+  `sacCer3/trackDb.txt` — regardless of which included file the stanza came from.
+
+So a track living in `sacCer3/muller2014/` needs `bigDataUrl muller2014/<file>.bw`, not
+`bigDataUrl <file>.bw`. Getting this wrong produces a hub whose files are all present and
+all individually reachable, and which still fails in the browser with
+`couldn't open .../sacCer3/<file>.bw`. `bin/make_trackhub.py` applies the prefix and
+`bin/validate_hub.py` resolves paths the same way UCSC does, so the mistake is caught
+before the hub is served rather than after.
+
 ## 3. How tracks are grouped
 
 Grouping is by experimental variant, inferred from the track filename: `sortseq`,
