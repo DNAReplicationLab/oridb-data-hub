@@ -5,9 +5,13 @@ compositeTrack on
 shortLabel HU origin mapping
 longLabel muller2014: HU origin mapping — forks stalled at origins by hydroxyurea
 type bigWig
-viewLimits 1:2
+viewLimits 0.9:2.1
 autoScale off
-maxHeightPixels 128:64:20
+graphTypeDefault bar
+yLineOnOff on
+yLineMark 1.0
+gridDefault off
+maxHeightPixels 100:32:8
 visibility full
 priority 3
 
@@ -24,9 +28,13 @@ compositeTrack on
 shortLabel MFA-seq
 longLabel muller2014: MFA-seq — exponential versus stationary phase
 type bigWig
-viewLimits 1:1.5
+viewLimits 0.9:1.5
 autoScale off
-maxHeightPixels 128:64:20
+graphTypeDefault bar
+yLineOnOff on
+yLineMark 1.0
+gridDefault off
+maxHeightPixels 100:32:8
 visibility full
 priority 3
 
@@ -43,9 +51,13 @@ compositeTrack on
 shortLabel Sort-seq
 longLabel muller2014: Sort-seq — FACS-sorted S phase versus G2 phase
 type bigWig
-viewLimits 1:2
+viewLimits 0.9:2.1
 autoScale off
-maxHeightPixels 128:64:20
+graphTypeDefault bar
+yLineOnOff on
+yLineMark 1.0
+gridDefault off
+maxHeightPixels 100:32:8
 visibility full
 priority 1
 
@@ -75,15 +87,19 @@ priority 1
 
 track muller2014_syncseq
 container multiWig
-aggregate transparentOverlay
+aggregate solidOverlay
 showSubtrackColorOnUi on
 shortLabel Sync-seq
 longLabel muller2014: Sync-seq — synchronous S-phase time course, each timepoint versus the alpha-factor arrest
 type bigWig
-viewLimits 1:2
+viewLimits 0.9:2.1
 autoScale off
 alwaysZero off
-maxHeightPixels 180:120:32
+graphTypeDefault bar
+yLineOnOff on
+yLineMark 1.0
+gridDefault off
+maxHeightPixels 100:32:8
 visibility full
 priority 2
 
@@ -150,7 +166,9 @@ longLabel muller2014: Trep — median replication time from the sync-seq time co
 type bigWig
 viewLimits 25:85
 autoScale off
-maxHeightPixels 128:64:20
+graphTypeDefault bar
+gridDefault off
+maxHeightPixels 100:32:8
 visibility full
 priority 3
 

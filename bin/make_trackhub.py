@@ -81,10 +81,15 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
             # structure a reader is looking for. Reversing puts the earliest, most
             # detailed profile on top.
             files = sorted(files, key=lambda f: (timepoint(f[:-3]) or 0), reverse=True)
+            # solidOverlay, not transparentOverlay. With seven overlapping profiles,
+            # transparency blends every colour into a wash and nothing reads clearly;
+            # drawing each one solid, latest first, gives the later timepoints as a
+            # backdrop with the earlier, more structured ones legible in front. This is
+            # the configuration proven on the lab's sacCer1 hub.
             out.append(
                 f"track {parent}\n"
                 f"container multiWig\n"
-                f"aggregate transparentOverlay\n"
+                f"aggregate solidOverlay\n"
                 f"showSubtrackColorOnUi on\n"
                 f"shortLabel {label}\n"
                 f"longLabel {dataset}: {label} — {blurb}\n"
@@ -92,7 +97,13 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
                 f"viewLimits {lims}\n"
                 f"autoScale off\n"
                 f"alwaysZero off\n"
-                f"maxHeightPixels 180:120:32\n"
+                f"graphTypeDefault bar\n"
+                # A line at copy number 1 is the unreplicated baseline: it tells the
+                # reader where "not yet replicated" sits without reading the axis.
+                f"yLineOnOff on\n"
+                f"yLineMark 1.0\n"
+                f"gridDefault off\n"
+                f"maxHeightPixels 100:32:8\n"
                 f"visibility full\n"
                 f"priority 2\n\n")
         else:
@@ -104,8 +115,11 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
                 f"type bigWig\n"
                 f"viewLimits {lims}\n"
                 f"autoScale off\n"
-                f"maxHeightPixels 128:64:20\n"
-                f"visibility {'full' if variant != 'trep' else 'full'}\n"
+                f"graphTypeDefault bar\n"
+                + ("" if variant == "trep" else "yLineOnOff on\nyLineMark 1.0\n")
+                + f"gridDefault off\n"
+                f"maxHeightPixels 100:32:8\n"
+                f"visibility full\n"
                 f"priority {1 if variant == 'sortseq' else 3}\n\n")
 
         for i, bw in enumerate(files):
@@ -144,7 +158,13 @@ def main():
     ap.add_argument("--bigwig-dir", required=True, help="where the .bw files are now")
     ap.add_argument("--descriptions", help="TSV: track name <tab> long label")
     ap.add_argument("--dataset-json", help="dataset record to copy in alongside the tracks")
-    ap.add_argument("--viewlimits", default="syncseq=1:2,sortseq=1:2,mfaseq=1:1.5,hu=1:2,trep=25:85",
+    # 0.9:2.1 rather than a hard 1:2. The scale that means something is still 1
+    # (unreplicated) to 2 (fully replicated), and the yLineMark draws that baseline, but
+    # smoothed profiles overshoot both ends slightly and a hard 1:2 flattens those
+    # excursions against the edge of the track, which is what makes a crowded overlay
+    # unreadable. A little headroom keeps the shape visible without changing the scale.
+    ap.add_argument("--viewlimits",
+                    default="syncseq=0.9:2.1,sortseq=0.9:2.1,mfaseq=0.9:1.5,hu=0.9:2.1,trep=25:85",
                     help="per-variant viewLimits, comma separated")
     ap.add_argument("--no-copy", action="store_true", help="write trackDb only")
     a = ap.parse_args()
