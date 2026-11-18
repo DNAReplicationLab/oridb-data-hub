@@ -3,4 +3,4 @@ shortLabel OriDB data hub
 longLabel OriDB: genome-wide DNA replication datasets
 genomesFile genomes.txt
 descriptionUrl description.html
-email oridb@nieduszynski.org
+email conrad@oridb.org
