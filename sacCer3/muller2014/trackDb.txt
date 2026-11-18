@@ -87,45 +87,13 @@ maxHeightPixels 180:120:32
 visibility full
 priority 2
 
-    track syncseq_AUY077_25min
+    track syncseq_AUY077_90min
     parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_25min.smooth.bw
-    shortLabel 25 min
-    longLabel Sync-seq: 25 min after alpha-factor release (light blue)
+    bigDataUrl muller2014/syncseq_AUY077_90min.smooth.bw
+    shortLabel 90 min
+    longLabel Sync-seq: 90 min after alpha-factor release (grey)
     type bigWig
-    color 166,206,227
-
-    track syncseq_AUY077_30min
-    parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_30min.smooth.bw
-    shortLabel 30 min
-    longLabel Sync-seq: 30 min after alpha-factor release (red)
-    type bigWig
-    color 227,26,28
-
-    track syncseq_AUY077_35min
-    parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_35min.smooth.bw
-    shortLabel 35 min
-    longLabel Sync-seq: 35 min after alpha-factor release (blue)
-    type bigWig
-    color 31,120,180
-
-    track syncseq_AUY077_40min
-    parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_40min.smooth.bw
-    shortLabel 40 min
-    longLabel Sync-seq: 40 min after alpha-factor release (gold)
-    type bigWig
-    color 255,193,7
-
-    track syncseq_AUY077_45min
-    parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_45min.smooth.bw
-    shortLabel 45 min
-    longLabel Sync-seq: 45 min after alpha-factor release (green)
-    type bigWig
-    color 51,160,44
+    color 150,150,150
 
     track syncseq_AUY077_50min
     parent muller2014_syncseq on
@@ -135,13 +103,45 @@ priority 2
     type bigWig
     color 106,61,154
 
-    track syncseq_AUY077_90min
+    track syncseq_AUY077_45min
     parent muller2014_syncseq on
-    bigDataUrl muller2014/syncseq_AUY077_90min.smooth.bw
-    shortLabel 90 min
-    longLabel Sync-seq: 90 min after alpha-factor release (grey)
+    bigDataUrl muller2014/syncseq_AUY077_45min.smooth.bw
+    shortLabel 45 min
+    longLabel Sync-seq: 45 min after alpha-factor release (green)
     type bigWig
-    color 150,150,150
+    color 51,160,44
+
+    track syncseq_AUY077_40min
+    parent muller2014_syncseq on
+    bigDataUrl muller2014/syncseq_AUY077_40min.smooth.bw
+    shortLabel 40 min
+    longLabel Sync-seq: 40 min after alpha-factor release (gold)
+    type bigWig
+    color 255,193,7
+
+    track syncseq_AUY077_35min
+    parent muller2014_syncseq on
+    bigDataUrl muller2014/syncseq_AUY077_35min.smooth.bw
+    shortLabel 35 min
+    longLabel Sync-seq: 35 min after alpha-factor release (blue)
+    type bigWig
+    color 31,120,180
+
+    track syncseq_AUY077_30min
+    parent muller2014_syncseq on
+    bigDataUrl muller2014/syncseq_AUY077_30min.smooth.bw
+    shortLabel 30 min
+    longLabel Sync-seq: 30 min after alpha-factor release (red)
+    type bigWig
+    color 227,26,28
+
+    track syncseq_AUY077_25min
+    parent muller2014_syncseq on
+    bigDataUrl muller2014/syncseq_AUY077_25min.smooth.bw
+    shortLabel 25 min
+    longLabel Sync-seq: 25 min after alpha-factor release (light blue)
+    type bigWig
+    color 166,206,227
 
 track muller2014_trep
 compositeTrack on

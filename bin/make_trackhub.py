@@ -72,7 +72,15 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
 
         if is_course:
             # One overlaid track: superimposing the timepoints is the whole point.
-            files = sorted(files, key=lambda f: (timepoint(f[:-3]) or 0))
+            #
+            # Latest timepoint first, because in a transparentOverlay the subtracks are
+            # drawn in the order they appear and each one paints over its predecessors.
+            # The last timepoint is the highest and the flattest — by 90 min the genome is
+            # replicated and the profile sits near 2 across its whole length — so drawing
+            # it last buries the early timepoints, which are the ones carrying the
+            # structure a reader is looking for. Reversing puts the earliest, most
+            # detailed profile on top.
+            files = sorted(files, key=lambda f: (timepoint(f[:-3]) or 0), reverse=True)
             out.append(
                 f"track {parent}\n"
                 f"container multiWig\n"
