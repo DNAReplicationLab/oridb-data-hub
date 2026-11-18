@@ -127,7 +127,12 @@ def stanzas(dataset, tracks, descriptions, viewlimits):
             tp = timepoint(name)
             if is_course and tp in TIMEPOINT_COLOURS:
                 colour, colour_name = TIMEPOINT_COLOURS[tp]
-                short = f"{tp} min"
+                # The track-controls list sorts subtracks by shortLabel, so without a
+                # prefix it would read 25, 30, 35, 40, 45, 50, 90 - the opposite of the
+                # draw order, which has to run latest-first so the early timepoints are
+                # not buried. Numbering by draw position makes the list match what the
+                # reader sees stacked in the image.
+                short = f"{i + 1} {tp} min"
                 long_ = descriptions.get(name, f"{tp} min after release") + f" ({colour_name})"
             else:
                 colour = FALLBACK_COLOURS[i % len(FALLBACK_COLOURS)]

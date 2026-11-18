@@ -106,7 +106,7 @@ priority 2
     track syncseq_AUY077_90min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_90min.smooth.bw
-    shortLabel 90 min
+    shortLabel 1 90 min
     longLabel Sync-seq: 90 min after alpha-factor release (grey)
     type bigWig
     color 150,150,150
@@ -114,7 +114,7 @@ priority 2
     track syncseq_AUY077_50min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_50min.smooth.bw
-    shortLabel 50 min
+    shortLabel 2 50 min
     longLabel Sync-seq: 50 min after alpha-factor release (purple)
     type bigWig
     color 106,61,154
@@ -122,7 +122,7 @@ priority 2
     track syncseq_AUY077_45min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_45min.smooth.bw
-    shortLabel 45 min
+    shortLabel 3 45 min
     longLabel Sync-seq: 45 min after alpha-factor release (green)
     type bigWig
     color 51,160,44
@@ -130,7 +130,7 @@ priority 2
     track syncseq_AUY077_40min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_40min.smooth.bw
-    shortLabel 40 min
+    shortLabel 4 40 min
     longLabel Sync-seq: 40 min after alpha-factor release (gold)
     type bigWig
     color 255,193,7
@@ -138,7 +138,7 @@ priority 2
     track syncseq_AUY077_35min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_35min.smooth.bw
-    shortLabel 35 min
+    shortLabel 5 35 min
     longLabel Sync-seq: 35 min after alpha-factor release (blue)
     type bigWig
     color 31,120,180
@@ -146,7 +146,7 @@ priority 2
     track syncseq_AUY077_30min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_30min.smooth.bw
-    shortLabel 30 min
+    shortLabel 6 30 min
     longLabel Sync-seq: 30 min after alpha-factor release (red)
     type bigWig
     color 227,26,28
@@ -154,7 +154,7 @@ priority 2
     track syncseq_AUY077_25min
     parent muller2014_syncseq on
     bigDataUrl muller2014/syncseq_AUY077_25min.smooth.bw
-    shortLabel 25 min
+    shortLabel 7 25 min
     longLabel Sync-seq: 25 min after alpha-factor release (light blue)
     type bigWig
     color 166,206,227
