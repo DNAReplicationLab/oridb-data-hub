@@ -1,0 +1,1054 @@
+{
+  "dataset_id": "muller2014-saccer3",
+  "title": "The dynamics of genome replication using deep sequencing (Muller et al. 2014), reprocessed on sacCer3",
+  "organism": "Saccharomyces cerevisiae",
+  "assembly": "sacCer3",
+  "bin_size_bp": 1000,
+  "measurement": "relative DNA copy number (replication timing)",
+  "scale": "1 = unreplicated, 2 = fully replicated",
+  "source": {
+    "doi": "10.1093/nar/gkt878",
+    "pubmed": "24089142",
+    "archive_series": [
+      "GSE42243",
+      "GSE48212"
+    ],
+    "runs": [
+      "SRR616663",
+      "SRR616664",
+      "SRR616665",
+      "SRR616666",
+      "SRR922015",
+      "SRR922016",
+      "SRR922017",
+      "SRR922018",
+      "SRR922019",
+      "SRR922020",
+      "SRR922021",
+      "SRR922022",
+      "SRR922023",
+      "SRR922024",
+      "SRR926343",
+      "SRR926344",
+      "SRR926345",
+      "SRR926346"
+    ]
+  },
+  "provenance": {
+    "pipeline": "replication-timing-nf",
+    "pipeline_revision": null,
+    "generated": "2026-11-18T14:26:01Z"
+  },
+  "samples": [
+    {
+      "sample": "T7107_G2_SOLiD",
+      "run": "SRR616663",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "sortseq",
+      "role": "nonRep",
+      "strain": "T7107",
+      "timepoint": "",
+      "series": "GSE42243",
+      "counts": {
+        "sample": "T7107_G2_SOLiD",
+        "run": "SRR616663",
+        "platform": "ABI_SOLID",
+        "total_alignments": "33606728",
+        "counted_5prime_ends": "9072125",
+        "binned_reads": "9072125",
+        "nonzero_bins": "11708",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T7107_G2_SOLiD",
+        "bins": "11614",
+        "median_count": "776.0",
+        "mean_count": "759.7",
+        "cv_percent": "92.64",
+        "chrom_median_relative": "chrI=0.943,chrII=0.995,chrIII=0.991,chrIV=1,chrV=0.997,chrVI=1.018,chrVII=0.999,chrVIII=0.982,chrIX=1,chrX=1.007,chrXI=1.006,chrXII=1.013,chrXIII=0.999,chrXIV=1.001,chrXV=0.999,chrXVI=1.003",
+        "max_chrom_deviation": "0.057"
+      }
+    },
+    {
+      "sample": "T7107_S_SOLiD",
+      "run": "SRR616664",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "sortseq",
+      "role": "rep",
+      "strain": "T7107",
+      "timepoint": "",
+      "series": "GSE42243",
+      "counts": {
+        "sample": "T7107_S_SOLiD",
+        "run": "SRR616664",
+        "platform": "ABI_SOLID",
+        "total_alignments": "26461361",
+        "counted_5prime_ends": "7036879",
+        "binned_reads": "7036879",
+        "nonzero_bins": "11681",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T7107_S_SOLiD",
+        "bins": "11589",
+        "median_count": "575.0",
+        "mean_count": "592.1",
+        "cv_percent": "90.24",
+        "chrom_median_relative": "chrI=0.886,chrII=0.958,chrIII=1.06,chrIV=0.939,chrV=1.094,chrVI=0.967,chrVII=1.008,chrVIII=0.963,chrIX=1.077,chrX=1.082,chrXI=1.031,chrXII=1.025,chrXIII=1.043,chrXIV=0.929,chrXV=1.021,chrXVI=1.019",
+        "max_chrom_deviation": "0.114"
+      }
+    },
+    {
+      "sample": "T9475_G2_SOLiD",
+      "run": "SRR616665",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "sortseq",
+      "role": "nonRep",
+      "strain": "T9475",
+      "timepoint": "",
+      "series": "GSE42243",
+      "counts": {
+        "sample": "T9475_G2_SOLiD",
+        "run": "SRR616665",
+        "platform": "ABI_SOLID",
+        "total_alignments": "71434486",
+        "counted_5prime_ends": "17768325",
+        "binned_reads": "17768325",
+        "nonzero_bins": "11715",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T9475_G2_SOLiD",
+        "bins": "11622",
+        "median_count": "1531.0",
+        "mean_count": "1498.1",
+        "cv_percent": "97.24",
+        "chrom_median_relative": "chrI=0.954,chrII=0.997,chrIII=0.988,chrIV=0.996,chrV=1.001,chrVI=1.015,chrVII=0.998,chrVIII=0.981,chrIX=0.996,chrX=1.008,chrXI=1.013,chrXII=1.002,chrXIII=1.001,chrXIV=1.012,chrXV=0.995,chrXVI=1.001",
+        "max_chrom_deviation": "0.046"
+      }
+    },
+    {
+      "sample": "T9475_S_SOLiD",
+      "run": "SRR616666",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "sortseq",
+      "role": "rep",
+      "strain": "T9475",
+      "timepoint": "",
+      "series": "GSE42243",
+      "counts": {
+        "sample": "T9475_S_SOLiD",
+        "run": "SRR616666",
+        "platform": "ABI_SOLID",
+        "total_alignments": "38668726",
+        "counted_5prime_ends": "10220581",
+        "binned_reads": "10220581",
+        "nonzero_bins": "11689",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T9475_S_SOLiD",
+        "bins": "11595",
+        "median_count": "827.0",
+        "mean_count": "856.2",
+        "cv_percent": "108.25",
+        "chrom_median_relative": "chrI=0.906,chrII=0.952,chrIII=1.089,chrIV=0.923,chrV=1.108,chrVI=0.965,chrVII=1.005,chrVIII=0.961,chrIX=1.093,chrX=1.089,chrXI=1.04,chrXII=1.019,chrXIII=1.046,chrXIV=0.931,chrXV=1.022,chrXVI=1.018",
+        "max_chrom_deviation": "0.108"
+      }
+    },
+    {
+      "sample": "AUY077_alpha",
+      "run": "SRR922015",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "nonRep",
+      "strain": "AUY077",
+      "timepoint": "0",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_alpha",
+        "run": "SRR922015",
+        "platform": "ABI_SOLID",
+        "total_alignments": "24068522",
+        "counted_5prime_ends": "13814187",
+        "binned_reads": "13814187",
+        "nonzero_bins": "11683",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_alpha",
+        "bins": "11592",
+        "median_count": "1130.0",
+        "mean_count": "1098.6",
+        "cv_percent": "82.05",
+        "chrom_median_relative": "chrI=0.974,chrII=0.996,chrIII=1.017,chrIV=0.996,chrV=1.004,chrVI=0.989,chrVII=0.996,chrVIII=0.991,chrIX=1,chrX=1.012,chrXI=0.995,chrXII=1.004,chrXIII=1.002,chrXIV=0.997,chrXV=1,chrXVI=1.007",
+        "max_chrom_deviation": "0.026"
+      }
+    },
+    {
+      "sample": "AUY077_25min",
+      "run": "SRR922016",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "25",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_25min",
+        "run": "SRR922016",
+        "platform": "ABI_SOLID",
+        "total_alignments": "32226488",
+        "counted_5prime_ends": "18310618",
+        "binned_reads": "18310618",
+        "nonzero_bins": "11699",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_25min",
+        "bins": "11608",
+        "median_count": "1472.0",
+        "mean_count": "1434.9",
+        "cv_percent": "79.87",
+        "chrom_median_relative": "chrI=0.971,chrII=1.003,chrIII=0.995,chrIV=1.003,chrV=0.998,chrVI=0.998,chrVII=0.997,chrVIII=1.001,chrIX=0.995,chrX=1.014,chrXI=0.988,chrXII=0.997,chrXIII=1.001,chrXIV=0.999,chrXV=1,chrXVI=1.006",
+        "max_chrom_deviation": "0.029"
+      }
+    },
+    {
+      "sample": "AUY077_30min",
+      "run": "SRR922017",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "30",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_30min",
+        "run": "SRR922017",
+        "platform": "ABI_SOLID",
+        "total_alignments": "34575403",
+        "counted_5prime_ends": "19307045",
+        "binned_reads": "19307045",
+        "nonzero_bins": "11712",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_30min",
+        "bins": "11621",
+        "median_count": "1524.0",
+        "mean_count": "1521.9",
+        "cv_percent": "84.34",
+        "chrom_median_relative": "chrI=0.968,chrII=1.006,chrIII=0.979,chrIV=1.009,chrV=0.991,chrVI=0.995,chrVII=0.995,chrVIII=1,chrIX=0.99,chrX=1.005,chrXI=0.983,chrXII=0.996,chrXIII=1.006,chrXIV=1.01,chrXV=0.999,chrXVI=1.009",
+        "max_chrom_deviation": "0.032"
+      }
+    },
+    {
+      "sample": "AUY077_35min",
+      "run": "SRR922018",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "35",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_35min",
+        "run": "SRR922018",
+        "platform": "ABI_SOLID",
+        "total_alignments": "36315683",
+        "counted_5prime_ends": "20374494",
+        "binned_reads": "20374494",
+        "nonzero_bins": "11712",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_35min",
+        "bins": "11621",
+        "median_count": "1592.0",
+        "mean_count": "1619.5",
+        "cv_percent": "81.13",
+        "chrom_median_relative": "chrI=0.986,chrII=0.997,chrIII=1.027,chrIV=1.008,chrV=1.007,chrVI=1.018,chrVII=0.982,chrVIII=0.984,chrIX=0.999,chrX=1.014,chrXI=0.975,chrXII=0.996,chrXIII=1.006,chrXIV=0.996,chrXV=1.008,chrXVI=1.003",
+        "max_chrom_deviation": "0.027"
+      }
+    },
+    {
+      "sample": "AUY077_40min",
+      "run": "SRR922019",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "40",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_40min",
+        "run": "SRR922019",
+        "platform": "ABI_SOLID",
+        "total_alignments": "37865573",
+        "counted_5prime_ends": "21624354",
+        "binned_reads": "21624354",
+        "nonzero_bins": "11712",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_40min",
+        "bins": "11621",
+        "median_count": "1676.0",
+        "mean_count": "1724.5",
+        "cv_percent": "76.53",
+        "chrom_median_relative": "chrI=0.945,chrII=0.978,chrIII=1.093,chrIV=0.954,chrV=1.089,chrVI=0.986,chrVII=0.977,chrVIII=0.973,chrIX=1.098,chrX=1.051,chrXI=1.007,chrXII=0.991,chrXIII=1.032,chrXIV=0.949,chrXV=1.027,chrXVI=1.03",
+        "max_chrom_deviation": "0.098"
+      }
+    },
+    {
+      "sample": "AUY077_45min",
+      "run": "SRR922020",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "45",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_45min",
+        "run": "SRR922020",
+        "platform": "ABI_SOLID",
+        "total_alignments": "32125298",
+        "counted_5prime_ends": "18418415",
+        "binned_reads": "18418415",
+        "nonzero_bins": "11707",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_45min",
+        "bins": "11616",
+        "median_count": "1505.0",
+        "mean_count": "1486.2",
+        "cv_percent": "70.79",
+        "chrom_median_relative": "chrI=0.954,chrII=0.97,chrIII=1.083,chrIV=0.924,chrV=1.078,chrVI=0.927,chrVII=0.987,chrVIII=0.982,chrIX=1.093,chrX=1.056,chrXI=1.019,chrXII=0.987,chrXIII=1.036,chrXIV=0.931,chrXV=1.03,chrXVI=1.033",
+        "max_chrom_deviation": "0.093"
+      }
+    },
+    {
+      "sample": "AUY077_50min",
+      "run": "SRR922021",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "50",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_50min",
+        "run": "SRR922021",
+        "platform": "ABI_SOLID",
+        "total_alignments": "29430968",
+        "counted_5prime_ends": "17312678",
+        "binned_reads": "17312678",
+        "nonzero_bins": "11700",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_50min",
+        "bins": "11609",
+        "median_count": "1449.0",
+        "mean_count": "1407.2",
+        "cv_percent": "69.93",
+        "chrom_median_relative": "chrI=0.969,chrII=0.972,chrIII=1.059,chrIV=0.946,chrV=1.055,chrVI=0.929,chrVII=0.989,chrVIII=1.004,chrIX=1.057,chrX=1.045,chrXI=1.014,chrXII=0.99,chrXIII=1.028,chrXIV=0.954,chrXV=1.01,chrXVI=1.029",
+        "max_chrom_deviation": "0.071"
+      }
+    },
+    {
+      "sample": "AUY077_90min",
+      "run": "SRR922022",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "syncseq",
+      "role": "rep",
+      "strain": "AUY077",
+      "timepoint": "90",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "AUY077_90min",
+        "run": "SRR922022",
+        "platform": "ABI_SOLID",
+        "total_alignments": "43793297",
+        "counted_5prime_ends": "24946827",
+        "binned_reads": "24946827",
+        "nonzero_bins": "11711",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "AUY077_90min",
+        "bins": "11620",
+        "median_count": "2074.5",
+        "mean_count": "2010.4",
+        "cv_percent": "79.93",
+        "chrom_median_relative": "chrI=0.975,chrII=1.003,chrIII=0.999,chrIV=0.998,chrV=1.002,chrVI=0.999,chrVII=0.999,chrVIII=0.993,chrIX=1.005,chrX=1.014,chrXI=0.996,chrXII=0.981,chrXIII=1.003,chrXIV=1.001,chrXV=1.003,chrXVI=1.007",
+        "max_chrom_deviation": "0.025"
+      }
+    },
+    {
+      "sample": "CAY106_alpha",
+      "run": "SRR922023",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "hu",
+      "role": "nonRep",
+      "strain": "CAY106",
+      "timepoint": "",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "CAY106_alpha",
+        "run": "SRR922023",
+        "platform": "ABI_SOLID",
+        "total_alignments": "30522497",
+        "counted_5prime_ends": "6390021",
+        "binned_reads": "6390021",
+        "nonzero_bins": "11701",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "CAY106_alpha",
+        "bins": "11607",
+        "median_count": "530.0",
+        "mean_count": "543.3",
+        "cv_percent": "64.32",
+        "chrom_median_relative": "chrI=0.929,chrII=0.989,chrIII=0.951,chrIV=0.981,chrV=0.977,chrVI=0.958,chrVII=0.981,chrVIII=0.985,chrIX=0.985,chrX=2.012,chrXI=0.985,chrXII=0.964,chrXIII=0.991,chrXIV=1.001,chrXV=0.992,chrXVI=1.002",
+        "max_chrom_deviation": "1.012"
+      }
+    },
+    {
+      "sample": "CAY106_HU",
+      "run": "SRR922024",
+      "platform": "ABI_SOLID",
+      "layout": "single",
+      "variant": "hu",
+      "role": "rep",
+      "strain": "CAY106",
+      "timepoint": "60",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "CAY106_HU",
+        "run": "SRR922024",
+        "platform": "ABI_SOLID",
+        "total_alignments": "22095526",
+        "counted_5prime_ends": "4704156",
+        "binned_reads": "4704156",
+        "nonzero_bins": "11682",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "CAY106_HU",
+        "bins": "11592",
+        "median_count": "378.0",
+        "mean_count": "397.9",
+        "cv_percent": "81.70",
+        "chrom_median_relative": "chrI=0.967,chrII=0.989,chrIII=0.988,chrIV=0.974,chrV=1,chrVI=1.003,chrVII=0.976,chrVIII=0.981,chrIX=1.003,chrX=1.989,chrXI=0.996,chrXII=0.96,chrXIII=0.992,chrXIV=0.989,chrXV=0.989,chrXVI=1.008",
+        "max_chrom_deviation": "0.989"
+      }
+    },
+    {
+      "sample": "T7107_exp",
+      "run": "SRR926343",
+      "platform": "ILLUMINA",
+      "layout": "paired",
+      "variant": "mfaseq",
+      "role": "rep",
+      "strain": "T7107",
+      "timepoint": "",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "T7107_exp",
+        "run": "SRR926343",
+        "platform": "ILLUMINA",
+        "total_alignments": "267014812",
+        "counted_5prime_ends": "99894174",
+        "binned_reads": "99894174",
+        "nonzero_bins": "11767",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T7107_exp",
+        "bins": "11670",
+        "median_count": "8793.5",
+        "mean_count": "8452.2",
+        "cv_percent": "25.83",
+        "chrom_median_relative": "chrI=0.985,chrII=0.987,chrIII=1.019,chrIV=0.986,chrV=1.024,chrVI=0.975,chrVII=1.001,chrVIII=0.994,chrIX=1.014,chrX=1.02,chrXI=1.004,chrXII=1.001,chrXIII=1.012,chrXIV=0.985,chrXV=1.003,chrXVI=1.002",
+        "max_chrom_deviation": "0.025"
+      }
+    },
+    {
+      "sample": "T7107_stat",
+      "run": "SRR926344",
+      "platform": "ILLUMINA",
+      "layout": "paired",
+      "variant": "mfaseq",
+      "role": "nonRep",
+      "strain": "T7107",
+      "timepoint": "",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "T7107_stat",
+        "run": "SRR926344",
+        "platform": "ILLUMINA",
+        "total_alignments": "299209888",
+        "counted_5prime_ends": "110390729",
+        "binned_reads": "110390729",
+        "nonzero_bins": "11763",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T7107_stat",
+        "bins": "11667",
+        "median_count": "9696.0",
+        "mean_count": "9229.7",
+        "cv_percent": "23.51",
+        "chrom_median_relative": "chrI=0.987,chrII=1,chrIII=0.994,chrIV=1.005,chrV=1,chrVI=0.991,chrVII=1,chrVIII=0.992,chrIX=0.996,chrX=1.002,chrXI=0.998,chrXII=1.003,chrXIII=1.001,chrXIV=0.997,chrXV=1.003,chrXVI=1.001",
+        "max_chrom_deviation": "0.013"
+      }
+    },
+    {
+      "sample": "T9475_G2_Illumina",
+      "run": "SRR926345",
+      "platform": "ILLUMINA",
+      "layout": "paired",
+      "variant": "sortseq",
+      "role": "nonRep",
+      "strain": "T9475",
+      "timepoint": "",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "T9475_G2_Illumina",
+        "run": "SRR926345",
+        "platform": "ILLUMINA",
+        "total_alignments": "182225872",
+        "counted_5prime_ends": "63433097",
+        "binned_reads": "63433097",
+        "nonzero_bins": "11771",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T9475_G2_Illumina",
+        "bins": "11673",
+        "median_count": "5503.0",
+        "mean_count": "5292.2",
+        "cv_percent": "34.44",
+        "chrom_median_relative": "chrI=1.001,chrII=1,chrIII=1.01,chrIV=0.995,chrV=1.009,chrVI=1.022,chrVII=0.998,chrVIII=0.995,chrIX=1.01,chrX=1.009,chrXI=1.002,chrXII=0.993,chrXIII=1,chrXIV=0.998,chrXV=0.999,chrXVI=1.003",
+        "max_chrom_deviation": "0.022"
+      }
+    },
+    {
+      "sample": "T9475_S_Illumina",
+      "run": "SRR926346",
+      "platform": "ILLUMINA",
+      "layout": "paired",
+      "variant": "sortseq",
+      "role": "rep",
+      "strain": "T9475",
+      "timepoint": "",
+      "series": "GSE48212",
+      "counts": {
+        "sample": "T9475_S_Illumina",
+        "run": "SRR926346",
+        "platform": "ILLUMINA",
+        "total_alignments": "226301444",
+        "counted_5prime_ends": "74734066",
+        "binned_reads": "74734066",
+        "nonzero_bins": "11774",
+        "total_bins": "12165"
+      },
+      "qc": {
+        "sample": "T9475_S_Illumina",
+        "bins": "11677",
+        "median_count": "6155.0",
+        "mean_count": "6220.3",
+        "cv_percent": "37.65",
+        "chrom_median_relative": "chrI=0.972,chrII=0.954,chrIII=1.141,chrIV=0.925,chrV=1.108,chrVI=0.982,chrVII=1.002,chrVIII=0.977,chrIX=1.082,chrX=1.08,chrXI=1.037,chrXII=1.013,chrXIII=1.041,chrXIV=0.928,chrXV=1.022,chrXVI=1.006",
+        "max_chrom_deviation": "0.141"
+      }
+    }
+  ],
+  "tracks": [
+    {
+      "comparison": "sortseq_T7107_SOLiD",
+      "replicating_sample": "T7107_S_SOLiD",
+      "non_replicating_sample": "T7107_G2_SOLiD",
+      "variant": "sortseq",
+      "normalisation_mode": "auto",
+      "description": "Sort-seq: wild-type haploid T7107 (SOLiD)",
+      "statistics": {
+        "comparison": "T7107_S_SOLiD_vs_T7107_G2_SOLiD",
+        "norm_mode": "auto",
+        "ratio_factor": "1.4010",
+        "bins": "11310",
+        "ratio_min": "0.8320",
+        "ratio_max": "2.4150",
+        "ratio_median": "1.3600"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/sortseq_T7107_SOLiD.ratio.bed",
+          "bytes": 658631,
+          "md5": "566c3d70e8d3537629a032239be313fb"
+        },
+        "smoothed_bed": {
+          "path": "profiles/sortseq_T7107_SOLiD.smooth.bed",
+          "bytes": 657664,
+          "md5": "d2e134652d40223e335ab9e6ebc293d0"
+        },
+        "ratio_table": {
+          "path": "profiles/sortseq_T7107_SOLiD.ratio.tsv",
+          "bytes": 792231,
+          "md5": "51370e00adc25821d54daeb156cbfd22"
+        },
+        "bigwig": {
+          "path": "bigwig/sortseq_T7107_SOLiD.smooth.bw",
+          "bytes": 91830,
+          "md5": "aae91eba839da304c9d8a4eb0c23a8ca"
+        }
+      }
+    },
+    {
+      "comparison": "sortseq_T9475_SOLiD",
+      "replicating_sample": "T9475_S_SOLiD",
+      "non_replicating_sample": "T9475_G2_SOLiD",
+      "variant": "sortseq",
+      "normalisation_mode": "auto",
+      "description": "Sort-seq: diploid T9475 (SOLiD)",
+      "statistics": {
+        "comparison": "T9475_S_SOLiD_vs_T9475_G2_SOLiD",
+        "norm_mode": "auto",
+        "ratio_factor": "1.3870",
+        "bins": "11311",
+        "ratio_min": "0.7740",
+        "ratio_max": "2.5630",
+        "ratio_median": "1.3370"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/sortseq_T9475_SOLiD.ratio.bed",
+          "bytes": 658628,
+          "md5": "e016616b57f9dec032c8dd07d230dc87"
+        },
+        "smoothed_bed": {
+          "path": "profiles/sortseq_T9475_SOLiD.smooth.bed",
+          "bytes": 657525,
+          "md5": "255d400979f210337bfc985ff8e98a7e"
+        },
+        "ratio_table": {
+          "path": "profiles/sortseq_T9475_SOLiD.ratio.tsv",
+          "bytes": 792157,
+          "md5": "245956ec4a25689d021ea9f90805b193"
+        },
+        "bigwig": {
+          "path": "bigwig/sortseq_T9475_SOLiD.smooth.bw",
+          "bytes": 91847,
+          "md5": "7f2247440911b343f6c41d89e83ae74b"
+        }
+      }
+    },
+    {
+      "comparison": "sortseq_T9475_Illumina",
+      "replicating_sample": "T9475_S_Illumina",
+      "non_replicating_sample": "T9475_G2_Illumina",
+      "variant": "sortseq",
+      "normalisation_mode": "auto",
+      "description": "Sort-seq: diploid T9475 (Illumina replicate)",
+      "statistics": {
+        "comparison": "T9475_S_Illumina_vs_T9475_G2_Illumina",
+        "norm_mode": "auto",
+        "ratio_factor": "1.3910",
+        "bins": "11311",
+        "ratio_min": "0.9890",
+        "ratio_max": "2.0110",
+        "ratio_median": "1.3530"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/sortseq_T9475_Illumina.ratio.bed",
+          "bytes": 726565,
+          "md5": "38b093c080b97a2ae65cc4ef8ab065f4"
+        },
+        "smoothed_bed": {
+          "path": "profiles/sortseq_T9475_Illumina.smooth.bed",
+          "bytes": 725242,
+          "md5": "6d733749f361f40fbd2a51d38715581c"
+        },
+        "ratio_table": {
+          "path": "profiles/sortseq_T9475_Illumina.ratio.tsv",
+          "bytes": 860042,
+          "md5": "bfa14fd8e7b40a51c2dd253229bcf1c7"
+        },
+        "bigwig": {
+          "path": "bigwig/sortseq_T9475_Illumina.smooth.bw",
+          "bytes": 90818,
+          "md5": "0be0f3b690730eb407eb462db189974d"
+        }
+      }
+    },
+    {
+      "comparison": "mfaseq_T7107",
+      "replicating_sample": "T7107_exp",
+      "non_replicating_sample": "T7107_stat",
+      "variant": "mfaseq",
+      "normalisation_mode": "rFactor",
+      "description": "MFA-seq: exponential vs stationary phase T7107",
+      "statistics": {
+        "comparison": "T7107_exp_vs_T7107_stat",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.1370",
+        "bins": "11300",
+        "ratio_min": "0.8150",
+        "ratio_max": "1.4040",
+        "ratio_median": "1.1340"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/mfaseq_T7107.ratio.bed",
+          "bytes": 567656,
+          "md5": "f490f26bc97be22f8c955a252e88c4d6"
+        },
+        "smoothed_bed": {
+          "path": "profiles/mfaseq_T7107.smooth.bed",
+          "bytes": 566722,
+          "md5": "986ecfd49d9ab618dff8ab0c327a65cd"
+        },
+        "ratio_table": {
+          "path": "profiles/mfaseq_T7107.ratio.tsv",
+          "bytes": 701060,
+          "md5": "29400a9bd6de3b335300402c55be2c4a"
+        },
+        "bigwig": {
+          "path": "bigwig/mfaseq_T7107.smooth.bw",
+          "bytes": 82480,
+          "md5": "a7f01f4b5f32522d7c912f9711c8e5b5"
+        }
+      }
+    },
+    {
+      "comparison": "hu_CAY106",
+      "replicating_sample": "CAY106_HU",
+      "non_replicating_sample": "CAY106_alpha",
+      "variant": "hu",
+      "normalisation_mode": "auto",
+      "description": "HU-stalled fork origin mapping: rad53 sml1 CAY106",
+      "statistics": {
+        "comparison": "CAY106_HU_vs_CAY106_alpha",
+        "norm_mode": "auto",
+        "ratio_factor": "1.2610",
+        "bins": "11293",
+        "ratio_min": "0.8440",
+        "ratio_max": "2.5890",
+        "ratio_median": "1.2210"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/hu_CAY106.ratio.bed",
+          "bytes": 589868,
+          "md5": "e1374b94866663e00e681849ca56506c"
+        },
+        "smoothed_bed": {
+          "path": "profiles/hu_CAY106.smooth.bed",
+          "bytes": 589127,
+          "md5": "d0f9040d9ec73704f54eef3219e6c00a"
+        },
+        "ratio_table": {
+          "path": "profiles/hu_CAY106.ratio.tsv",
+          "bytes": 723208,
+          "md5": "f66f382d2d8d96099ad4e54b7fbe6c9f"
+        },
+        "bigwig": {
+          "path": "bigwig/hu_CAY106.smooth.bw",
+          "bytes": 87925,
+          "md5": "8dece7e352bfa61afbaf81d337427780"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_25min",
+      "replicating_sample": "AUY077_25min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 25 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_25min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.0130",
+        "bins": "11317",
+        "ratio_min": "0.7960",
+        "ratio_max": "1.4100",
+        "ratio_median": "1.0070"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_25min.ratio.bed",
+          "bytes": 624869,
+          "md5": "3a5f77121e52f0003d83260a8b4bb355"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_25min.smooth.bed",
+          "bytes": 623618,
+          "md5": "07b3e57c726c7005c4f0a27ceb3975f4"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_25min.ratio.tsv",
+          "bytes": 758044,
+          "md5": "04fe1d913a179125239798285a186666"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_25min.smooth.bw",
+          "bytes": 78948,
+          "md5": "5a6e23bb24a3682fe7da81a5ec8295bd"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_30min",
+      "replicating_sample": "AUY077_30min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 30 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_30min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.0460",
+        "bins": "11317",
+        "ratio_min": "0.7770",
+        "ratio_max": "1.7620",
+        "ratio_median": "1.0100"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_30min.ratio.bed",
+          "bytes": 624956,
+          "md5": "bcaca58a7ce9b625c83c0cfe5e930204"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_30min.smooth.bed",
+          "bytes": 623839,
+          "md5": "ce2c9930c9f37a2f6ddeac31ff4e9b67"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_30min.ratio.tsv",
+          "bytes": 758345,
+          "md5": "9d05a576fd5b1688da9edfb6820e925e"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_30min.smooth.bw",
+          "bytes": 84642,
+          "md5": "a3813c7d1722ee728a6fccb37671cbf0"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_35min",
+      "replicating_sample": "AUY077_35min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 35 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_35min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.1710",
+        "bins": "11315",
+        "ratio_min": "0.7410",
+        "ratio_max": "1.9310",
+        "ratio_median": "1.1130"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_35min.ratio.bed",
+          "bytes": 624925,
+          "md5": "1ecf0eb016522a64967bd580450be89f"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_35min.smooth.bed",
+          "bytes": 623916,
+          "md5": "0f038ebb29e6c3addd98f33b2d5f4c03"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_35min.ratio.tsv",
+          "bytes": 758475,
+          "md5": "9abbb2d07886aabb3eaaa185769d751d"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_35min.smooth.bw",
+          "bytes": 89337,
+          "md5": "8f590f0e5f90d3a82ce7fc62d1f7d54b"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_40min",
+      "replicating_sample": "AUY077_40min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 40 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_40min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.3740",
+        "bins": "11316",
+        "ratio_min": "0.8040",
+        "ratio_max": "2.1370",
+        "ratio_median": "1.3310"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_40min.ratio.bed",
+          "bytes": 624977,
+          "md5": "c71419661eb0b65e7c07d653822239f1"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_40min.smooth.bed",
+          "bytes": 624000,
+          "md5": "474a99f61699346633c648f3b471f935"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_40min.ratio.tsv",
+          "bytes": 758570,
+          "md5": "6bd4e0e9e61beb16a9f49525196f1f4a"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_40min.smooth.bw",
+          "bytes": 91878,
+          "md5": "f26495f1720b74dd73ad794070aa25a2"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_45min",
+      "replicating_sample": "AUY077_45min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 45 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_45min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.5540",
+        "bins": "11311",
+        "ratio_min": "0.7430",
+        "ratio_max": "2.2890",
+        "ratio_median": "1.5840"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_45min.ratio.bed",
+          "bytes": 624841,
+          "md5": "e908516a9418acc27b87b0df8ee0ba53"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_45min.smooth.bed",
+          "bytes": 623750,
+          "md5": "c65cf9068267bd69951dfcdabee77adb"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_45min.ratio.tsv",
+          "bytes": 758350,
+          "md5": "f9d5250509e257977f4f7575c6bbac77"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_45min.smooth.bw",
+          "bytes": 92209,
+          "md5": "f779fc691ee0b1c95ad24f28ca4ac808"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_50min",
+      "replicating_sample": "AUY077_50min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 50 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_50min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.6820",
+        "bins": "11313",
+        "ratio_min": "0.8590",
+        "ratio_max": "2.3580",
+        "ratio_median": "1.7340"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_50min.ratio.bed",
+          "bytes": 624875,
+          "md5": "871bc506413de73b6f3d76c6424f22f9"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_50min.smooth.bed",
+          "bytes": 623934,
+          "md5": "3f8364cdc9b25e66a96bef68d65bb66d"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_50min.ratio.tsv",
+          "bytes": 758483,
+          "md5": "b20e123ec6d4be17a1f914294461f93d"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_50min.smooth.bw",
+          "bytes": 90277,
+          "md5": "a875e2b726b164a78d3caf39afadc6d9"
+        }
+      }
+    },
+    {
+      "comparison": "syncseq_AUY077_90min",
+      "replicating_sample": "AUY077_90min",
+      "non_replicating_sample": "AUY077_alpha",
+      "variant": "syncseq",
+      "normalisation_mode": "rFactor",
+      "description": "Sync-seq: 90 min after alpha-factor release",
+      "statistics": {
+        "comparison": "AUY077_90min_vs_AUY077_alpha",
+        "norm_mode": "rFactor",
+        "ratio_factor": "1.9830",
+        "bins": "11319",
+        "ratio_min": "1.4880",
+        "ratio_max": "2.3940",
+        "ratio_median": "1.9840"
+      },
+      "files": {
+        "ratio_bed": {
+          "path": "profiles/syncseq_AUY077_90min.ratio.bed",
+          "bytes": 625235,
+          "md5": "3a7a9f28a56fc840fca5c865d48feffc"
+        },
+        "smoothed_bed": {
+          "path": "profiles/syncseq_AUY077_90min.smooth.bed",
+          "bytes": 623779,
+          "md5": "1ce98cc73baea93031088bc64fcd9ce2"
+        },
+        "ratio_table": {
+          "path": "profiles/syncseq_AUY077_90min.ratio.tsv",
+          "bytes": 758477,
+          "md5": "058864a51a76a5d551fbd27c84d09129"
+        },
+        "bigwig": {
+          "path": "bigwig/syncseq_AUY077_90min.smooth.bw",
+          "bytes": 62142,
+          "md5": "bf4e0af53daf8f0c08f3277d94343964"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install pyBigWig
+        run: pip install pyBigWig
+
+      # A hub that is wrong fails in the browser with a message naming a line in a file
+      # the reader has never seen, so every push is checked here instead.
+      - name: Validate the hub
+        run: python3 bin/validate_hub.py --hub-root . --chrom-sizes sacCer3.chrom.sizes
+
+      - name: trackDb is in sync with the dataset directories
+        run: |
+          python3 bin/make_trackhub.py --hub-root . --genome sacCer3 \
+            --dataset muller2014 --bigwig-dir sacCer3/muller2014 \
+            --descriptions docs/descriptions_muller2014.tsv --no-copy
+          git diff --exit-code -- sacCer3 \
+            || { echo "trackDb.txt is out of date; re-run bin/make_trackhub.py and commit"; exit 1; }
