@@ -16,7 +16,7 @@
         "longLabel": "Replication timing: Trep in minutes from sync-seq (Muller et al. 2014); early replication plots high",
         "viewLimits": "-85:-25",
         "negateValues": true,
-        "graphType": "bar",
+        "graphType": "points",
         "visibility": "full"
       },
       {
