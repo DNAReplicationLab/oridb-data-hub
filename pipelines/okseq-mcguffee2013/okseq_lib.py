@@ -165,6 +165,32 @@ def write_bedgraph(prof, path, step=1000, sizes=None):
                 if e > s: fh.write(f"{c}\t{s}\t{e}\t{v[i]:.5f}\n")
 
 
+
+def write_bigwig(prof, path, sizes, step=250, chroms=CHROMS):
+    """Write a per-window profile dict (chrom -> array) to bigWig.
+
+    One interval per window; windows whose value is not finite are omitted rather than
+    written as zero, so a gap in the data stays a gap in the browser. Written with
+    pyBigWig because bedGraphToBigWig in bioconda is broken on this platform (missing
+    dylib); the format is the same either way.
+    """
+    import pyBigWig
+    bw = pyBigWig.open(path, 'w')
+    bw.addHeader([(c, sizes[c]) for c in chroms])
+    for c in chroms:
+        v = np.asarray(prof[c], dtype=np.float64)
+        idx = np.flatnonzero(np.isfinite(v))
+        if len(idx) == 0:
+            continue
+        starts = idx * step
+        ends = np.minimum(starts + step, sizes[c])
+        keep = ends > starts
+        starts, ends, vals = starts[keep], ends[keep], v[idx][keep]
+        bw.addEntries([c] * len(starts), starts.tolist(),
+                      ends=ends.tolist(), values=vals.tolist())
+    bw.close()
+    return path
+
 def annotate_oem(calls, oem_prof, step=1000):
     """Attach the McGuffee OEM (10 kb quadrants) at each call position as the efficiency estimate."""
     v = []

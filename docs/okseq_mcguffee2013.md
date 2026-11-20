@@ -199,6 +199,39 @@ between 2 and 5 kb (390 versus 383) but a large one at the paper's 10 kb (294).
 **Final parameters:** 250 bp windows, sigma = 2 kb, minimum separation 5 kb, OEM > 0.05 (the paper's
 own threshold), rDNA masked.
 
+### How this compares with the paper's own smoothing
+
+The paper applies no explicit smoothing at all. Its methods state that for each position in the
+genome the cumulative fragment count was summed within 10 kb to the left and to the right, per
+strand, and OEM formed from those four quadrants — so the analysis is **per base pair**, and all of
+its smoothing is implicit in the 10 kb quadrant sums, i.e. a 20 kb sliding window. Origin positions
+were then taken as local maxima of OEM "within 10Kb ranges" using a three-point method.
+
+The deposited data match that description: the `.sgr` signal files are per-base fragment counts with
+no binning or filtering (position steps of exactly 1 bp, 41 MB gzipped per strand per replicate),
+and the derived `average.tab` replication-time profile is reported at 500 bp spacing.
+
+So the two analyses smooth at different scales and for different purposes:
+
+| | McGuffee 2013 | this re-analysis |
+|---|---|---|
+| binning | none — per bp | 250 bp windows |
+| explicit smoothing | none | Gaussian, sigma = 2 kb, on FD only |
+| implicit smoothing | 10 kb quadrants either side (20 kb span) | 10 kb quadrants, for OEM only |
+| position statistic | local maxima of OEM within 10 kb ranges | maxima of d(FD)/dx |
+| efficiency statistic | OEM, then triangle deconvolution to OEM_origin | OEM, no deconvolution |
+| efficiency threshold | OEM > 0.05 | OEM > 0.05 (unchanged) |
+
+The practical difference is that the paper's position estimate is derived from the same 20 kb-span
+statistic it uses for efficiency, whereas this re-analysis separates the two: position comes from a
+2 kb-smoothed profile differentiated at 250 bp, efficiency from the paper's own 10 kb quadrants. That
+is why the minimum-separation parameter matters so much more here — at the paper's 10 kb separation
+this pipeline returns 294 calls against 383 at 5 kb — and it is the reason the measured positional
+error against the Confirmed tier is in the hundreds of bases rather than the kilobases a 20 kb-span
+statistic can support. What is *not* improved is efficiency: OEM is computed exactly as the paper
+defines it, minus the deconvolution step, so efficiencies near termination zones remain
+under-estimates.
+
 ## 8. Validation against the authors' published signal
 
 The published `.sgr` tracks are **sacCer2**, not sacCer3 — worth flagging for every other axis in
@@ -292,7 +325,7 @@ times in different cells, so the switch is spread over the distance a fork trave
 It is a property of the assay, not of the initiation site, and it is why the proposal's "what counts
 as one site" question matters particularly for this axis.
 
-![Fork directionality (top) and its derivative (bottom) across chrX:200-500 kb, merged wild-type data. Green lines mark Confirmed origins; open triangles mark called initiation sites. 9 of the 11 Confirmed origins in this window have a call within 2 kb.]({{artifact:42c84bce-d88e-44e9-804d-1082e38232ef}})
+![Fork directionality (top) and its derivative (bottom) across chrX:200-500 kb, merged wild-type data. Green lines mark Confirmed origins; open triangles mark called initiation sites. 9 of the 11 Confirmed origins in this window have a call within 2 kb.](figures/okseq_mcguffee2013_directionality_chrX.png)
 
 ## 10. Resolution against the Confirmed tier
 
@@ -385,24 +418,31 @@ Three points for the merge rule.
 
 | file | contents |
 |---|---|
-| [okseq_mcguffee2013_initiation_sites.bed]({{artifact:a9982428-6145-4aaa-9f17-2d14067e8a5b}}) | 383 initiation zones, sacCer3, with efficiency (OEM), delta-FD, derivative and width; score = 1000 x OEM |
-| [okseq_mcguffee2013_all_peaks_unthresholded.csv]({{artifact:884db9d4-ada1-49f8-8260-3aa0d5068292}}) | all 833 derivative peaks before the OEM > 0.05 cut, for re-thresholding |
-| [okseq_mcguffee2013_watson.bw]({{artifact:84a5b212-1670-4a2c-8440-938a16921d6d}}), [okseq_mcguffee2013_crick.bw]({{artifact:32b21846-2ae7-4b7c-813c-66c2d043b47b}}) | strand-resolved fragment coverage, 250 bp windows, fragments per million |
-| [okseq_mcguffee2013_directionality.bw]({{artifact:972db3c9-70f7-4f89-864a-c1d1c005eaf4}}) | FD, smoothed at sigma = 2 kb |
-| [okseq_mcguffee2013_derivative.bw]({{artifact:899d25ec-3412-401a-b11a-0410379433ba}}) | d(FD)/d(kb), the initiation statistic |
-| [okseq_mcguffee2013_oem.bw]({{artifact:95eb7c37-7cb9-4850-8241-69f84354787c}}) | OEM with 10 kb quadrants, the efficiency metric |
-| [okseq_mcguffee2013_directionality_chrX.png]({{artifact:42c84bce-d88e-44e9-804d-1082e38232ef}}) | the figure above |
-| [okseq_pipeline.tar.gz]({{artifact:a3bda61b-27ae-4848-ba1e-7f0db2935083}}) | `map.sh`, `okseq_lib.py`, `run_okseq.py`, `download.sh` |
-| [okseq_reference_sacCer3.tar.gz]({{artifact:4282c183-5ce2-4ad1-a78e-644191069f16}}) | reference, bowtie2 index, chain file |
+| [okseq_mcguffee2013_initiation_sites.bed](../sacCer3/mcguffee2013/okseq.initiation_sites.bed) | 383 initiation zones, sacCer3, with efficiency (OEM), delta-FD, derivative and width; score = 1000 x OEM |
+| [okseq_mcguffee2013_all_peaks_unthresholded.csv](../pipelines/okseq-mcguffee2013/results/okseq_all_peaks_unthresholded.csv) | all 833 derivative peaks before the OEM > 0.05 cut, for re-thresholding |
+| [okseq_mcguffee2013_watson.bw](../sacCer3/mcguffee2013/okseq.watson.bw), [okseq_mcguffee2013_crick.bw](../sacCer3/mcguffee2013/okseq.crick.bw) | strand-resolved fragment coverage, 250 bp windows, fragments per million |
+| [okseq_mcguffee2013_directionality.bw](../sacCer3/mcguffee2013/okseq.directionality.bw) | FD, smoothed at sigma = 2 kb |
+| [okseq_mcguffee2013_derivative.bw](../sacCer3/mcguffee2013/okseq.derivative.bw) | d(FD)/d(kb), the initiation statistic |
+| [okseq_mcguffee2013_oem.bw](../sacCer3/mcguffee2013/okseq.oem.bw) | OEM with 10 kb quadrants, the efficiency metric |
+| [okseq_mcguffee2013_directionality_chrX.png](figures/okseq_mcguffee2013_directionality_chrX.png) | the figure above |
+| [pipelines/okseq-mcguffee2013/](../pipelines/okseq-mcguffee2013/) | `download.sh`, `map.sh`, `pipeline.sh`, `okseq_lib.py`, `run_okseq.py` |
+| reference bundle (not committed) | sacCer3 FASTA, bowtie2 index and the sacCer2->sacCer3 chain; ~22 MB, rebuilt by `pipelines/okseq-mcguffee2013/download.sh` rather than stored in the repo |
 
 ## 15. Reproducing this
 
 ```
 bash download.sh                                   # ENA fetch, md5-verified
 bash map.sh <R1> <R2> bam/SRR566701 10             # per run
-python run_okseq.py --bam-dir bam --out results
+python run_okseq.py --bam-dir bam --out results \
+       --tracks-out ../../sacCer3/mcguffee2013     # rewrites the hub's bigWigs
 ```
 
-`okseq_lib.py` holds the analysis functions; `run_okseq.py` drives them from the two BAMs. Mapping
+`okseq_lib.py` holds the analysis functions; `run_okseq.py` drives them from the two BAMs and, with
+`--tracks-out`, writes the five signal tracks the hub serves (`okseq.watson.bw`, `okseq.crick.bw`,
+`okseq.directionality.bw`, `okseq.derivative.bw`, `okseq.oem.bw`). Strand coverage is scaled to
+fragments per million; the ratio tracks need no depth normalisation. The tracks currently in the
+repository were written before this step existed, so they have not been regenerated by it — the
+writer reproduces a served track read back and rewritten exactly, but the full path from BAM to
+bigWig has not been re-run, because the 49 GB of alignments is not retained. Mapping
 took about one hour per sample on 10 threads on a 14-core machine under heavy external contention;
 everything downstream of the BAMs runs in under ten minutes.

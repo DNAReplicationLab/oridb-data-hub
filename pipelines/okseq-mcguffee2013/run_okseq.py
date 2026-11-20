@@ -66,6 +66,8 @@ def main():
     ap.add_argument('--origins', default='/Users/nieduszc/Documents/oridb-v3/public/data/origins.tsv')
     ap.add_argument('--sizes', default='okseq/ref/sacCer3.chrom.sizes')
     ap.add_argument('--out', default='results')
+    ap.add_argument('--tracks-out', default=None,
+                    help='directory to write the hub bigWigs into (default: do not write)')
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     sizes = K.chrom_sizes(a.sizes)
@@ -110,10 +112,6 @@ def main():
     json.dump(summary, open(os.path.join(a.out, 'summary_part1.json'), 'w'), indent=1)
     print(json.dumps(summary['validation_vs_published'], indent=1), flush=True)
     return covs, merged, conf, sizes, summary
-
-
-if __name__ == '__main__':
-    main()
 
 
 # ============================ stage 2: scans, calls, tracks ==================
@@ -214,3 +212,65 @@ def write_bed(calls, path):
         fh.write('#' + '\t'.join(cols) + '\n')
         b[cols].to_csv(fh, sep='\t', header=False, index=False)
     return b
+
+def write_tracks(merged, stats, sizes, outdir, step=PRIMARY['step'],
+                 sigma_kb=PRIMARY['sigma_kb'], oem_quad=PRIMARY['oem_quad']):
+    """Write the five signal tracks the hub serves, from the merged coverage.
+
+    Strand coverage is reported as fragments per million so that the two tracks are
+    comparable with other datasets; FD, its derivative and OEM are ratios and need no
+    depth normalisation. Note which carries the smoothing: FD and the derivative are
+    computed from the Gaussian-smoothed profile (sigma = sigma_kb), while OEM is computed
+    from the UNSMOOTHED window sums over oem_quad quadrants, exactly as in McGuffee 2013.
+    """
+    os.makedirs(outdir, exist_ok=True)
+    win, fd, fds, oe, dv = profiles(merged, step, sigma_kb, oem_quad)
+    per_million = sum(v['fragments'] for v in stats.values()) / 1e6
+    written = {}
+    for name, prof in [
+            ('okseq.watson.bw', {c: win[c][0] / per_million for c in win}),
+            ('okseq.crick.bw', {c: win[c][1] / per_million for c in win}),
+            ('okseq.directionality.bw', fds),
+            ('okseq.derivative.bw', dv),
+            ('okseq.oem.bw', oe)]:
+        written[name] = K.write_bigwig(prof, os.path.join(outdir, name), sizes, step)
+    print(f"tracks written to {outdir}: {', '.join(sorted(written))} "
+          f"(strand coverage scaled by {per_million:.3f} million fragments)", flush=True)
+    return written
+
+
+def stage2(covs, merged, conf, sizes, summary, out, tracks_out=None):
+    """Scans, the primary call set, and the tracks the hub serves."""
+    window_scan(covs, merged, conf).to_csv(os.path.join(out, 'window_scan.csv'), index=False)
+    smoothing_scan(covs, merged, conf).to_csv(os.path.join(out, 'smoothing_scan.csv'), index=False)
+
+    calls, (win, fd, fds, oe, dv) = call_set(merged, PRIMARY['step'], PRIMARY['sigma_kb'],
+                                             PRIMARY['min_sep_bp'], PRIMARY['oem_quad'],
+                                             PRIMARY['oem_cut'])
+    all_peaks = K.annotate_oem(
+        K.call_sites(fds, dv, step=PRIMARY['step'], min_height=1e-6,
+                     min_sep_bp=PRIMARY['min_sep_bp'], mask=RDNA), oe, PRIMARY['step'])
+    all_peaks.to_csv(os.path.join(out, 'okseq_all_peaks_unthresholded.csv'), index=False)
+    write_bed(calls, os.path.join(out, 'okseq.initiation_sites.bed'))
+
+    d = K.nearest_distance(calls, conf)
+    summary['resolution_vs_confirmed'] = K.resolution_summary(d, len(conf))
+    summary['polarity'] = polarity_evidence(oe, conf, PRIMARY['step'])
+    summary['circularity'] = circularity_check(calls, conf, None)
+    summary['n_calls'] = int(len(calls))
+    summary['n_peaks_unthresholded'] = int(len(all_peaks))
+    json.dump(summary, open(os.path.join(out, 'summary.json'), 'w'), indent=1)
+
+    if tracks_out:
+        write_tracks(merged, summary['fragment_stats'], sizes, tracks_out)
+    return calls, summary
+
+
+if __name__ == '__main__':
+    _covs, _merged, _conf, _sizes, _summary = main()
+    _a = argparse.ArgumentParser(add_help=False)
+    _a.add_argument('--out', default='results')
+    _a.add_argument('--tracks-out', default=None,
+                    help='write the hub bigWigs here, e.g. ../../sacCer3/mcguffee2013')
+    _known, _ = _a.parse_known_args()
+    stage2(_covs, _merged, _conf, _sizes, _summary, _known.out, _known.tracks_out)
