@@ -42,6 +42,25 @@ Every container is rendered as a `multiWig` `solidOverlay`, because overlaying t
 profiles being compared is what makes a difference visible — stacked rows leave the eye
 to do a subtraction it cannot do.
 
+## Call sets
+
+A set of origin calls is not a profile and does not belong in a comparison container —
+there is nothing to overlay it with. Declare it in the spec's top-level `tracks` array
+instead, and the generator renders it as a standalone `bigBed` stanza:
+
+```json
+"tracks": [
+  {"id": "trep_peaks", "file": "syncseq.trep.peaks.bb", "type": "bigBed 8 +",
+   "shortLabel": "Trep peaks", "longLabel": "...", "spectrum": true,
+   "scoreMin": 100, "visibility": "pack", "priority": 7}
+]
+```
+
+`spectrum` shades each feature by its score column, so a weak call looks weak. Ship the
+plain BED beside the `.bb` — it is what a reader downloads — plus the `.as` that declares
+any fields beyond the standard ones, and record how the calls were made in a doc of their
+own. [docs/trep_peak_calls.md](trep_peak_calls.md) is the worked example.
+
 ### Settings that matter more than they look
 
 `maxHeightPixels` is `max:default:min` and the **middle** value is the height actually

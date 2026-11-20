@@ -20,10 +20,12 @@ sacCer3/
     trackDb.txt               that dataset's track configuration
     dataset.json              accessions, strains, per-sample statistics, checksums
     *.bw                      the tracks themselves
+    *.peaks.bed, *.peaks.bb   call sets derived from those tracks, with their .as
 bin/
   make_trackhub.py            generate or refresh one dataset's stanza
   validate_hub.py             check the hub before serving it
 docs/adding-a-dataset.md
+docs/trep_peak_calls.md       how the muller2014 origin calls were made
 ```
 
 One directory per dataset, with its own `trackDb.txt`, is what makes the hub additive: a

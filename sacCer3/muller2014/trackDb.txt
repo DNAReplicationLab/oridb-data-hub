@@ -222,3 +222,15 @@ priority 6
     color 0,0,0
     altColor 0,0,0
 
+track muller2014_trep_peaks
+bigDataUrl muller2014/syncseq.trep.peaks.bb
+shortLabel Trep peaks
+longLabel Origin calls from the Muller et al. (2014) Trep profile: local minima of replication time, called by OriDB
+type bigBed 8 +
+visibility pack
+color 0,0,0
+useScore 1
+spectrum on
+scoreMin 100
+priority 7
+

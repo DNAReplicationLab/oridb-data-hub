@@ -120,7 +120,18 @@ def main():
                     continue
                 bw = pyBigWig.open(p)
                 chroms = bw.chroms()
+                is_bigbed = bool(bw.isBigBed())
                 bw.close()
+                if is_bigbed:
+                    # A feature track has no value distribution, so the summary block and
+                    # the viewLimits checks below do not apply; the sequence check does.
+                    if sizes:
+                        bad = {c: n for c, n in chroms.items()
+                               if c not in sizes or sizes[c] != n}
+                        if bad:
+                            errors.append(f"{name}: sequences absent from the assembly or of "
+                                          f"the wrong length: {sorted(bad)[:4]}")
+                    continue
                 hdr = bigwig_summary(p)   # not bw.header(): see bigwig_summary
                 if sizes:
                     bad = {c: n for c, n in chroms.items()

@@ -74,6 +74,27 @@ def render(dataset, spec):
                 # Negated wiggles are drawn in altColor, not color.
                 sub.append(f"    altColor {t['altColor']}")
             out.append("\n".join(sub) + "\n\n")
+
+    # Standalone tracks: anything that is not a signal profile to be overlaid.
+    # A call set is a feature track, not a comparison - putting it in a multiWig
+    # container would be a category error, so it is rendered on its own.
+    for t in spec.get("tracks", []):
+        lines = [
+            f"track {dataset}_{t['id']}",
+            f"bigDataUrl {dataset}/{t['file']}",
+            f"shortLabel {t['shortLabel']}",
+            f"longLabel {t['longLabel']}",
+            f"type {t.get('type', 'bigBed')}",
+            f"visibility {t.get('visibility', 'pack')}",
+            f"color {t.get('color', '0,0,0')}",
+        ]
+        if t.get("spectrum"):
+            # Shades each feature by its score column, so a weak call is visibly weak.
+            lines += ["useScore 1", "spectrum on"]
+            if t.get("scoreMin") is not None:
+                lines.append(f"scoreMin {t['scoreMin']}")
+        lines += [f"priority {t.get('priority', 10)}", ""]
+        out.append("\n".join(lines) + "\n")
     return "".join(out)
 
 
@@ -125,6 +146,7 @@ def main():
     os.makedirs(dest, exist_ok=True)
 
     referenced = {t["file"] for c in spec["containers"] for t in c["tracks"]}
+    referenced |= {t["file"] for t in spec.get("tracks", [])}
     if a.bigwig_dir:
         for bw in sorted(referenced):
             src = os.path.join(a.bigwig_dir, bw)
@@ -153,8 +175,10 @@ def main():
             fh.write(f"include {d}/trackDb.txt\n")
 
     n_tracks = sum(len(c["tracks"]) for c in spec["containers"])
+    n_standalone = len(spec.get("tracks", []))
     print(f"{a.dataset}: {len(spec['containers'])} containers, {n_tracks} track references "
-          f"over {len(referenced)} files -> {dest}/trackDb.txt")
+          f"plus {n_standalone} standalone track(s) over {len(referenced)} files "
+          f"-> {dest}/trackDb.txt")
     print(f"{a.genome}/trackDb.txt now includes: {', '.join(datasets)}")
 
 

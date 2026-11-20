@@ -154,5 +154,19 @@
         }
       ]
     }
+  ],
+  "tracks": [
+    {
+      "id": "trep_peaks",
+      "file": "syncseq.trep.peaks.bb",
+      "type": "bigBed 8 +",
+      "shortLabel": "Trep peaks",
+      "longLabel": "Origin calls from the Muller et al. (2014) Trep profile: local minima of replication time, called by OriDB",
+      "color": "0,0,0",
+      "spectrum": true,
+      "scoreMin": 100,
+      "visibility": "pack",
+      "priority": 7
+    }
   ]
 }
