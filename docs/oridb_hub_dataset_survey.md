@@ -5,6 +5,15 @@ A census of published, publicly deposited genome-wide replication datasets for *
 - **155 track-hub candidates** — continuous signal or interval data that a genome browser displays directly. These are the subject of most of this document.
 - **9 single-molecule datasets** — per-read data that UCSC and comparable browsers do not render usefully. These are catalogued separately in their own section and are destined for the group's own single-molecule visualisation tool, not the track hub. Two of the nine also yield a conventional aggregate profile, so they appear in both routes.
 
+### Already in the hub
+
+Two datasets are already served by the hub, giving 11 tracks in total. They are marked **[in hub]** in the listings below and carry the dataset directory name in the `in_hub` column of the TSV.
+
+| Hub dataset | Accessions | Tracks | Contribution |
+|---|---|---|---|
+| `muller2014` | GSE42243, GSE48212 | 7 | Sort-seq, sync-seq and MFA-seq timing, reprocessed on sacCer3 |
+| `mcguffee2013` | GSE40696 | 4 | Ok-seq fork directionality, initiation signal and initiation-site calls, re-analysed on sacCer3 |
+
 The machine-readable version is `oridb_hub_candidate_datasets.tsv`, one row per dataset. The `category` column holds `hub track` or `single-molecule`, and `serving_route` records which viewer a dataset is destined for.
 
 ## Scope
@@ -83,8 +92,8 @@ The datasets I would treat as the backbone of the hub: each is the best availabl
 ### replication timing
 
 - **GSE36045** — Müller CA 2012, *Genome Res*, [10.1101/gr.139477.112](https://doi.org/10.1101/gr.139477.112). sort-seq across 4 Saccharomyces species + hybrid. 10 samples. *State:* continuous signal track published; per-species references, version not stated. Müller & Nieduszynski 2012; cerevisiae arm directly comparable to Muller 2014.
-- **GSE42243** — Müller CA 2014, *Nucleic Acids Res*, [10.1093/nar/gkt878](https://doi.org/10.1093/nar/gkt878). sort-seq (FACS S/G2 copy number), SOLiD + Illumina. 4 samples. *State:* continuous signal track published; sacCer1 (2003 build). Müller 2014; already in the hub as the muller2014 dataset, reprocessed onto sacCer3 by this project.
-- **GSE48212** — Müller CA 2014, *Nucleic Acids Res*, [10.1093/nar/gkt878](https://doi.org/10.1093/nar/gkt878). sync-seq / MFA-seq / sort-seq time course. 14 samples. *State:* continuous signal track published; sacCer1 (2003 build). Müller 2014 companion series; already in the hub, reprocessed onto sacCer3 by this project.
+- **GSE42243** **[in hub]** — Müller CA 2014, *Nucleic Acids Res*, [10.1093/nar/gkt878](https://doi.org/10.1093/nar/gkt878). sort-seq (FACS S/G2 copy number), SOLiD + Illumina. 4 samples. *State:* continuous signal track published; sacCer1 (2003 build). Müller 2014; already in the hub as the muller2014 dataset, reprocessed onto sacCer3 by this project.
+- **GSE48212** **[in hub]** — Müller CA 2014, *Nucleic Acids Res*, [10.1093/nar/gkt878](https://doi.org/10.1093/nar/gkt878). sync-seq / MFA-seq / sort-seq time course. 14 samples. *State:* continuous signal track published; sacCer1 (2003 build). Müller 2014 companion series; already in the hub, reprocessed onto sacCer3 by this project.
 - **GSE48561** — Hawkins M 2013, *Cell Rep*, [10.1016/j.celrep.2013.10.014](https://doi.org/10.1016/j.celrep.2013.10.014). sort-seq time course (6 S-phase samples, 2 strains). 16 samples. *State:* continuous signal track published; sacCer1 (2003 build). Hawkins 2013 high-resolution profiles + stochastic model.
 
 ### initiation mapping
@@ -107,7 +116,7 @@ The datasets I would treat as the backbone of the hub: each is the best availabl
 - **GSE134225** — Sriramachandran AM 2020, *Mol Cell*, [10.1016/j.molcel.2020.03.027](https://doi.org/10.1016/j.molcel.2020.03.027). GLOE-seq SuperSeries, SSBs and replication patterns. 96 samples. *State:* continuous signal track published; sacCer3 / R64. Sriramachandran 2020; strand-specific SSB/replication maps.
 - **GSE154811** — Kara N 2021, *PLoS Biol*, [10.1371/journal.pbio.3000886](https://doi.org/10.1371/journal.pbio.3000886). TrAEL-seq, WT and mutants (+ hESC controls). 46 samples. *State:* tabular processed data published; sacCer3 / R64. Kara 2021; fork direction and position from 3' ends.
 - **GSE33786** — Smith DJ 2012, *Nature*, [10.1038/nature10895](https://doi.org/10.1038/nature10895). Okazaki fragment sequencing, WT and pol32. 4 samples. *State:* interval/call set published; sacCer2 (2008 build). Smith & Whitehouse 2012; the original cerevisiae Okazaki dataset.
-- **GSE40696** — McGuffee SR 2013, *Mol Cell*, [10.1016/j.molcel.2013.03.004](https://doi.org/10.1016/j.molcel.2013.03.004). Ok-seq (Okazaki fragment sequencing), OEM initiation/termination. 5 samples. *State:* continuous signal track published; sacCer2 (2008 build) (custom reference for some samples). McGuffee 2013; the cerevisiae Ok-seq reference. Published .sgr signal is sacCer2.
+- **GSE40696** **[in hub]** — McGuffee SR 2013, *Mol Cell*, [10.1016/j.molcel.2013.03.004](https://doi.org/10.1016/j.molcel.2013.03.004). Ok-seq (Okazaki fragment sequencing), OEM initiation/termination. 5 samples. *State:* continuous signal track published; sacCer2 (2008 build) (custom reference for some samples). McGuffee 2013; the cerevisiae Ok-seq reference. Published .sgr signal is sacCer2.
 - **GSE62181** — Clausen AR 2015, *Nat Struct Mol Biol*, [10.1038/nsmb.2957](https://doi.org/10.1038/nsmb.2957). HydEn-seq ribonucleotide mapping, 14 strains. 29 samples. *State:* continuous signal track published; not stated in GEO. Clausen 2015; polymerase usage reference.
 
 ## Priority 2 — comparative and perturbation datasets
@@ -247,7 +256,7 @@ This is also the group with the heaviest data cost: none of the ENA deposits pub
 
 ## Datasets held outside GEO
 
-Eleven in-scope deposits exist in ENA/SRA with no GEO series. Six of them are the nanopore studies in the single-molecule section above; the remaining 6 are track-hub candidates:
+Eleven in-scope deposits exist in ENA/SRA with no GEO series. Five of them are nanopore studies listed in the single-molecule section above (ERP110889, ERP120013, ERP134869, ERP161317, ERP172809); the remaining 6 are track-hub candidates:
 
 | Accession | Priority | Study | Method | Runs | Notes |
 |---|---|---|---|---|---|
