@@ -26,7 +26,9 @@ jobs:
 
       - name: trackDb is in sync with the dataset directories
         run: |
-          python3 bin/make_trackhub.py --hub-root . --genome sacCer3 \
-            --dataset muller2014 --spec docs/containers_muller2014.json
+          for d in muller2014 mcguffee2013; do
+            python3 bin/make_trackhub.py --hub-root . --genome sacCer3 \
+              --dataset "$d" --spec "docs/containers_$d.json"
+          done
           git diff --exit-code -- sacCer3 \
             || { echo "trackDb.txt is out of date; re-run bin/make_trackhub.py and commit"; exit 1; }

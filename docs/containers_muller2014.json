@@ -133,7 +133,8 @@
           "longLabel": "Muller et al. (2014): HU-stalled fork origin mapping, 60 min after release (CAY106)",
           "color": "215,48,39"
         }
-      ]
+      ],
+      "section": "initiation"
     },
     {
       "id": "trep",
@@ -166,7 +167,9 @@
       "spectrum": true,
       "scoreMin": 100,
       "visibility": "pack",
-      "priority": 7
+      "priority": 7,
+      "section": "initiation"
     }
-  ]
+  ],
+  "section": "timing"
 }

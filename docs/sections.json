@@ -1,0 +1,91 @@
+{
+  "note": "Hub-level layout. `sections` are UCSC supertracks - the folders a reader sees in the track controls - and follow the data_type values used in docs/oridb_hub_candidate_datasets.tsv, so the browser's sections and the dataset census cannot drift apart. A section with no dataset in it is not emitted. `overview` is the one section open by default: it holds one canonical track per data type, so the default view stays the same size however many datasets the hub carries.",
+  "overview": {
+    "id": "overview",
+    "shortLabel": "OriDB overview",
+    "priority": 0,
+    "longLabel": "OriDB overview: one reference track per measurement type, drawn by default",
+    "tracks": [
+      {
+        "id": "ov_timing",
+        "dataset": "muller2014",
+        "file": "syncseq.trep.bw",
+        "type": "bigWig",
+        "shortLabel": "Timing (Trep)",
+        "color": "106,61,154",
+        "longLabel": "Replication timing: Trep in minutes from sync-seq (Muller et al. 2014); early replication plots high",
+        "viewLimits": "-85:-25",
+        "negateValues": true,
+        "graphType": "bar",
+        "visibility": "full"
+      },
+      {
+        "id": "ov_fd",
+        "dataset": "mcguffee2013",
+        "file": "okseq.directionality.bw",
+        "type": "bigWig",
+        "shortLabel": "Fork direction",
+        "color": "26,82,118",
+        "longLabel": "Replication fork directionality from Okazaki fragment strand ratio (McGuffee et al. 2013)",
+        "viewLimits": "-1:1",
+        "yLineMark": 0.0,
+        "graphType": "bar",
+        "visibility": "full"
+      },
+      {
+        "id": "ov_init",
+        "dataset": "mcguffee2013",
+        "file": "okseq.initiation_sites.bb",
+        "type": "bigBed 8 +",
+        "shortLabel": "Initiation zones",
+        "color": "26,82,118",
+        "visibility": "pack",
+        "longLabel": "Initiation zones called from the Okazaki-fragment initiation signal (McGuffee et al. 2013)"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "timing",
+      "shortLabel": "Replication timing",
+      "priority": 1,
+      "longLabel": "Replication timing and copy-number profiles through S phase"
+    },
+    {
+      "id": "initiation",
+      "shortLabel": "Initiation mapping",
+      "priority": 2,
+      "longLabel": "Origin position and efficiency: initiation site and zone mapping"
+    },
+    {
+      "id": "footprint",
+      "shortLabel": "Licensing footprints",
+      "priority": 3,
+      "longLabel": "ORC and MCM2-7 occupancy, replisome protein footprints"
+    },
+    {
+      "id": "forkdir",
+      "shortLabel": "Fork direction",
+      "priority": 4,
+      "longLabel": "Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry"
+    },
+    {
+      "id": "pausing",
+      "shortLabel": "Pausing, termination",
+      "priority": 5,
+      "longLabel": "Fork position, pausing and replication termination"
+    },
+    {
+      "id": "rerep",
+      "shortLabel": "Re-replication",
+      "priority": 6,
+      "longLabel": "Re-replication and unscheduled replication"
+    },
+    {
+      "id": "ssdna",
+      "shortLabel": "ssDNA, stress",
+      "priority": 7,
+      "longLabel": "Single-stranded DNA during S phase and under replication stress"
+    }
+  ]
+}

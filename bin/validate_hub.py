@@ -5,6 +5,11 @@ A broken hub fails in the browser with a message that names a line number in a f
 reader has never seen, so it is worth catching these here: a bigDataUrl pointing at a file
 that is not there, a track whose sequence names do not match the assembly, a subtrack whose
 parent does not exist, or a bigWig whose values fall outside the declared viewLimits.
+
+It also enforces the one thing that keeps a growing hub usable: how many tracks the browser
+draws on FIRST LOAD. Sections (supertracks) are closed unless their stanza says
+`superTrack on show`, so a dataset can be added without adding anything to the default
+view - but only if someone checks, which is what --max-default-tracks is for.
 """
 import argparse, os, re, sys
 
@@ -67,6 +72,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--hub-root", required=True)
     ap.add_argument("--chrom-sizes", help="assembly chrom.sizes to check track sequences against")
+    ap.add_argument("--max-default-tracks", type=int, default=10,
+                    help="fail if the hub draws more than this many tracks on first load")
     a = ap.parse_args()
     errors, warnings = [], []
 
@@ -94,6 +101,43 @@ def main():
             errors.append(f"{genome}: no trackDb.txt"); continue
         stanzas = parse_trackdb(tdb, a.hub_root)
         names = {s["track"] for s in stanzas if "track" in s}
+        by_name = {s["track"]: s for s in stanzas if "track" in s}
+
+        # A row is drawn on first load when it is not hidden and every container above it
+        # is open. A supertrack is open only when its stanza says `superTrack on show`;
+        # a multiWig container draws as ONE row however many subtracks it overlays, so
+        # subtracks of a container are not counted separately.
+        def is_super(s):
+            return "superTrack" in s
+        def parent_of(s):
+            return by_name.get(s["parent"].split()[0]) if "parent" in s else None
+        def drawn_on_load(s):
+            if is_super(s) or s.get("visibility", "hide") == "hide":
+                return False
+            p = parent_of(s)
+            if p is None:
+                return True
+            if is_super(p):
+                return "show" in p.get("superTrack", "")
+            return False        # a subtrack: its container is the row that gets counted
+        default_rows = [s for s in stanzas if "track" in s and drawn_on_load(s)]
+        if len(default_rows) > a.max_default_tracks:
+            errors.append(
+                f"{genome}: {len(default_rows)} tracks would be drawn on first load, over the "
+                f"limit of {a.max_default_tracks} - close a section (`superTrack on` without "
+                f"`show`) or set a track's visibility to hide. Drawn: "
+                f"{', '.join(s['track'] for s in default_rows)}")
+
+        per_section = {}
+        for s in stanzas:
+            if "track" not in s or is_super(s):
+                continue
+            p = parent_of(s)
+            if p is not None and is_super(p):
+                per_section.setdefault(p["track"], []).append(s["track"])
+        for sec, members in sorted(per_section.items()):
+            opened = "open" if "show" in by_name[sec].get("superTrack", "") else "closed"
+            print(f"INFO   {genome}/{sec}: {len(members)} track(s), {opened} by default")
 
         for s in stanzas:
             name = s.get("track", "<unnamed>")

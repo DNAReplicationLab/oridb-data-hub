@@ -101,19 +101,49 @@ before the hub is served rather than after.
 
 ## 3. How tracks are grouped
 
-Grouping is by experimental variant, inferred from the track filename: `sortseq`,
-`syncseq`, `mfaseq`, `hu`, `trep`. A variant with more than one `syncseq` track becomes an
-overlaid `multiWig` container; everything else becomes a composite with one row per track.
+Two levels, and a dataset only has to think about the second.
 
-If a new dataset uses a variant the generator does not know, add it to `VARIANT` in
-`bin/make_trackhub.py` with a label and a one-line description of what was measured. Prefer
-that to hand-editing a generated `trackDb.txt` — the file carries a header saying it is
-generated, and the next regeneration will discard manual edits.
+**Sections** are UCSC supertracks — the folders a reader sees in the track controls. They
+are declared once for the whole hub in `docs/sections.json` and follow the `data_type`
+values in `docs/oridb_hub_candidate_datasets.tsv`, so the browser's layout and the dataset
+census stay in step: `timing`, `initiation`, `footprint`, `forkdir`, `pausing`, `rerep`,
+`ssdna`. A section with no dataset in it is not rendered.
+
+**A dataset says only which section each container belongs to.** Put a default in the spec
+and override per container where a dataset spans more than one kind of measurement:
+
+```json
+{
+  "dataset": "mystudy2026",
+  "section": "timing",
+  "containers": [
+    { "id": "timecourse", "...": "..." },
+    { "id": "hu", "section": "initiation", "...": "..." }
+  ]
+}
+```
+
+The generator writes `parent oridb_<section>` into each top-level stanza and regenerates
+`sacCer3/sections.trackDb.txt`. Naming a section that `docs/sections.json` does not define
+is an error, not a silently orphaned track. Adding a dataset still never edits another
+dataset's configuration.
+
+**Every section is closed by default** (`superTrack on`). The only section open on first
+load is the overview, which holds one canonical track per measurement type, also declared
+in `docs/sections.json`. That is deliberate: it keeps the number of tracks the browser
+draws independent of how many datasets the hub carries. If a new dataset is the best
+available reference for its measurement type, propose swapping it into the overview rather
+than opening its section.
+
+`bin/validate_hub.py` fails if more than `--max-default-tracks` (10) rows would be drawn on
+first load, and prints the per-section counts so you can see what a reader meets when they
+open a folder. A dataset that arrives with everything switched on will not pass CI.
 
 ## 4. Choose view limits
 
-Pass `--viewlimits` as `variant=lo:hi` pairs. The default is `1:2` for copy-number tracks,
-which is the relative copy number scale, and `25:85` for Trep in minutes.
+Set `viewLimits` per container in the spec. The conventions in use are `0.9:2.1` for
+copy-number profiles, `0.9:1.5` for MFA-seq, `-85:-25` with `negateValues` for Trep in
+minutes, and `-1:1` for fork directionality.
 
 Set these from what the measurement means, not from the data's extremes. A track scaled to
 its own min and max looks dramatic and compares badly with the track above it; a track on a
@@ -124,7 +154,8 @@ every other dataset in the hub.
 
 ```bash
 python3 bin/validate_hub.py --hub-root . --chrom-sizes sacCer3.chrom.sizes
-git add sacCer3/<dataset> sacCer3/trackDb.txt
+git add sacCer3/<dataset> sacCer3/trackDb.txt sacCer3/sections.trackDb.txt \
+        docs/containers_<dataset>.json
 git commit -m "Add <dataset>"
 ```
 

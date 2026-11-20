@@ -40,7 +40,8 @@
           "longLabel": "Origin efficiency metric over 10 kb quadrants, raw (not deconvolved)",
           "color": "214,137,16"
         }
-      ]
+      ],
+      "section": "initiation"
     },
     {
       "id": "strands",
@@ -76,7 +77,9 @@
       "spectrum": true,
       "scoreMin": 100,
       "visibility": "pack",
-      "priority": 4
+      "priority": 4,
+      "section": "initiation"
     }
-  ]
+  ],
+  "section": "forkdir"
 }

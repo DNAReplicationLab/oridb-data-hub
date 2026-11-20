@@ -1,5 +1,7 @@
-# One include per dataset. Add a dataset with bin/make_trackhub.py;
-# this file is regenerated from the directories present.
+# Sections, then one include per dataset. Add a dataset with
+# bin/make_trackhub.py; this file is regenerated from the
+# directories present.
 
+include sections.trackDb.txt
 include mcguffee2013/trackDb.txt
 include muller2014/trackDb.txt

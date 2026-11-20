@@ -113,15 +113,33 @@ with only the wild-type subtrack on — not as 258 stanzas.
 - `hubCheck` via the Hub Development tab validates settings but, with `-noTracks`, does not fetch
   the data files — `bin/validate_hub.py` remains the check that the bigDataUrls resolve.
 
-## Suggested order of work
+## What has been implemented
 
-1. Add supertrack generation to `bin/make_trackhub.py` and emit `sacCer3/superTracks.txt`;
-   add the `parent` line to each dataset's top-level stanzas. Small, mechanical, and it can be
-   done before any new dataset arrives.
-2. Set the default-visibility policy above, and add the drawn-track budget as a check in
-   `bin/validate_hub.py`.
-3. Decide whether `make_trackhub.py` should emit one concatenated `sacCer3/trackDb.txt` instead
-   of per-dataset includes. The per-dataset files stay the authoring unit either way; this only
-   changes what is served, and it removes the per-include timestamp checks UCSC warns about.
-4. Revisit faceted composites once the hub carries more than roughly twenty datasets, using the
-   catalogue TSV as the metadata table.
+Steps 1 and 2 are done; the decisions behind them were taken deliberately and are recorded
+here so they are not silently reopened.
+
+- **Sections are the seven catalogue data types** (`docs/sections.json`), rendered to
+  `sacCer3/sections.trackDb.txt` and included first by `sacCer3/trackDb.txt`. Only sections a
+  dataset actually claims are emitted; today that is timing, initiation and fork direction.
+- **A curated overview section is the one open by default.** It holds one canonical track per
+  measurement type — Müller Trep timing, McGuffee fork directionality, McGuffee initiation
+  zones — so the default view is three rows and stays that size as datasets accumulate. The
+  alternative considered was opening the timing section, which would grow with the catalogue.
+- **A dataset declares only its section**, as a spec-level default with per-container
+  overrides; `make_trackhub.py` writes the `parent` line and rejects an undefined section id.
+- **The drawn-track budget is enforced**, not advisory: `bin/validate_hub.py
+  --max-default-tracks` defaults to 10 and exits non-zero above it, so CI blocks a dataset that
+  arrives with everything switched on. Opening every section today would draw 14 rows and fail
+  the check, which is the behaviour the hub had before this change.
+
+## Still open
+
+1. **trackDb includes were kept** rather than concatenated into one served file. The cost UCSC
+   warns about is negligible at two datasets; revisit past roughly twenty, or if load times
+   become noticeable. Per-dataset files stay the authoring unit either way.
+2. **Faceted composites** remain the right answer once the hub carries a dataset too large for
+   subgroups — GSE249817 with 258 ORC ChEC-seq samples is the first that will need it. The
+   catalogue TSV is the natural metadata table.
+3. **Within-section visibility.** A section that is opened still draws every container it holds
+   (five for timing today). If sections grow past a handful of datasets, the same argument that
+   produced the overview applies one level down.
