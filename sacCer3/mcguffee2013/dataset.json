@@ -1,0 +1,42 @@
+{
+  "dataset_id": "mcguffee2013-saccer3",
+  "title": "Okazaki-fragment sequencing (McGuffee, Smith & Whitehouse 2013), re-analysed on sacCer3",
+  "organism": "Saccharomyces cerevisiae",
+  "assembly": "sacCer3",
+  "bin_size_bp": 250,
+  "measurement": "replication fork directionality and initiation site mapping",
+  "scale": "fork directionality -1 (leftward forks) to +1 (rightward forks); OEM 0 to 1",
+  "source": {
+    "doi": "10.1016/j.molcel.2013.03.004",
+    "pubmed": "23562327",
+    "archive_series": [
+      "GSE40696"
+    ],
+    "runs": [
+      "SRR566701",
+      "SRR566702"
+    ],
+    "samples_used": [
+      "GSM999266 (WT_A)",
+      "GSM999267 (WT_B)"
+    ],
+    "samples_excluded": [
+      "GSM999263",
+      "GSM999264",
+      "GSM999265"
+    ],
+    "exclusion_reason": "SSDDCS over-expression strains, and one Ion Torrent single-end library, none of them wild type on genotype"
+  },
+  "provenance": {
+    "pipeline": "pipelines/okseq-mcguffee2013",
+    "method": "docs/okseq_mcguffee2013.md",
+    "generated": "2026-11-20T12:29:53Z",
+    "validation": "Fork directionality agrees with the authors' published .sgr tracks at r = 0.969-0.971 (OEM, 1 kb windows), lifted sacCer2 -> sacCer3; the authors' own replicates agree at r = 0.9701."
+  },
+  "calls": {
+    "file": "okseq.initiation_sites.bb",
+    "n": 383,
+    "definition": "maxima of the derivative of fork directionality, OEM > 0.05",
+    "caveat": "efficiencies are raw OEM; the deconvolution correction of the original paper is not applied, so values near termination zones are under-estimates"
+  }
+}

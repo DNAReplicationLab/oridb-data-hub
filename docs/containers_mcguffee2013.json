@@ -1,0 +1,82 @@
+{
+  "dataset": "mcguffee2013",
+  "note": "Containers are comparisons, not file groupings. Edit this file and re-run bin/make_trackhub.py; never hand-edit trackDb.txt.",
+  "containers": [
+    {
+      "id": "fd",
+      "shortLabel": "Fork direction",
+      "priority": 1,
+      "graphType": "bar",
+      "viewLimits": "-1:1",
+      "yLineMark": 0.0,
+      "longLabel": "McGuffee et al. (2013): replication fork directionality from Okazaki fragment strand ratio, wild type",
+      "tracks": [
+        {
+          "file": "okseq.directionality.bw",
+          "shortLabel": "FD",
+          "longLabel": "Fork directionality (C-W)/(C+W), 250 bp windows, WT_A + WT_B",
+          "color": "26,82,118"
+        }
+      ]
+    },
+    {
+      "id": "initiation",
+      "shortLabel": "Initiation signal",
+      "priority": 2,
+      "graphType": "bar",
+      "viewLimits": "-0.5:0.7",
+      "yLineMark": 0.0,
+      "longLabel": "McGuffee et al. (2013): initiation signal - derivative of fork directionality, and origin efficiency (OEM)",
+      "tracks": [
+        {
+          "file": "okseq.derivative.bw",
+          "shortLabel": "d(FD)/dx",
+          "longLabel": "Derivative of fork directionality per kb; maxima are initiation sites",
+          "color": "178,67,47"
+        },
+        {
+          "file": "okseq.oem.bw",
+          "shortLabel": "OEM",
+          "longLabel": "Origin efficiency metric over 10 kb quadrants, raw (not deconvolved)",
+          "color": "214,137,16"
+        }
+      ]
+    },
+    {
+      "id": "strands",
+      "shortLabel": "Okazaki strands",
+      "priority": 3,
+      "graphType": "bar",
+      "viewLimits": "0:6000",
+      "longLabel": "McGuffee et al. (2013): Okazaki fragment coverage by strand, fragments per million, 250 bp windows",
+      "tracks": [
+        {
+          "file": "okseq.watson.bw",
+          "shortLabel": "Watson",
+          "longLabel": "Okazaki fragments on the Watson strand (leftward-moving forks)",
+          "color": "26,82,118"
+        },
+        {
+          "file": "okseq.crick.bw",
+          "shortLabel": "Crick",
+          "longLabel": "Okazaki fragments on the Crick strand (rightward-moving forks)",
+          "color": "178,67,47"
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "init_sites",
+      "file": "okseq.initiation_sites.bb",
+      "type": "bigBed 8 +",
+      "shortLabel": "Initiation zones",
+      "longLabel": "Initiation zones called from Okazaki fragment directionality (McGuffee et al. 2013, re-analysed by OriDB); score = 1000 x OEM",
+      "color": "0,0,0",
+      "spectrum": true,
+      "scoreMin": 100,
+      "visibility": "pack",
+      "priority": 4
+    }
+  ]
+}
