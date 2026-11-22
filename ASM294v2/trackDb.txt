@@ -1,0 +1,6 @@
+# Sections, then one include per dataset. Add a dataset with
+# bin/make_trackhub.py; this file is regenerated from the
+# directories present.
+
+include sections.trackDb.txt
+include oridb_v3/trackDb.txt

@@ -1,0 +1,47 @@
+{
+  "dataset": "oridb_v3",
+  "genome": "sacCer3",
+  "note": "OriDB's own records as browser tracks. The files are generated from the site release by bin/build_oridb_tracks.py in the oridb-v3 repository, not by a pipeline in this one: they are the database, rendered, and they change when it does. itemRgb carries the tier colour so one track covers every tier, and searchIndex lets a reader type an accession into the browser's position box.",
+  "section": "v3",
+  "containers": [],
+  "tracks": [
+    {
+      "id": "origins",
+      "file": "origins.bb",
+      "shortLabel": "OriDB origins",
+      "longLabel": "OriDB v3 origin records on sacCer3, coloured by evidence tier; the name links to the OriDB page",
+      "type": "bigBed 9 +",
+      "visibility": "pack",
+      "color": "26,127,75",
+      "itemRgb": true,
+      "url": "https://v3.oridb.org/origin.php?id=$$",
+      "urlLabel": "OriDB record:",
+      "searchIndex": "name",
+      "priority": 1
+    },
+    {
+      "id": "elements",
+      "file": "elements.bb",
+      "shortLabel": "Origin elements",
+      "longLabel": "OriDB v3 origin elements: A (ACS match) in orange, B2 and B3 in purple; score is the motif score as a percentage of the matrix maximum",
+      "type": "bigBed 9 +",
+      "visibility": "pack",
+      "color": "166,54,3",
+      "itemRgb": true,
+      "searchIndex": "name",
+      "priority": 2
+    },
+    {
+      "id": "refuted",
+      "file": "refuted_fragments.bb",
+      "shortLabel": "ARS-negative fragments",
+      "longLabel": "Fragments that were cloned and did not support autonomous replication; a flag on the sites inside them, never a tier",
+      "type": "bigBed 9 +",
+      "visibility": "pack",
+      "color": "178,34,34",
+      "itemRgb": true,
+      "searchIndex": "name",
+      "priority": 3
+    }
+  ]
+}

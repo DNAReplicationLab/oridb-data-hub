@@ -1,0 +1,25 @@
+{
+  "dataset_id": "oridb_v3-asm294v2",
+  "title": "OriDB 3.0.0-trial.1 records on ASM294v2",
+  "organism": "Schizosaccharomyces pombe",
+  "assembly": "ASM294v2",
+  "measurement": "curated origin records, not a measurement",
+  "scale": "intervals; the score column shades by evidence tier",
+  "source": {
+    "repository": "https://github.com/DNAReplicationLab/oridb-v3",
+    "release": "3.0.0-trial.1",
+    "release_generated": "2026-11-21"
+  },
+  "provenance": {
+    "pipeline": "oridb-v3/bin/build_oridb_tracks.py",
+    "pipeline_revision": null,
+    "generated": "2026-11-21T23:32:43Z"
+  },
+  "tracks": [
+    {
+      "file": "origins.bb",
+      "features": 741,
+      "sha256": "40c2e9e0c35a0dc283d71d2a9aee73191f86fa54af5fc8005436aa57322fa860"
+    }
+  ]
+}

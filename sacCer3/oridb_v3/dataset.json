@@ -1,0 +1,35 @@
+{
+  "dataset_id": "oridb_v3-saccer3",
+  "title": "OriDB 3.0.0-trial.1 records on sacCer3",
+  "organism": "Saccharomyces cerevisiae",
+  "assembly": "sacCer3",
+  "measurement": "curated origin records, not a measurement",
+  "scale": "intervals; the score column shades by evidence tier",
+  "source": {
+    "repository": "https://github.com/DNAReplicationLab/oridb-v3",
+    "release": "3.0.0-trial.1",
+    "release_generated": "2026-11-21"
+  },
+  "provenance": {
+    "pipeline": "oridb-v3/bin/build_oridb_tracks.py",
+    "pipeline_revision": null,
+    "generated": "2026-11-21T23:32:43Z"
+  },
+  "tracks": [
+    {
+      "file": "origins.bb",
+      "features": 839,
+      "sha256": "36ca5325c0a6b29f8640302ef9ae7d1678ee526c593704698bf3c3de70ae1b14"
+    },
+    {
+      "file": "elements.bb",
+      "features": 1664,
+      "sha256": "94070a0210aad75351ff185c4edf7269dbfd3de785b4b67f225f75d700439225"
+    },
+    {
+      "file": "refuted_fragments.bb",
+      "features": 296,
+      "sha256": "28de897035ff88c85ac7fec3b4c3665c50245227da16b8dcb1fbf7ad8cdb7cd9"
+    }
+  ]
+}

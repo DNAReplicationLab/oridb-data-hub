@@ -116,13 +116,35 @@ def render(dataset, spec, section_ids=()):
             lines += ["useScore 1", "spectrum on"]
             if t.get("scoreMin") is not None:
                 lines.append(f"scoreMin {t['scoreMin']}")
+        lines += feature_track_options(t)
         lines += [f"priority {t.get('priority', 10)}", ""]
         out.append("\n".join(lines) + "\n")
     return "".join(out)
 
 
 
-def render_sections(sections, used):
+def feature_track_options(t):
+    """Settings a bigBed track may carry that a bigWig one cannot.
+
+    `itemRgb` hands the colour to the file, which is how a track can draw one
+    feature per tier without one track per tier. `url` turns every feature name
+    into a link back to the record it came from, so a reader who finds an OriDB
+    feature in a browser can reach the page that explains it. `searchIndex`
+    requires the bigBed to have been built with a matching -extraIndex.
+    """
+    lines = []
+    if t.get("itemRgb"):
+        lines.append("itemRgb on")
+    if t.get("url"):
+        lines.append(f"url {t['url']}")
+        if t.get("urlLabel"):
+            lines.append(f"urlLabel {t['urlLabel']}")
+    if t.get("searchIndex"):
+        lines.append(f"searchIndex {t['searchIndex']}")
+    return lines
+
+
+def render_sections(sections, used, datasets=()):
     """Render the supertrack declarations and the overview section.
 
     Only sections that a dataset actually uses are emitted: an empty folder in the track
@@ -143,6 +165,12 @@ def render_sections(sections, used):
         "", ""]))
 
     for t in ov["tracks"]:
+        # The overview is declared once for the whole hub, but a dataset exists on
+        # the assemblies it was measured on and no others. An overview entry whose
+        # dataset is not on this genome is skipped rather than written as a stanza
+        # pointing at a file that is not there.
+        if datasets and t["dataset"] not in datasets:
+            continue
         lines = [f"track {t['id']}",
                  f"parent oridb_{ov['id']}",
                  f"bigDataUrl {t['dataset']}/{t['file']}",
@@ -159,6 +187,7 @@ def render_sections(sections, used):
             lines.append("negateValues on")
         if t.get("yLineMark") is not None:
             lines += ["yLineOnOff on", f"yLineMark {t['yLineMark']}"]
+        lines += feature_track_options(t)
         lines += [f"priority {t.get('priority', 10)}", "", ""]
         out.append("\n".join(lines))
 
@@ -267,7 +296,7 @@ def main():
     # Sections first: a supertrack has to be declared before the stanzas that claim it.
     used = sections_in_use(genome_dir, datasets)
     with open(os.path.join(genome_dir, "sections.trackDb.txt"), "w") as fh:
-        fh.write(render_sections(sections, used))
+        fh.write(render_sections(sections, used, datasets))
 
     with open(os.path.join(genome_dir, "trackDb.txt"), "w") as fh:
         fh.write("# Sections, then one include per dataset. Add a dataset with\n"

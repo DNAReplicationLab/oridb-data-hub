@@ -7,6 +7,21 @@
     "longLabel": "OriDB overview: one reference track per measurement type, drawn by default",
     "tracks": [
       {
+        "id": "ov_origins",
+        "dataset": "oridb_v3",
+        "file": "origins.bb",
+        "type": "bigBed 9 +",
+        "shortLabel": "OriDB origins",
+        "longLabel": "OriDB v3 origin records, coloured by evidence tier: green confirmed, blue likely, grey unsupported or not assessed",
+        "visibility": "pack",
+        "color": "26,127,75",
+        "itemRgb": true,
+        "url": "https://v3.oridb.org/origin.php?id=$$",
+        "urlLabel": "OriDB record:",
+        "searchIndex": "name",
+        "priority": 5
+      },
+      {
         "id": "ov_timing",
         "dataset": "muller2014",
         "file": "syncseq.trep.bw",
@@ -46,45 +61,51 @@
   },
   "sections": [
     {
+      "id": "v3",
+      "shortLabel": "OriDB v3 records",
+      "priority": 1,
+      "longLabel": "OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay"
+    },
+    {
       "id": "timing",
       "shortLabel": "Replication timing",
-      "priority": 1,
+      "priority": 2,
       "longLabel": "Replication timing and copy-number profiles through S phase"
     },
     {
       "id": "initiation",
       "shortLabel": "Initiation mapping",
-      "priority": 2,
+      "priority": 3,
       "longLabel": "Origin position and efficiency: initiation site and zone mapping"
     },
     {
       "id": "footprint",
       "shortLabel": "Licensing footprints",
-      "priority": 3,
+      "priority": 4,
       "longLabel": "ORC and MCM2-7 occupancy, replisome protein footprints"
     },
     {
       "id": "forkdir",
       "shortLabel": "Fork direction",
-      "priority": 4,
+      "priority": 5,
       "longLabel": "Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry"
     },
     {
       "id": "pausing",
       "shortLabel": "Pausing, termination",
-      "priority": 5,
+      "priority": 6,
       "longLabel": "Fork position, pausing and replication termination"
     },
     {
       "id": "rerep",
       "shortLabel": "Re-replication",
-      "priority": 6,
+      "priority": 7,
       "longLabel": "Re-replication and unscheduled replication"
     },
     {
       "id": "ssdna",
       "shortLabel": "ssDNA, stress",
-      "priority": 7,
+      "priority": 8,
       "longLabel": "Single-stranded DNA during S phase and under replication stress"
     }
   ]

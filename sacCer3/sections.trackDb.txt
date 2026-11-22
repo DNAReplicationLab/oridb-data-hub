@@ -7,6 +7,20 @@ shortLabel OriDB overview
 longLabel OriDB overview: one reference track per measurement type, drawn by default
 priority 0
 
+track ov_origins
+parent oridb_overview
+bigDataUrl oridb_v3/origins.bb
+shortLabel OriDB origins
+longLabel OriDB v3 origin records, coloured by evidence tier: green confirmed, blue likely, grey unsupported or not assessed
+type bigBed 9 +
+visibility pack
+color 26,127,75
+itemRgb on
+url https://v3.oridb.org/origin.php?id=$$
+urlLabel OriDB record:
+searchIndex name
+priority 5
+
 track ov_timing
 parent oridb_overview
 bigDataUrl muller2014/syncseq.trep.bw
@@ -50,21 +64,27 @@ visibility pack
 color 26,82,118
 priority 10
 
+track oridb_v3
+superTrack on
+shortLabel OriDB v3 records
+longLabel OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay
+priority 1
+
 track oridb_timing
 superTrack on
 shortLabel Replication timing
 longLabel Replication timing and copy-number profiles through S phase
-priority 1
+priority 2
 
 track oridb_initiation
 superTrack on
 shortLabel Initiation mapping
 longLabel Origin position and efficiency: initiation site and zone mapping
-priority 2
+priority 3
 
 track oridb_forkdir
 superTrack on
 shortLabel Fork direction
 longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
-priority 4
+priority 5
 

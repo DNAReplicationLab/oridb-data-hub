@@ -88,14 +88,24 @@ def main():
         if line.startswith("genome "):
             genomes.append(line.split()[1].strip())
 
-    sizes = {}
-    if a.chrom_sizes:
-        for line in open(a.chrom_sizes):
+    def read_sizes(path):
+        out = {}
+        for line in open(path):
             c, n = line.split()[:2]
-            sizes[c] = int(n)
+            out[c] = int(n)
+        return out
+
+    # The hub serves more than one assembly, and a track's sequence names can only be
+    # checked against its own. `<genome>.chrom.sizes` beside hub.txt is used where it
+    # exists; --chrom-sizes covers an assembly that has no such file. Without either,
+    # the sequence check is skipped for that genome rather than run against the wrong
+    # assembly, which is how a pombe track came to be reported as having bad sequences.
+    given = read_sizes(a.chrom_sizes) if a.chrom_sizes else {}
 
     total = 0
     for genome in genomes:
+        per_genome = os.path.join(a.hub_root, f"{genome}.chrom.sizes")
+        sizes = read_sizes(per_genome) if os.path.exists(per_genome) else given
         tdb = os.path.join(a.hub_root, genome, "trackDb.txt")
         if not os.path.exists(tdb):
             errors.append(f"{genome}: no trackDb.txt"); continue
