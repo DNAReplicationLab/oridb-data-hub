@@ -23,10 +23,10 @@
       "id": "elements",
       "file": "elements.bb",
       "shortLabel": "Origin elements",
-      "longLabel": "OriDB v3 origin elements: A (ACS match) in orange, B2 and B3 in purple; score is the motif score as a percentage of the matrix maximum",
+      "longLabel": "OriDB v3 origin elements: A elements in blue and all B elements (B2, B3) in brown, the colours the origin pages use; the class is in the elementClass field and the score is the motif score as a percentage of the matrix maximum",
       "type": "bigBed 9 +",
       "visibility": "pack",
-      "color": "166,54,3",
+      "color": "21,70,127",
       "itemRgb": true,
       "searchIndex": "name",
       "priority": 2
