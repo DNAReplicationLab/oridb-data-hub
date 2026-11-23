@@ -110,24 +110,36 @@ The overview section gained four pombe entries — Trep, fork direction, Pu-seq 
 and Mcm2 occupancy in HU — which join OriDB's own origin records. Five tracks on first
 load, against a budget of ten.
 
-## 4. What UCSC needs for an assembly it does not host
+## 4. Where these tracks are drawn: UCSC's GenArk assembly
 
-ASM294v2 is not a UCSC database, so the hub has to supply what UCSC would otherwise take
-from its own: the sequence (`twoBitPath`), the **track groups** (`groups ASM294v2/groups.txt`)
-and a **description page** (`htmlPath ASM294v2/description.html`). Without the groups file
-the browser draws no track controls for the assembly at all — the tracks are loaded and
-invisible, which looks exactly like a hub with no tracks in it.
+They are **not** served on an assembly of our own. UCSC's GenArk collection already hosts
+this assembly as `GCF_000002945.1` — the RefSeq copy of ASM294v2, the same sequence these
+data are on, with chromosome lengths 5,579,133 / 4,539,804 / 2,452,883 — and it comes with
+RefSeq and Augustus gene models, RepeatMasker, simple repeats, CpG islands, GC content and
+a chain/net alignment to *S. cerevisiae* R64. A hub that hosted its own copy would show the
+reader these tracks over bare sequence.
 
-`bin/make_trackhub.py` now reads `genomes.txt`, and for any genome with a `twoBitPath` it
-writes `<genome>/groups.txt` from `docs/sections.json` and gives every supertrack a
-matching `group` line. `bin/validate_hub.py` fails the hub if an assembly-hub genome lacks
-`groups`, `htmlPath`, `organism` or `defaultPos`, if any of those files is absent, or if a
-supertrack on such an assembly claims no group or claims one that is not declared.
+So `genomes.txt` declares the genome and a trackDb and nothing else; UCSC matches the
+accession to its GenArk collection and attaches the tracks to it. Three consequences:
 
-The other half of the same trap is in the URL. A UCSC database is addressed as
-`db=sacCer3`; an assembly the hub supplies is addressed as `genome=ASM294v2`. Sending
-`db=ASM294v2` loads no assembly and shows no tracks. The site's Data hub page now reads
-the distinction out of `genomes.txt` rather than assuming every genome is a UCSC one.
+- **No sequence, groups file or description page is needed from us.** UCSC supplies all
+  three for an assembly it hosts. An assembly hub of our own would have to carry them, and
+  without a `groups.txt` its track controls come up empty — tracks loaded and invisible.
+- **Sequence names need no translation.** GenArk's `chromAlias` for this assembly lists
+  five namings — RefSeq, assembly, GenBank, NCBI and UCSC — and the `assembly` naming is
+  `I`, `II`, `III`, `MT`, which is what these files use. UCSC's own display names for it
+  are `chrI`, `chrII`, `chrIII`.
+- **The URL takes `genome=`, not `db=`.** `db=` names a UCSC database and there is none
+  for this assembly:
+  `https://genome.ucsc.edu/cgi-bin/hgTracks?genome=GCF_000002945.1&hubUrl=<hub.txt>`.
+
+The `.2bit` and `refNameAliases` file still sit in the genome directory. They are not for
+UCSC, which fetches sequence from its own servers; they are for the viewer embedded in
+oridb.org, which reads the reference in the reader's own browser and therefore needs a copy
+served with CORS headers. That is also why the site's JBrowse configuration is keyed on
+`ASM294v2`, the assembly the records are curated on, while the files live under the GenArk
+accession: an origin record says what assembly it is on, and should not have to know what
+UCSC calls it.
 
 ## 5. What this does not yet give
 

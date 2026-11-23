@@ -1,6 +1,6 @@
 {
   "dataset": "oridb_v3",
-  "genome": "ASM294v2",
+  "genome": "GCF_000002945.1",
   "note": "OriDB's own records as browser tracks. The files are generated from the site release by bin/build_oridb_tracks.py in the oridb-v3 repository, not by a pipeline in this one: they are the database, rendered, and they change when it does. itemRgb carries the tier colour so one track covers every tier, and searchIndex lets a reader type an accession into the browser's position box.",
   "section": "v3",
   "containers": [],
@@ -9,7 +9,7 @@
       "id": "origins",
       "file": "origins.bb",
       "shortLabel": "OriDB origins",
-      "longLabel": "OriDB v3 origin records on ASM294v2; no quantitative dataset is served on this assembly yet, so these intervals and the sequence are what the hub carries for S. pombe",
+      "longLabel": "OriDB v3 origin records on ASM294v2, drawn on UCSC's GenArk copy of that assembly (GCF_000002945.1); coloured by evidence tier",
       "type": "bigBed 9 +",
       "visibility": "pack",
       "color": "26,127,75",

@@ -1,23 +1,24 @@
-# One stanza per assembly. sacCer3 is a UCSC database, so the browser already has its
-# sequence and only the trackDb is given; ASM294v2 is not, so it is served as an assembly
-# hub and must carry, as well as its sequence, the group definitions and the description
-# page UCSC would otherwise take from its own database - without `groups` its track
-# controls come up empty. An assembly hub genome is also addressed as `genome=ASM294v2`
-# in a browser URL, never as `db=`, which only names a UCSC database.
+# One stanza per assembly, and neither is ours to host. sacCer3 is a UCSC database.
+# GCF_000002945.1 is ASM294v2 (S. pombe) in UCSC's GenArk collection, which the browser
+# matches automatically from the accession: declaring the genome and a trackDb is enough,
+# and UCSC supplies the sequence, the gene annotation, the repeats and the chain/net to
+# cerevisiae that this hub never could. A hub that hosted its own pombe assembly would
+# have to carry a 2bit, groups.txt and a description page, and would show the reader the
+# OriDB tracks over bare sequence.
 #
-# Both assemblies also keep a .2bit and a refNameAliases file in their directory for
-# in-browser viewers, which fetch the sequence themselves rather than from a UCSC server.
+# Sequence names: GenArk's chromAlias for this assembly lists I, II, III and MT as the
+# `assembly` naming, which is what these track files use, so they need no renaming.
+#
+# In a browser URL a GenArk assembly is addressed as genome=GCF_000002945.1, never db=,
+# which names only a UCSC database.
+#
+# <genome>/<genome>.2bit and <genome>.refNameAliases.txt stay in the directory: they are
+# not for UCSC, which fetches sequence from its own servers, but for the viewer embedded
+# in oridb.org, which reads the reference in the reader's browser and so needs a copy
+# served with CORS headers.
 
 genome sacCer3
 trackDb sacCer3/trackDb.txt
 
-genome ASM294v2
-trackDb ASM294v2/trackDb.txt
-twoBitPath ASM294v2/ASM294v2.2bit
-groups ASM294v2/groups.txt
-htmlPath ASM294v2/description.html
-organism Schizosaccharomyces pombe
-scientificName Schizosaccharomyces pombe
-description S. pombe ASM294v2 (GCA_000002945.2)
-defaultPos II:1-100000
-orderKey 2
+genome GCF_000002945.1
+trackDb GCF_000002945.1/trackDb.txt
