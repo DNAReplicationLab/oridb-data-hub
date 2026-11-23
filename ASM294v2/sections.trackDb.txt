@@ -21,9 +21,97 @@ urlLabel OriDB record:
 searchIndex name
 priority 5
 
+track ov_sp_timing
+parent oridb_overview
+bigDataUrl daigaku2015/puseq.trep.bw
+shortLabel Timing (Trep, Pu-seq)
+longLabel Replication timing: Trep in minutes from polymerase usage (Daigaku et al. 2015); early replication plots high
+type bigWig
+visibility full
+color 106,61,154
+viewLimits -60:-20
+autoScale off
+alwaysZero off
+graphTypeDefault points
+maxHeightPixels 100:100:8
+negateValues on
+priority 11
+
+track ov_sp_fd
+parent oridb_overview
+bigDataUrl daigaku2015/puseq.leftward_fork.bw
+shortLabel Fork direction (Pu-seq)
+longLabel Fraction of forks moving leftward, from polymerase usage (Daigaku et al. 2015)
+type bigWig
+visibility full
+color 26,82,118
+viewLimits 0:1
+autoScale off
+alwaysZero off
+graphTypeDefault bar
+maxHeightPixels 100:100:8
+yLineOnOff on
+yLineMark 0.5
+priority 12
+
+track ov_sp_init
+parent oridb_overview
+bigDataUrl daigaku2015/puseq.origins.bb
+shortLabel Pu-seq origins
+longLabel Origin calls with firing efficiency from polymerase usage (Daigaku et al. 2015)
+type bigBed 6 +
+visibility pack
+color 26,82,118
+priority 13
+
+track ov_sp_mcm
+parent oridb_overview
+bigDataUrl foss2021/mcm2chec.hu_rep1.all.bw
+shortLabel Mcm2 occupancy (ChEC)
+longLabel MCM2-7 occupancy by chromatin endogenous cleavage in hydroxyurea (Foss et al. 2021); 1 is average coverage
+type bigWig
+visibility full
+color 27,120,55
+viewLimits 0:10
+autoScale off
+alwaysZero off
+graphTypeDefault bar
+maxHeightPixels 100:100:8
+priority 14
+
 track oridb_v3
 superTrack on
 shortLabel OriDB v3 records
 longLabel OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay
 priority 1
+
+track oridb_timing
+superTrack on
+shortLabel Replication timing
+longLabel Replication timing and copy-number profiles through S phase
+priority 2
+
+track oridb_initiation
+superTrack on
+shortLabel Initiation mapping
+longLabel Origin position and efficiency: initiation site and zone mapping
+priority 3
+
+track oridb_footprint
+superTrack on
+shortLabel Licensing footprints
+longLabel ORC and MCM2-7 occupancy, replisome protein footprints
+priority 4
+
+track oridb_forkdir
+superTrack on
+shortLabel Fork direction
+longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
+priority 5
+
+track oridb_pausing
+superTrack on
+shortLabel Pausing, termination
+longLabel Fork position, pausing and replication termination
+priority 6
 

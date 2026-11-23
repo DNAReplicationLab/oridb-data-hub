@@ -56,6 +56,60 @@
         "color": "26,82,118",
         "visibility": "pack",
         "longLabel": "Initiation zones called from the Okazaki-fragment initiation signal (McGuffee et al. 2013)"
+      },
+      {
+        "id": "ov_sp_timing",
+        "dataset": "daigaku2015",
+        "file": "puseq.trep.bw",
+        "shortLabel": "Timing (Trep, Pu-seq)",
+        "longLabel": "Replication timing: Trep in minutes from polymerase usage (Daigaku et al. 2015); early replication plots high",
+        "type": "bigWig",
+        "visibility": "full",
+        "color": "106,61,154",
+        "viewLimits": "-60:-20",
+        "negateValues": true,
+        "graphType": "points",
+        "priority": 11
+      },
+      {
+        "id": "ov_sp_fd",
+        "dataset": "daigaku2015",
+        "file": "puseq.leftward_fork.bw",
+        "shortLabel": "Fork direction (Pu-seq)",
+        "longLabel": "Fraction of forks moving leftward, from polymerase usage (Daigaku et al. 2015)",
+        "type": "bigWig",
+        "visibility": "full",
+        "color": "26,82,118",
+        "viewLimits": "0:1",
+        "yLineMark": 0.5,
+        "graphType": "bar",
+        "priority": 12
+      },
+      {
+        "id": "ov_sp_init",
+        "dataset": "daigaku2015",
+        "file": "puseq.origins.bb",
+        "shortLabel": "Pu-seq origins",
+        "longLabel": "Origin calls with firing efficiency from polymerase usage (Daigaku et al. 2015)",
+        "type": "bigBed 6 +",
+        "visibility": "pack",
+        "color": "26,82,118",
+        "spectrum": true,
+        "scoreMin": 100,
+        "priority": 13
+      },
+      {
+        "id": "ov_sp_mcm",
+        "dataset": "foss2021",
+        "file": "mcm2chec.hu_rep1.all.bw",
+        "shortLabel": "Mcm2 occupancy (ChEC)",
+        "longLabel": "MCM2-7 occupancy by chromatin endogenous cleavage in hydroxyurea (Foss et al. 2021); 1 is average coverage",
+        "type": "bigWig",
+        "visibility": "full",
+        "color": "27,120,55",
+        "viewLimits": "0:10",
+        "graphType": "bar",
+        "priority": 14
       }
     ]
   },

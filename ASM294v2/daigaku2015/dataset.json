@@ -1,0 +1,87 @@
+{
+  "dataset_id": "daigaku2015-asm294v2",
+  "title": "Polymerase usage sequencing (Pu-seq) in S. pombe (Daigaku et al. 2015), the published derived profiles on ASM294v2",
+  "organism": "Schizosaccharomyces pombe",
+  "assembly": "ASM294v2",
+  "bin_size_bp": 1000,
+  "measurement": "replication timing, fork direction, termination and origin efficiency",
+  "scale": "see each track; the units differ between them",
+  "source": {
+    "doi": "10.1038/nsmb.2962",
+    "pubmed": "25664722",
+    "archive_series": [
+      "GSE62108"
+    ],
+    "files_used": [
+      "GSE62108_PU-seq_Trep.wig.gz",
+      "GSE62108_PU-seq_leftward_moving_fork.wig.gz",
+      "GSE62108_PU-seq_terminaton-events.wig.gz",
+      "GSE62108_origin-effici.bedgraph.gz"
+    ],
+    "note": "Series-level derived profiles. The 25 per-sample strand-resolved wigs in GSE62108_RAW.tar are not served."
+  },
+  "provenance": {
+    "pipeline": "pipelines/puseq-daigaku2015/convert.py",
+    "pipeline_revision": null,
+    "transformations": [
+      "sequences renamed chr1/chr2/chr3 -> I/II/III",
+      "intervals clipped to the chromosome end; intervals starting past it dropped"
+    ]
+  },
+  "tracks": {
+    "trep": {
+      "intervals": 12556,
+      "clipped_to_chromosome_end": 1,
+      "dropped_past_chromosome_end": 0,
+      "source_file": "GSE62108_PU-seq_Trep.wig.gz",
+      "measurement": "replication timing, Trep in minutes after release",
+      "bin_size_bp": 1000,
+      "value_min": 24.158,
+      "value_max": 56.386,
+      "track": "puseq.trep.bw",
+      "bytes": 159180
+    },
+    "fork_direction": {
+      "intervals": 12568,
+      "clipped_to_chromosome_end": 3,
+      "dropped_past_chromosome_end": 1,
+      "source_file": "GSE62108_PU-seq_leftward_moving_fork.wig.gz",
+      "measurement": "fraction of forks moving leftward, 0 to 1",
+      "bin_size_bp": 1000,
+      "value_min": 0.063,
+      "value_max": 0.939,
+      "track": "puseq.leftward_fork.bw",
+      "bytes": 151410
+    },
+    "termination": {
+      "intervals": 41860,
+      "clipped_to_chromosome_end": 0,
+      "dropped_past_chromosome_end": 0,
+      "published_window_bp": 1000,
+      "window_step_bp": 300,
+      "source_file": "GSE62108_PU-seq_terminaton-events.wig.gz",
+      "measurement": "percentage of termination events per bin",
+      "bin_size_bp": 300,
+      "value_min": 0.0,
+      "value_max": 13.37,
+      "track": "puseq.termination.bw",
+      "bytes": 365845
+    },
+    "origin_efficiency": {
+      "intervals": 1145,
+      "clipped_to_chromosome_end": 0,
+      "dropped_past_chromosome_end": 0,
+      "source_file": "GSE62108_origin-effici.bedgraph.gz",
+      "measurement": "origin efficiency, percentage of cells firing the origin",
+      "bin_size_bp": 300,
+      "value_min": 0.0669,
+      "value_max": 83.8076,
+      "call_set": {
+        "track": "puseq.origins.bb",
+        "calls": 1145,
+        "positions_listed_twice": 6,
+        "bytes": 71095
+      }
+    }
+  }
+}

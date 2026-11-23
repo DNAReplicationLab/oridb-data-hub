@@ -20,15 +20,28 @@ jobs:
         run: pip install pyBigWig
 
       # A hub that is wrong fails in the browser with a message naming a line in a file
-      # the reader has never seen, so every push is checked here instead.
+      # the reader has never seen, so every push is checked here instead. Sequence names
+      # are checked per assembly, against <genome>.chrom.sizes beside hub.txt.
       - name: Validate the hub
-        run: python3 bin/validate_hub.py --hub-root . --chrom-sizes sacCer3.chrom.sizes
+        run: python3 bin/validate_hub.py --hub-root .
 
+      # Every dataset directory present on every assembly in genomes.txt is regenerated
+      # from its spec, so a hand-edited trackDb.txt cannot be committed. The list is
+      # discovered rather than written out: adding a dataset should not mean editing CI.
       - name: trackDb is in sync with the dataset directories
         run: |
-          for d in muller2014 mcguffee2013; do
-            python3 bin/make_trackhub.py --hub-root . --genome sacCer3 \
-              --dataset "$d" --spec "docs/containers_$d.json"
+          set -e
+          for genome in $(awk '/^genome /{print $2}' genomes.txt); do
+            for dir in "$genome"/*/; do
+              dataset=$(basename "$dir")
+              spec="docs/containers_${dataset}_${genome}.json"
+              [ -f "$spec" ] || spec="docs/containers_${dataset}.json"
+              if [ ! -f "$spec" ]; then
+                echo "no container spec for $genome/$dataset"; exit 1
+              fi
+              python3 bin/make_trackhub.py --hub-root . --genome "$genome" \
+                --dataset "$dataset" --spec "$spec"
+            done
           done
-          git diff --exit-code -- sacCer3 \
+          git diff --exit-code -- $(awk '/^genome /{print $2}' genomes.txt) \
             || { echo "trackDb.txt is out of date; re-run bin/make_trackhub.py and commit"; exit 1; }

@@ -3,4 +3,6 @@
 # directories present.
 
 include sections.trackDb.txt
+include daigaku2015/trackDb.txt
+include foss2021/trackDb.txt
 include oridb_v3/trackDb.txt

@@ -1,0 +1,113 @@
+{
+  "dataset_id": "foss2021-asm294v2",
+  "title": "Mcm2-ChEC in S. pombe (Foss et al. 2021), per-base read depths binned to 25 bp on ASM294v2",
+  "organism": "Schizosaccharomyces pombe",
+  "assembly": "ASM294v2",
+  "bin_size_bp": 25,
+  "measurement": "MCM2-7 occupancy by chromatin endogenous cleavage (ChEC)",
+  "scale": "read depth divided by the genome-wide mean depth of that library; 1 = average coverage",
+  "source": {
+    "doi": "10.1371/journal.pgen.1009714",
+    "pubmed": "34473702",
+    "archive_series": [
+      "GSE150800"
+    ],
+    "files_used": [
+      "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "GSE150800_processed_pombe_MCM2ChEC_HU_rep2_080621_1.txt.gz",
+      "GSE150800_processed_pombe_free_MNase_rep1_081221_1.txt.gz"
+    ],
+    "note": "The pombe arm of a five-species series. The archive deposits per-base read-depth tables for pombe, not bedGraph."
+  },
+  "provenance": {
+    "pipeline": "pipelines/mcm2chec-foss2021/convert.py",
+    "pipeline_revision": null,
+    "transformations": [
+      "sequences renamed chrI/chrII/chrIII -> I/II/III",
+      "per-base depth averaged into 25 bp bins",
+      "each track divided by its own genome-wide mean depth"
+    ]
+  },
+  "tracks": {
+    "mcm2chec.hu_rep1.all.bw": {
+      "bins": 502537,
+      "mean_depth_per_base": 46.768,
+      "total_depth": 588867669.0,
+      "bytes": 3977242,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_HU_rep1_library_fragment_size_range_all",
+      "label": "Mcm2-ChEC HU rep1, all fragment sizes",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.g1_rep1.all.bw": {
+      "bins": 502543,
+      "mean_depth_per_base": 54.0599,
+      "total_depth": 680681708.0,
+      "bytes": 3953348,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_G1_rep1_library_fragment_size_range_all",
+      "label": "Mcm2-ChEC G1 rep1, all fragment sizes",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.hu_rep1.51_100bp.bw": {
+      "bins": 495887,
+      "mean_depth_per_base": 11.5356,
+      "total_depth": 145247454.0,
+      "bytes": 3702908,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_HU_rep1_library_fragment_size_range_51bpto100bp",
+      "label": "Mcm2-ChEC HU rep1, 51-100 bp fragments",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.g1_rep1.51_100bp.bw": {
+      "bins": 498622,
+      "mean_depth_per_base": 9.4275,
+      "total_depth": 118703721.0,
+      "bytes": 3665217,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_G1_rep1_library_fragment_size_range_51bpto100bp",
+      "label": "Mcm2-ChEC G1 rep1, 51-100 bp fragments",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.hu_rep1.151_200bp.bw": {
+      "bins": 491329,
+      "mean_depth_per_base": 13.0585,
+      "total_depth": 164422705.0,
+      "bytes": 3604210,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_HU_rep1_library_fragment_size_range_151bpto200bp",
+      "label": "Mcm2-ChEC HU rep1, 151-200 bp fragments",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.g1_rep1.151_200bp.bw": {
+      "bins": 502236,
+      "mean_depth_per_base": 12.5595,
+      "total_depth": 158139391.0,
+      "bytes": 3700841,
+      "source_file": "GSE150800_pombe_MCM2ChEC_HU_G1_read_depths_3_size_ranges_081121_1.txt.gz",
+      "source_column": "pombe_MCM2ChEC_G1_rep1_library_fragment_size_range_151bpto200bp",
+      "label": "Mcm2-ChEC G1 rep1, 151-200 bp fragments",
+      "bin_size_bp": 25
+    },
+    "mcm2chec.hu_rep2.all.bw": {
+      "bins": 502554,
+      "mean_depth_per_base": 146.4857,
+      "total_depth": 1844438110.0,
+      "bytes": 4003936,
+      "source_file": "GSE150800_processed_pombe_MCM2ChEC_HU_rep2_080621_1.txt.gz",
+      "source_column": "mcm2chec.hu_rep2.all",
+      "label": "Mcm2-ChEC HU rep2",
+      "bin_size_bp": 25
+    },
+    "free_mnase.rep1.bw": {
+      "bins": 502540,
+      "mean_depth_per_base": 57.8284,
+      "total_depth": 728131919.0,
+      "bytes": 3837435,
+      "source_file": "GSE150800_processed_pombe_free_MNase_rep1_081221_1.txt.gz",
+      "source_column": "free_mnase.rep1",
+      "label": "Free MNase control rep1",
+      "bin_size_bp": 25
+    }
+  }
+}
