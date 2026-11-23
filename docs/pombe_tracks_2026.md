@@ -110,7 +110,26 @@ The overview section gained four pombe entries — Trep, fork direction, Pu-seq 
 and Mcm2 occupancy in HU — which join OriDB's own origin records. Five tracks on first
 load, against a budget of ten.
 
-## 4. What this does not yet give
+## 4. What UCSC needs for an assembly it does not host
+
+ASM294v2 is not a UCSC database, so the hub has to supply what UCSC would otherwise take
+from its own: the sequence (`twoBitPath`), the **track groups** (`groups ASM294v2/groups.txt`)
+and a **description page** (`htmlPath ASM294v2/description.html`). Without the groups file
+the browser draws no track controls for the assembly at all — the tracks are loaded and
+invisible, which looks exactly like a hub with no tracks in it.
+
+`bin/make_trackhub.py` now reads `genomes.txt`, and for any genome with a `twoBitPath` it
+writes `<genome>/groups.txt` from `docs/sections.json` and gives every supertrack a
+matching `group` line. `bin/validate_hub.py` fails the hub if an assembly-hub genome lacks
+`groups`, `htmlPath`, `organism` or `defaultPos`, if any of those files is absent, or if a
+supertrack on such an assembly claims no group or claims one that is not declared.
+
+The other half of the same trap is in the URL. A UCSC database is addressed as
+`db=sacCer3`; an assembly the hub supplies is addressed as `genome=ASM294v2`. Sending
+`db=ASM294v2` loads no assembly and shows no tracks. The site's Data hub page now reads
+the distinction out of `genomes.txt` rather than assuming every genome is a UCSC one.
+
+## 5. What this does not yet give
 
 The licensing axis has a **profile but no call set**: MCM sites have to be called from the
 ChEC signal before an origin can be said to be licensed, and that calling rule is a
@@ -118,7 +137,7 @@ scientific choice with one HU and one G1 replicate behind it. Until it exists, a
 can be corroborated by Pu-seq alone, which is one axis and therefore not enough for
 *likely* under the tier rule.
 
-## 5. Reproducing
+## 6. Reproducing
 
 ```bash
 python3 pipelines/puseq-daigaku2015/convert.py  --hub-root . --raw-dir /tmp/puseq

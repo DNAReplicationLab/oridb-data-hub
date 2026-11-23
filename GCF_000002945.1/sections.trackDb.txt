@@ -5,6 +5,7 @@ track oridb_overview
 superTrack on show
 shortLabel OriDB overview
 longLabel OriDB overview: one reference track per measurement type, drawn by default
+group oridb_overview
 priority 0
 
 track ov_origins
@@ -83,35 +84,41 @@ track oridb_v3
 superTrack on
 shortLabel OriDB v3 records
 longLabel OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay
+group oridb_v3
 priority 1
 
 track oridb_timing
 superTrack on
 shortLabel Replication timing
 longLabel Replication timing and copy-number profiles through S phase
+group oridb_timing
 priority 2
 
 track oridb_initiation
 superTrack on
 shortLabel Initiation mapping
 longLabel Origin position and efficiency: initiation site and zone mapping
+group oridb_initiation
 priority 3
 
 track oridb_footprint
 superTrack on
 shortLabel Licensing footprints
 longLabel ORC and MCM2-7 occupancy, replisome protein footprints
+group oridb_footprint
 priority 4
 
 track oridb_forkdir
 superTrack on
 shortLabel Fork direction
 longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
+group oridb_forkdir
 priority 5
 
 track oridb_pausing
 superTrack on
 shortLabel Pausing, termination
 longLabel Fork position, pausing and replication termination
+group oridb_pausing
 priority 6
 

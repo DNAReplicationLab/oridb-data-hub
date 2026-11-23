@@ -83,10 +83,40 @@ def main():
     if errors:
         print("\n".join(f"ERROR  {e}" for e in errors)); sys.exit(1)
 
+    # genomes.txt is read as stanzas, not as a list of names: a genome this hub supplies
+    # the sequence for has obligations a UCSC-hosted one does not, and the browser
+    # reports none of them - an assembly hub missing `groups` simply draws no track
+    # controls, which is indistinguishable from a hub with no tracks.
     genomes = []
-    for line in open(os.path.join(a.hub_root, "genomes.txt")):
-        if line.startswith("genome "):
-            genomes.append(line.split()[1].strip())
+    stanza = {}
+    genome_meta = {}
+    for line in list(open(os.path.join(a.hub_root, "genomes.txt"))) + ["\n"]:
+        line = line.strip()
+        if line.startswith("#"):
+            continue
+        if not line:
+            if "genome" in stanza:
+                genome_meta[stanza["genome"]] = stanza
+            stanza = {}
+            continue
+        key, _, value = line.partition(" ")
+        stanza[key] = value.strip()
+        if key == "genome":
+            genomes.append(value.strip())
+    if "genome" in stanza:
+        genome_meta[stanza["genome"]] = stanza
+
+    for genome, meta in genome_meta.items():
+        if "twoBitPath" not in meta:
+            continue   # a UCSC database: UCSC supplies groups and the description page
+        for setting in ("groups", "htmlPath", "organism", "defaultPos"):
+            if setting not in meta:
+                errors.append(f"{genome}: served as an assembly hub but genomes.txt has "
+                              f"no {setting}; UCSC needs it for an assembly it does not host")
+        for setting in ("twoBitPath", "groups", "htmlPath"):
+            path = meta.get(setting)
+            if path and not os.path.exists(os.path.join(a.hub_root, path)):
+                errors.append(f"{genome}: {setting} points at {path}, which is not in the hub")
 
     def read_sizes(path):
         out = {}
@@ -119,6 +149,26 @@ def main():
         # subtracks of a container are not counted separately.
         def is_super(s):
             return "superTrack" in s
+
+        # On an assembly hub every supertrack must claim a group, and that group must be
+        # declared in the hub's own groups.txt: an ungrouped supertrack is not drawn.
+        if genome in genome_meta and "twoBitPath" in genome_meta[genome]:
+            groups_rel = genome_meta[genome].get("groups")
+            groups_file = os.path.join(a.hub_root, groups_rel) if groups_rel else None
+            declared = ({l.split()[1] for l in open(groups_file) if l.startswith("name ")}
+                        if groups_file and os.path.isfile(groups_file) else None)
+            for s_ in stanzas:
+                if "superTrack" not in s_:
+                    continue
+                claimed = s_.get("group")
+                if claimed is None:
+                    errors.append(f"{s_['track']}: on an assembly hub a supertrack needs "
+                                  f"a group, or its tracks are not drawn")
+                elif declared is not None and claimed not in declared:
+                    # A missing or unreadable groups file is already reported above;
+                    # this only fires when the file is there and the name is not in it.
+                    errors.append(f"{s_['track']}: group {claimed!r} is not declared in "
+                                  f"{groups_rel}")
         def parent_of(s):
             return by_name.get(s["parent"].split()[0]) if "parent" in s else None
         def drawn_on_load(s):

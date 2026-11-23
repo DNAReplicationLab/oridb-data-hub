@@ -1,8 +1,12 @@
 # One stanza per assembly. sacCer3 is a UCSC database, so the browser already has its
 # sequence and only the trackDb is given; ASM294v2 is not, so it is served as an assembly
-# hub and carries its own sequence. Both assemblies also keep a .2bit and a
-# refNameAliases file in their directory for in-browser viewers, which fetch the sequence
-# themselves rather than from a UCSC server.
+# hub and must carry, as well as its sequence, the group definitions and the description
+# page UCSC would otherwise take from its own database - without `groups` its track
+# controls come up empty. An assembly hub genome is also addressed as `genome=ASM294v2`
+# in a browser URL, never as `db=`, which only names a UCSC database.
+#
+# Both assemblies also keep a .2bit and a refNameAliases file in their directory for
+# in-browser viewers, which fetch the sequence themselves rather than from a UCSC server.
 
 genome sacCer3
 trackDb sacCer3/trackDb.txt
@@ -10,6 +14,8 @@ trackDb sacCer3/trackDb.txt
 genome ASM294v2
 trackDb ASM294v2/trackDb.txt
 twoBitPath ASM294v2/ASM294v2.2bit
+groups ASM294v2/groups.txt
+htmlPath ASM294v2/description.html
 organism Schizosaccharomyces pombe
 scientificName Schizosaccharomyces pombe
 description S. pombe ASM294v2 (GCA_000002945.2)
