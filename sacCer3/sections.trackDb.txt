@@ -82,6 +82,12 @@ shortLabel Initiation mapping
 longLabel Origin position and efficiency: initiation site and zone mapping
 priority 3
 
+track oridb_footprint
+superTrack on
+shortLabel Licensing footprints
+longLabel ORC and MCM2-7 occupancy, replisome protein footprints
+priority 4
+
 track oridb_forkdir
 superTrack on
 shortLabel Fork direction

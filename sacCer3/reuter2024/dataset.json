@@ -1,0 +1,196 @@
+{
+  "dataset_id": "reuter2024-saccer3",
+  "title": "ORC and MCM2-7 ChIP-exo in G1 and G2 arrest (Reuter et al. 2024), as deposited on sacCer3",
+  "organism": "Saccharomyces cerevisiae",
+  "assembly": "sacCer3",
+  "bin_size_bp": 1,
+  "measurement": "Orc2 and Mcm4 occupancy by ChIP-exo",
+  "scale": "combined tracks: CPM with reads extended to ~209 bp, genome-wide mean 17.1 in every sample; strand tracks: coverage per million mapped reads at the 50 bp read length, about 4.2x lower in height for that reason",
+  "source": {
+    "doi": "10.1038/s41467-024-51538-9",
+    "pubmed": "39181881",
+    "citation": "Reuter LM, Khadayate SP, Mossler A, Liebl K, Faull SV, Karimi MM, Speck C. MCM2-7 loading-dependent ORC release ensures genome-wide origin licensing. Nat Commun 15:7306 (2024)",
+    "archive_series": [
+      "GSE240779",
+      "GSE173527"
+    ],
+    "bioproject": "PRJNA1005236",
+    "samples_used": [
+      "GSM5269283 (Mcm4-Flag ChIP-Exo from cells arrested in G1, rep1)",
+      "GSM5269284 (Mcm4-Flag ChIP-Exo from cells arrested in G1, rep2)",
+      "GSM5269285 (Orc2-Flag ChIP-Exo from cells arrested in G1, rep1)",
+      "GSM5269286 (Orc2-Flag ChIP-Exo from cells arrested in G1, rep2)",
+      "GSM5269287 (Orc2-Flag ChIP-Exo from cells arrested in G2, rep1)",
+      "GSM5269288 (Orc2-Flag ChIP-Exo from cells arrested in G2, rep2)"
+    ],
+    "samples_excluded": [
+      "GSE240472 subseries (Orc2 ChIP-exo 24 min after G1 release)",
+      "ChExMix peak calls deposited beside each bigWig"
+    ],
+    "exclusion_reason": "the hub carries the G1 and G2 arrest conditions; the release time course and the per-replicate peak calls were not requested and the peak calls are unfiltered"
+  },
+  "provenance": {
+    "pipeline": "pipelines/chipexo-reuter2024",
+    "generated": "2026-11-25T10:34:05Z",
+    "submitter_processing": [
+      "Bowtie2 v2.3.5 to sacCer3, 50 bp single-end reads, Illumina HiSeq 2500",
+      "deepTools v3.2.1 bigWig generation, --normalizeUsing CPM (combined tracks only)"
+    ],
+    "validation": "all 18 deposited bigWigs carry exactly the 17 sequences of sacCer3.chrom.sizes at identical lengths, so no renaming or lift was needed; combined tracks were copied byte-for-byte and their sha256 of the deposited file is recorded per sample",
+    "replicate_correlation": {
+      "statistic": "Pearson r between replicates, combined tracks, base resolution, whole genome",
+      "values": {
+        "mcm4_g1": 0.997,
+        "orc2_g1": 0.9925,
+        "orc2_g2": 0.9945
+      }
+    },
+    "caveat": "the deposited combined track is not the sum of the deposited strand pair (r = 0.83-0.86 between them): the combined track extends reads to ~209 bp while the strand tracks keep the 50 bp read footprint, so the combined track is the smoother of the two views of the same reads"
+  },
+  "samples": [
+    {
+      "sample": "GSM5269283",
+      "title": "Mcm4-Flag ChIP-Exo from cells arrested in G1, rep1",
+      "track": "mcm4_g1_rep1",
+      "combined_file": "chipexo.mcm4_g1_rep1.bw",
+      "combined_source": "GSM5269283_Mcm4wt_G1_1.bw",
+      "combined_sha256": "c078164961408a425ee691044ba0caa60223a8cbd959d3669d1f2f53e3aeaaae",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.mcm4_g1_rep1.pos.bw",
+        "chipexo.mcm4_g1_rep1.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269283_MCM4_G1_1_S39_L005_R1_001_pos.bw",
+        "GSM5269283_MCM4_G1_1_S39_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "78aa4fa943b67e24ece1656e540c809b2c9bfe163ea770360fed02dd4fad5e71",
+        "747f72725e3d428e66998546702f7a8575d516cc34c51d3139237de8924b56a0"
+      ],
+      "mapped_reads": 3651345,
+      "strand_scale_factor": 0.273872,
+      "strand_transformation": "raw read coverage multiplied by 0.273872 = 1e6 / 3651345 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    },
+    {
+      "sample": "GSM5269284",
+      "title": "Mcm4-Flag ChIP-Exo from cells arrested in G1, rep2",
+      "track": "mcm4_g1_rep2",
+      "combined_file": "chipexo.mcm4_g1_rep2.bw",
+      "combined_source": "GSM5269284_Mcm4wt_G1_2.bw",
+      "combined_sha256": "ed5d0bfd37b8a72b39e39c3d22ca7caa49c1c5b20994ac42d319c6a912e0bee2",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.mcm4_g1_rep2.pos.bw",
+        "chipexo.mcm4_g1_rep2.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269284_MCM4_G1_2_S40_L005_R1_001_pos.bw",
+        "GSM5269284_MCM4_G1_2_S40_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "f5f3f8f9333ffc8236d0ae6fc852db87ee7ff5e7d4acf13af8c79f9c18c60328",
+        "66ee3cb640698a1be17a33792d2b15c3e2981b1f73f0a2810eaded233d80e3ba"
+      ],
+      "mapped_reads": 3543425,
+      "strand_scale_factor": 0.282213,
+      "strand_transformation": "raw read coverage multiplied by 0.282213 = 1e6 / 3543425 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    },
+    {
+      "sample": "GSM5269285",
+      "title": "Orc2-Flag ChIP-Exo from cells arrested in G1, rep1",
+      "track": "orc2_g1_rep1",
+      "combined_file": "chipexo.orc2_g1_rep1.bw",
+      "combined_source": "GSM5269285_Orc2wt_G1_1.bw",
+      "combined_sha256": "322e5b8aff34a92d017ef5e9e35d40074214c8ab6369c89a0c40e94450f1e68c",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.orc2_g1_rep1.pos.bw",
+        "chipexo.orc2_g1_rep1.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269285_ORC2_G1_1_S43_L005_R1_001_pos.bw",
+        "GSM5269285_ORC2_G1_1_S43_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "4ce7e44021cb7e3344f10462644e8f9510578d7ec1e356710f025a557671fadf",
+        "be3383293d326c0b545b3733ae2bd7f4f62920f7740d2308ff12acdf3f80403c"
+      ],
+      "mapped_reads": 2509652,
+      "strand_scale_factor": 0.398462,
+      "strand_transformation": "raw read coverage multiplied by 0.398462 = 1e6 / 2509652 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    },
+    {
+      "sample": "GSM5269286",
+      "title": "Orc2-Flag ChIP-Exo from cells arrested in G1, rep2",
+      "track": "orc2_g1_rep2",
+      "combined_file": "chipexo.orc2_g1_rep2.bw",
+      "combined_source": "GSM5269286_Orc2wt_G1_2.bw",
+      "combined_sha256": "7a1d8087b28b9f7780a142089cc0770a18132cf9463c55b0906f7cff780bb79b",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.orc2_g1_rep2.pos.bw",
+        "chipexo.orc2_g1_rep2.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269286_ORC2_G1_2_S44_L005_R1_001_pos.bw",
+        "GSM5269286_ORC2_G1_2_S44_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "bb92cfc4838bcddd0bc7192b6fae15e9e9b136fd188d86b3e76da9b522b47a25",
+        "5c2e71bfe3f9a6d8479d43bccfc0f856f6b4c3451ef53effaa95940a1ea834af"
+      ],
+      "mapped_reads": 3387756,
+      "strand_scale_factor": 0.295181,
+      "strand_transformation": "raw read coverage multiplied by 0.295181 = 1e6 / 3387756 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    },
+    {
+      "sample": "GSM5269287",
+      "title": "Orc2-Flag ChIP-Exo from cells arrested in G2, rep1",
+      "track": "orc2_g2_rep1",
+      "combined_file": "chipexo.orc2_g2_rep1.bw",
+      "combined_source": "GSM5269287_Orc2wt_G2_1.bw",
+      "combined_sha256": "1e4893db8ec9e29bd4d7cdfc1060ab1b67a14ae93587cad5cbc9dce03c7d773a",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.orc2_g2_rep1.pos.bw",
+        "chipexo.orc2_g2_rep1.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269287_ORC2_G2_1_S47_L005_R1_001_pos.bw",
+        "GSM5269287_ORC2_G2_1_S47_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "b4f2fb1d037d1b12cfe35aa5a45e4eb3f844bcea4d985a5d85df0d6c9406933a",
+        "d2ae5103579776a6254ccfdc8f8cba2d1bfc4844b5f0a1cfb76c547fa7b92700"
+      ],
+      "mapped_reads": 3109181,
+      "strand_scale_factor": 0.321628,
+      "strand_transformation": "raw read coverage multiplied by 0.321628 = 1e6 / 3109181 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    },
+    {
+      "sample": "GSM5269288",
+      "title": "Orc2-Flag ChIP-Exo from cells arrested in G2, rep2",
+      "track": "orc2_g2_rep2",
+      "combined_file": "chipexo.orc2_g2_rep2.bw",
+      "combined_source": "GSM5269288_Orc2wt_G2_2.bw",
+      "combined_sha256": "7c89616bffb7b22176442c23d19b2f7b8123dc31761343774765b7cef5edcebd",
+      "combined_transformation": "none; copied as deposited",
+      "strand_files": [
+        "chipexo.orc2_g2_rep2.pos.bw",
+        "chipexo.orc2_g2_rep2.neg.bw"
+      ],
+      "strand_sources": [
+        "GSM5269288_ORC2_G2_2_S48_L005_R1_001_pos.bw",
+        "GSM5269288_ORC2_G2_2_S48_L005_R1_001_neg.bw"
+      ],
+      "strand_sha256": [
+        "54a86ccf9dfa5e4b11dae7f8d8eb1494dc38e567bdb481b5cbaf5fe56dae6a23",
+        "02f0603914735663bc41f5d8c62e8ff7f8a4e85208d755ae8cb3c6274108455c"
+      ],
+      "mapped_reads": 3041907,
+      "strand_scale_factor": 0.328741,
+      "strand_transformation": "raw read coverage multiplied by 0.328741 = 1e6 / 3041907 mapped reads (both strands, from sum|coverage|/50); divide by this factor to recover the deposited integers"
+    }
+  ]
+}
