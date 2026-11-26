@@ -254,6 +254,13 @@ def main():
                         errors.append(f"{name}: sequences absent from the assembly or of the "
                                       f"wrong length: {sorted(bad)[:4]}")
                 vl = s.get("viewLimits") or _inherited(stanzas, s, "viewLimits")
+                # A track that auto-scales does not use its viewLimits: the browser fits
+                # the axis to whatever is in the window, so nothing is ever clipped and
+                # the fixed limits are only the fallback if a reader turns auto-scaling
+                # off. Checking them here would report clipping no reader ever sees.
+                auto = s.get("autoScale") or _inherited(stanzas, s, "autoScale") or "off"
+                if auto in ("on", "group"):
+                    vl = None
                 negate = (s.get("negateValues") or
                           _inherited(stanzas, s, "negateValues")) == "on"
                 if negate:

@@ -57,10 +57,23 @@ def render(dataset, spec, section_ids=()):
             f"longLabel {c['longLabel']}",
             "type bigWig",
             f"viewLimits {c['viewLimits']}",
-            "autoScale off",
-            "alwaysZero off",
-            f"graphTypeDefault {c.get('graphType', 'bar')}",
         ]
+        # autoScale: "off" (the default) honours viewLimits; "group" lets the browser
+        # scale the y-axis to the current window, shared across every track in this
+        # container so an overlay still compares like with like. "group" belongs on the
+        # container only, never on a child - UCSC reads it from the parent. It is the
+        # answer for a measurement whose dynamic range no fixed window covers, at the
+        # cost of a scale that changes as the reader scrolls, and of background noise
+        # filling the track in a window that contains no signal.
+        auto = c.get("autoScale", "off")
+        if auto not in ("off", "on", "group"):
+            sys.exit(f"{dataset}: container '{c['id']}' has autoScale {auto!r}; "
+                     f"UCSC accepts only off, on or group")
+        lines.append(f"autoScale {auto}")
+        # With a scale that moves, the zero line has to be pinned or the axis can float
+        # away from it - which would make a signed strand track unreadable.
+        lines.append("alwaysZero " + ("on" if auto != "off" else "off"))
+        lines.append(f"graphTypeDefault {c.get('graphType', 'bar')}")
         if c.get("negateValues"):
             # Flip the sign so that an early replication time plots high, consistent
             # with the copy-number tracks where high means more replicated.
