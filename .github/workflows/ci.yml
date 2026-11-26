@@ -17,7 +17,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install pyBigWig
-        run: pip install pyBigWig
+        run: pip install pyBigWig numpy
 
       # A hub that is wrong fails in the browser with a message naming a line in a file
       # the reader has never seen, so every push is checked here instead. Sequence names

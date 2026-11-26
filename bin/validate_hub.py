@@ -219,8 +219,18 @@ def main():
                     continue
                 try:
                     import pyBigWig
-                except ImportError:
-                    warnings.append("pyBigWig not installed: bigWig contents not checked")
+                except Exception as exc:
+                    # Catching ImportError alone is not enough. pyBigWig declares no
+                    # dependencies at all, yet its published wheel is built with numpy
+                    # support, so in an environment with pyBigWig but no numpy the import
+                    # fails - as ImportError on one attempt and as "SystemError:
+                    # initialization of pyBigWig failed without raising an exception" on
+                    # the next, because the half-initialised extension is left behind.
+                    # An absent optional dependency must degrade to this warning, never
+                    # to a traceback that reports a healthy hub as a broken one.
+                    warnings.append(f"bigWig contents not checked - pyBigWig unusable "
+                                    f"({type(exc).__name__}: {exc}); "
+                                    f"install both pyBigWig and numpy")
                     continue
                 bw = pyBigWig.open(p)
                 chroms = bw.chroms()
