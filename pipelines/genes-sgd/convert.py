@@ -9,7 +9,11 @@ Two tracks on sacCer3, from SGD's own chromosomal-feature GFF3:
     (Verified, Uncharacterized, Dubious) in the same green/blue/grey the site uses for
     origin evidence tiers, so a Dubious ORF beside an origin is visibly dubious rather
     than quietly absent.
-  - sgd.trna.bb - the 299 tRNA genes.
+  - sgd.rna_genes.bb - all 438 non-coding RNA genes: 299 tRNA, 77 snoRNA, 31 ncRNA,
+    24 rRNA, 6 snRNA and 1 telomerase RNA, coloured by class. One track rather than
+    six because five of the classes hold 31 features or fewer, and colour tells them
+    apart without costing five more rows in the panel. Transposable-element genes and
+    pseudogenes are deliberately left out: neither is an RNA gene.
 
 Why this is here at all. Every other dataset in the hub is a measurement; this one is
 reference annotation, and UCSC's sacCer3 already carries SGD Genes natively. The
@@ -61,7 +65,19 @@ RENAME = {'chrmt': 'chrM'}
 ORF_COLOUR = {'Verified': '26,127,75',
               'Uncharacterized': '47,125,155',
               'Dubious': '138,143,152'}
-TRNA_COLOUR = '117,112,179'
+# One colour per RNA class, from a qualitative palette that stays distinguishable
+# under deuteranopia. tRNA keeps the purple it carried when it was a track of its own.
+# The second element of each pair is the gene feature's transcript child, which is
+# where the exons hang: SGD writes gene -> transcript -> noncoding_exon throughout.
+RNA_CLASSES = {
+    'tRNA_gene': ('tRNA', '117,112,179'),
+    'snoRNA_gene': ('snoRNA', '217,95,2'),
+    'ncRNA_gene': ('ncRNA', '27,158,119'),
+    'rRNA_gene': ('rRNA', '231,41,138'),
+    'snRNA_gene': ('snRNA', '230,171,2'),
+    'telomerase_RNA_gene': ('telomerase RNA', '102,102,102'),
+}
+RNA_TRANSCRIPTS = {'tRNA', 'snoRNA', 'ncRNA', 'rRNA', 'snRNA', 'telomerase_RNA'}
 
 GENE_AS = """table sgdGene
 "Protein-coding genes from the SGD chromosomal-feature GFF3"
@@ -85,8 +101,8 @@ GENE_AS = """table sgdGene
     )
 """
 
-TRNA_AS = """table sgdTrna
-"tRNA genes from the SGD chromosomal-feature GFF3"
+TRNA_AS = """table sgdRnaGene
+"Non-coding RNA genes from the SGD chromosomal-feature GFF3"
     (
     string  chrom;              "Reference sequence chromosome"
     uint    chromStart;         "Start position in chromosome"
@@ -94,14 +110,14 @@ TRNA_AS = """table sgdTrna
     string  name;               "Systematic name, e.g. YNCA0002W"
     uint    score;              "Unused, always 0"
     char[1] strand;             "+ or -"
-    uint    thickStart;         "Equal to chromStart: a tRNA gene is not translated"
+    uint    thickStart;         "Equal to chromStart: an RNA gene is not translated"
     uint    thickEnd;           "Equal to chromStart"
-    uint    reserved;           "Colour"
+    uint    reserved;           "Colour, by RNA class"
     int     blockCount;         "Number of exons"
     int[blockCount] blockSizes; "Block sizes"
     int[blockCount] chromStarts; "Block starts relative to chromStart"
     string  geneName;           "Common gene name, e.g. TRN1, or empty"
-    string  isotype;            "Amino acid carried, parsed from the SGD alias"
+    string  rnaClass;           "tRNA, snoRNA, ncRNA, rRNA, snRNA or telomerase RNA"
     string  sgdid;              "SGD accession"
     string  description;        "SGD display description"
     )
@@ -177,14 +193,6 @@ def bed12(chrom, strand, blocks, name, colour, thick, extra):
                       ','.join(map(str, sizes)), ','.join(map(str, starts))] + extra)
 
 
-def isotype(a):
-    """The amino acid a tRNA carries, from SGD's alias list (e.g. tRNA-Pro)."""
-    for al in a.get('Alias', '').split(','):
-        if al.startswith('tRNA-'):
-            return al
-    return ''
-
-
 def build(rows):
     """Return (protein-coding BED lines, tRNA BED lines, counts by class)."""
     genes, trna_genes = {}, {}
@@ -194,9 +202,9 @@ def build(rows):
     for chrom, kind, start, end, strand, a in rows:
         if kind == 'gene':
             genes[a['ID']] = (chrom, strand, a)
-        elif kind == 'tRNA_gene':
-            trna_genes[a['ID']] = (chrom, strand, a)
-        elif kind in ('mRNA', 'tRNA'):
+        elif kind in RNA_CLASSES:
+            trna_genes[a['ID']] = (chrom, strand, a, kind, (start, end))
+        elif kind == 'mRNA' or kind in RNA_TRANSCRIPTS:
             for parent in a.get('Parent', '').split(','):
                 transcript_of[a['ID']] = parent
         elif kind == 'CDS':
@@ -228,17 +236,20 @@ def build(rows):
                              a.get('dbxref', '').replace('SGD:', ''),
                              a.get('display', '')]))
 
-    trna = []
-    for gid, (chrom, strand, a) in trna_genes.items():
-        blocks = blocks_for(gid, exons)
-        if not blocks:
-            continue
+    trna, rna_classes = [], {}
+    for gid, (chrom, strand, a, kind, span) in trna_genes.items():
+        label, colour = RNA_CLASSES[kind]
+        # Most RNA genes hang their exons off a transcript child; where SGD gives none,
+        # the gene feature's own span is the only model there is, and falling back to
+        # it beats silently dropping a gene the hub says it serves.
+        blocks = blocks_for(gid, exons) or {span}
+        rna_classes[label] = rna_classes.get(label, 0) + 1
         trna.append(bed12(RENAME.get(chrom, chrom), strand, blocks, gid,
-                          TRNA_COLOUR, None,
-                          [a.get('gene', ''), isotype(a),
+                          colour, None,
+                          [a.get('gene', ''), label,
                            a.get('dbxref', '').replace('SGD:', ''),
                            a.get('display', '')]))
-    return coding, trna, classes
+    return coding, trna, classes, rna_classes
 
 
 def write_bigbed(lines, as_text, n_extra, out_path, chrom_sizes, work):
@@ -293,21 +304,22 @@ def main():
 
     rows = read_gff(gff)
     n_seq = check_assembly(rows, sizes)
-    coding, trna, classes = build(rows)
+    coding, trna, classes, rna_classes = build(rows)
     print(f'SGD {release} ({produced}): {n_seq} sequences verified against {GENOME}')
     print(f'  protein-coding {len(coding)} ' +
           ', '.join(f'{k} {v}' for k, v in sorted(classes.items())))
-    print(f'  tRNA genes {len(trna)}')
+    print(f'  RNA genes {len(trna)} ' +
+          ', '.join(f'{k} {v}' for k, v in sorted(rna_classes.items())))
 
     write_bigbed(coding, GENE_AS, 4, os.path.join(out_dir, 'sgd.protein_coding.bb'),
                  chrom_sizes, raw_dir)
-    write_bigbed(trna, TRNA_AS, 4, os.path.join(out_dir, 'sgd.trna.bb'),
+    write_bigbed(trna, TRNA_AS, 4, os.path.join(out_dir, 'sgd.rna_genes.bb'),
                  chrom_sizes, raw_dir)
-    for name, text in (('sgdGene.as', GENE_AS), ('sgdTrna.as', TRNA_AS)):
+    for name, text in (('sgdGene.as', GENE_AS), ('sgdRnaGene.as', TRNA_AS)):
         with open(os.path.join(out_dir, name), 'w') as f:
             f.write(text)
     # The plain BED is shipped beside the bigBed: it is what a reader downloads.
-    for src, name in ((coding, 'sgd.protein_coding.bed'), (trna, 'sgd.trna.bed')):
+    for src, name in ((coding, 'sgd.protein_coding.bed'), (trna, 'sgd.rna_genes.bed')):
         with open(os.path.join(out_dir, name), 'w') as f:
             for line in sorted(src, key=lambda l: (l.split('\t')[0], int(l.split('\t')[1]))):
                 f.write(line + '\n')
@@ -347,8 +359,8 @@ def main():
                        'and are not added to the hub overview for that reason'),
         },
         'calls': None,
-        'counts': {'protein_coding': len(coding), 'tRNA': len(trna),
-                   'orf_classification': classes},
+        'counts': {'protein_coding': len(coding), 'rna_genes': len(trna),
+                   'orf_classification': classes, 'rna_class': rna_classes},
     }
     with open(os.path.join(out_dir, 'dataset.json'), 'w') as f:
         json.dump(dataset, f, indent=2)

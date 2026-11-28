@@ -6,7 +6,7 @@ parent oridb_forkdir
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Fork direction
+shortLabel Fork dir (McGuffee 2013)
 longLabel McGuffee et al. (2013): replication fork directionality from Okazaki fragment strand ratio, wild type
 type bigWig
 viewLimits -1:1
@@ -33,7 +33,7 @@ parent oridb_initiation
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Initiation signal
+shortLabel Init signal (McGuffee 2013)
 longLabel McGuffee et al. (2013): initiation signal - derivative of fork directionality, and origin efficiency (OEM)
 type bigWig
 viewLimits -0.5:0.7
@@ -68,7 +68,7 @@ parent oridb_forkdir
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Okazaki strands
+shortLabel Okazaki (McGuffee 2013)
 longLabel McGuffee et al. (2013): Okazaki fragment coverage by strand, fragments per million, 250 bp windows
 type bigWig
 viewLimits 0:6000
@@ -100,7 +100,7 @@ priority 3
 track mcguffee2013_init_sites
 parent oridb_initiation
 bigDataUrl mcguffee2013/okseq.initiation_sites.bb
-shortLabel Initiation zones
+shortLabel Init zones (McGuffee 2013)
 longLabel Initiation zones called from Okazaki fragment directionality (McGuffee et al. 2013, re-analysed by OriDB); score = 1000 x OEM
 type bigBed 8 +
 visibility pack

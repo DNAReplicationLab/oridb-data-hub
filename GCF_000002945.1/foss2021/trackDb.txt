@@ -6,7 +6,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Mcm2 HU vs G1
+shortLabel Mcm2 HU vs G1 (Foss 2021)
 longLabel Mcm2-ChEC occupancy in hydroxyurea and in G1, all fragment sizes (Foss et al. 2021); 1 is average coverage for that library
 type bigWig
 viewLimits 0:10
@@ -40,7 +40,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Mcm2 51-100 bp
+shortLabel Mcm2 51-100 bp (Foss 2021)
 longLabel Mcm2-ChEC occupancy from 51-100 bp fragments, HU against G1 (Foss et al. 2021); the fragment class closest to a single MCM footprint
 type bigWig
 viewLimits 0:10
@@ -74,7 +74,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Mcm2 151-200 bp
+shortLabel Mcm2 151-200 bp (Foss 2021)
 longLabel Mcm2-ChEC occupancy from 151-200 bp fragments, HU against G1 (Foss et al. 2021)
 type bigWig
 viewLimits 0:10
@@ -108,7 +108,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Mcm2 HU replicates
+shortLabel Mcm2 HU reps (Foss 2021)
 longLabel The two hydroxyurea replicates against each other (Foss et al. 2021); rep2 was sequenced about three times as deeply, which the scaling removes
 type bigWig
 viewLimits 0:10
@@ -142,7 +142,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Free MNase control
+shortLabel Free MNase (Foss 2021)
 longLabel Free MNase without a tethered protein (Foss et al. 2021): the accessibility background that Mcm2-ChEC signal is read against
 type bigWig
 viewLimits 0:10

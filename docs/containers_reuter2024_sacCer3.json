@@ -6,7 +6,7 @@
   "containers": [
     {
       "id": "orc_mcm_g1",
-      "shortLabel": "ORC2 vs MCM4 in G1",
+      "shortLabel": "ORC2 vs MCM4 G1 (Reuter 2024)",
       "graphType": "bar",
       "viewLimits": "0:600",
       "priority": 10,
@@ -29,7 +29,7 @@
     },
     {
       "id": "orc2_g1_vs_g2",
-      "shortLabel": "ORC2 G1 vs G2",
+      "shortLabel": "ORC2 G1 vs G2 (Reuter 2024)",
       "graphType": "bar",
       "viewLimits": "0:600",
       "priority": 11,
@@ -52,7 +52,7 @@
     },
     {
       "id": "mcm4_g1_reps",
-      "shortLabel": "MCM4 G1 replicates",
+      "shortLabel": "MCM4 G1 reps (Reuter 2024)",
       "graphType": "points",
       "viewLimits": "0:600",
       "priority": 12,
@@ -75,7 +75,7 @@
     },
     {
       "id": "orc2_g1_reps",
-      "shortLabel": "ORC2 G1 replicates",
+      "shortLabel": "ORC2 G1 reps (Reuter 2024)",
       "graphType": "points",
       "viewLimits": "0:600",
       "priority": 13,
@@ -98,7 +98,7 @@
     },
     {
       "id": "orc2_g2_reps",
-      "shortLabel": "ORC2 G2 replicates",
+      "shortLabel": "ORC2 G2 reps (Reuter 2024)",
       "graphType": "points",
       "viewLimits": "0:600",
       "priority": 14,
@@ -121,7 +121,7 @@
     },
     {
       "id": "mcm4_g1_strand",
-      "shortLabel": "MCM4 G1 strand",
+      "shortLabel": "MCM4 G1 strands (Reuter 2024)",
       "graphType": "bar",
       "viewLimits": "-150:150",
       "yLineMark": 0.0,
@@ -159,7 +159,7 @@
     },
     {
       "id": "orc2_g1_strand",
-      "shortLabel": "ORC2 G1 strand",
+      "shortLabel": "ORC2 G1 strands (Reuter 2024)",
       "graphType": "bar",
       "viewLimits": "-150:150",
       "yLineMark": 0.0,
@@ -197,7 +197,7 @@
     },
     {
       "id": "orc2_g2_strand",
-      "shortLabel": "ORC2 G2 strand",
+      "shortLabel": "ORC2 G2 strands (Reuter 2024)",
       "graphType": "bar",
       "viewLimits": "-150:150",
       "yLineMark": 0.0,

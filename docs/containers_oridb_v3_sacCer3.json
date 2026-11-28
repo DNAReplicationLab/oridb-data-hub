@@ -8,7 +8,7 @@
     {
       "id": "origins",
       "file": "origins.bb",
-      "shortLabel": "OriDB origins",
+      "shortLabel": "Origins (OriDB v3)",
       "longLabel": "OriDB v3 origin records on sacCer3, coloured by evidence tier; the name links to the OriDB page",
       "type": "bigBed 9 +",
       "visibility": "pack",
@@ -22,7 +22,7 @@
     {
       "id": "elements",
       "file": "elements.bb",
-      "shortLabel": "Origin elements",
+      "shortLabel": "Elements (OriDB v3)",
       "longLabel": "OriDB v3 origin elements: A elements in blue and all B elements (B2, B3) in brown, the colours the origin pages use; the class is in the elementClass field and the score is the motif score as a percentage of the matrix maximum",
       "type": "bigBed 9 +",
       "visibility": "pack",
@@ -34,7 +34,7 @@
     {
       "id": "refuted",
       "file": "refuted_fragments.bb",
-      "shortLabel": "ARS-negative fragments",
+      "shortLabel": "ARS-negative (OriDB v3)",
       "longLabel": "Fragments that were cloned and did not support autonomous replication; a flag on the sites inside them, never a tier",
       "type": "bigBed 9 +",
       "visibility": "pack",

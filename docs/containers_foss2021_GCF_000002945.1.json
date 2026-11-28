@@ -6,7 +6,7 @@
     {
       "id": "mcm_all",
       "section": "footprint",
-      "shortLabel": "Mcm2 HU vs G1",
+      "shortLabel": "Mcm2 HU vs G1 (Foss 2021)",
       "longLabel": "Mcm2-ChEC occupancy in hydroxyurea and in G1, all fragment sizes (Foss et al. 2021); 1 is average coverage for that library",
       "graphType": "bar",
       "viewLimits": "0:10",
@@ -29,7 +29,7 @@
     {
       "id": "mcm_51_100",
       "section": "footprint",
-      "shortLabel": "Mcm2 51-100 bp",
+      "shortLabel": "Mcm2 51-100 bp (Foss 2021)",
       "longLabel": "Mcm2-ChEC occupancy from 51-100 bp fragments, HU against G1 (Foss et al. 2021); the fragment class closest to a single MCM footprint",
       "graphType": "bar",
       "viewLimits": "0:10",
@@ -52,7 +52,7 @@
     {
       "id": "mcm_151_200",
       "section": "footprint",
-      "shortLabel": "Mcm2 151-200 bp",
+      "shortLabel": "Mcm2 151-200 bp (Foss 2021)",
       "longLabel": "Mcm2-ChEC occupancy from 151-200 bp fragments, HU against G1 (Foss et al. 2021)",
       "graphType": "bar",
       "viewLimits": "0:10",
@@ -75,7 +75,7 @@
     {
       "id": "mcm_reps",
       "section": "footprint",
-      "shortLabel": "Mcm2 HU replicates",
+      "shortLabel": "Mcm2 HU reps (Foss 2021)",
       "longLabel": "The two hydroxyurea replicates against each other (Foss et al. 2021); rep2 was sequenced about three times as deeply, which the scaling removes",
       "graphType": "bar",
       "viewLimits": "0:10",
@@ -98,7 +98,7 @@
     {
       "id": "mnase_control",
       "section": "footprint",
-      "shortLabel": "Free MNase control",
+      "shortLabel": "Free MNase (Foss 2021)",
       "longLabel": "Free MNase without a tethered protein (Foss et al. 2021): the accessibility background that Mcm2-ChEC signal is read against",
       "graphType": "bar",
       "viewLimits": "0:10",

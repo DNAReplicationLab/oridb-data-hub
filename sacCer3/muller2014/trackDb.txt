@@ -6,7 +6,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Muller timecourse
+shortLabel Timecourse (Muller 2014)
 longLabel Muller et al. (2014): S. cerevisiae genome replication time course from alpha-factor release
 type bigWig
 viewLimits 0.9:2.1
@@ -81,7 +81,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Haploid vs diploid
+shortLabel Ploidy (Muller 2014)
 longLabel Muller et al. (2014): haploid and diploid S. cerevisiae sort-seq replication profiles
 type bigWig
 viewLimits 0.9:2.1
@@ -116,7 +116,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel SOLiD vs Illumina
+shortLabel Platform (Muller 2014)
 longLabel Muller et al. (2014): technology comparison for diploid S. cerevisiae sort-seq replication profiles
 type bigWig
 viewLimits 0.9:2.1
@@ -151,7 +151,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel MFA-seq
+shortLabel MFA-seq (Muller 2014)
 longLabel Muller et al. (2014): marker frequency analysis, exponential versus stationary phase (T7107)
 type bigWig
 viewLimits 0.9:1.5
@@ -178,7 +178,7 @@ parent oridb_initiation
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel HU origin mapping
+shortLabel HU origins (Muller 2014)
 longLabel Muller et al. (2014): origin mapping by replication forks stalled in hydroxyurea (rad53 sml1)
 type bigWig
 viewLimits 0.9:2.1
@@ -205,7 +205,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Trep
+shortLabel Trep (Muller 2014)
 longLabel Muller et al. (2014): median replication time (Trep, minutes from alpha-factor release)
 type bigWig
 viewLimits -85:-25
@@ -231,7 +231,7 @@ priority 6
 track muller2014_trep_peaks
 parent oridb_initiation
 bigDataUrl muller2014/syncseq.trep.peaks.bb
-shortLabel Trep peaks
+shortLabel Trep peaks (Muller 2014)
 longLabel Origin calls from the Muller et al. (2014) Trep profile: local minima of replication time, called by OriDB
 type bigBed 8 +
 visibility pack

@@ -10,7 +10,7 @@ priority 0
 track ov_origins
 parent oridb_overview
 bigDataUrl oridb_v3/origins.bb
-shortLabel OriDB origins
+shortLabel Origins (OriDB v3)
 longLabel OriDB v3 origin records, coloured by evidence tier: green confirmed, blue likely, grey unsupported or not assessed
 type bigBed 9 +
 visibility pack
@@ -19,57 +19,14 @@ itemRgb on
 url https://v3.oridb.org/origin.php?id=$$
 urlLabel OriDB record:
 searchIndex name
-priority 5
-
-track ov_timing
-parent oridb_overview
-bigDataUrl muller2014/syncseq.trep.bw
-shortLabel Timing (Trep)
-longLabel Replication timing: Trep in minutes from sync-seq (Muller et al. 2014); early replication plots high
-type bigWig
-visibility full
-color 106,61,154
-viewLimits -85:-25
-autoScale off
-alwaysZero off
-graphTypeDefault points
-maxHeightPixels 100:100:8
-negateValues on
-priority 10
-
-track ov_fd
-parent oridb_overview
-bigDataUrl mcguffee2013/okseq.directionality.bw
-shortLabel Fork direction
-longLabel Replication fork directionality from Okazaki fragment strand ratio (McGuffee et al. 2013)
-type bigWig
-visibility full
-color 26,82,118
-viewLimits -1:1
-autoScale off
-alwaysZero off
-graphTypeDefault bar
-maxHeightPixels 100:100:8
-yLineOnOff on
-yLineMark 0.0
-priority 10
-
-track ov_init
-parent oridb_overview
-bigDataUrl mcguffee2013/okseq.initiation_sites.bb
-shortLabel Initiation zones
-longLabel Initiation zones called from the Okazaki-fragment initiation signal (McGuffee et al. 2013)
-type bigBed 8 +
-visibility pack
-color 26,82,118
-priority 10
+priority 3
 
 track ov_mcm
 parent oridb_overview
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel MCM4 strands
+shortLabel MCM4 strands (Reuter 2024)
 longLabel MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024): plus-strand coverage above the axis and minus below, replicate 1; the gap between the two peaks is the protected footprint
 type bigWig
 viewLimits -150:150
@@ -81,7 +38,7 @@ yLineMark 0.0
 gridDefault off
 maxHeightPixels 100:100:8
 visibility full
-priority 10
+priority 4
 
     track ov_mcm_chipexo_mcm4_g1_rep1_pos
     parent ov_mcm on
@@ -100,39 +57,82 @@ priority 10
     color 27,120,55
     altColor 27,120,55
 
-track oridb_v3
-superTrack on
-shortLabel OriDB v3 records
-longLabel OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay
-priority 1
-
-track oridb_timing
-superTrack on
-shortLabel Replication timing
-longLabel Replication timing and copy-number profiles through S phase
-priority 2
-
-track oridb_initiation
-superTrack on
-shortLabel Initiation mapping
-longLabel Origin position and efficiency: initiation site and zone mapping
-priority 3
-
-track oridb_footprint
-superTrack on
-shortLabel Licensing footprints
-longLabel ORC and MCM2-7 occupancy, replisome protein footprints
-priority 4
-
-track oridb_forkdir
-superTrack on
-shortLabel Fork direction
-longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
+track ov_init
+parent oridb_overview
+bigDataUrl mcguffee2013/okseq.initiation_sites.bb
+shortLabel Init zones (McGuffee 2013)
+longLabel Initiation zones called from the Okazaki-fragment initiation signal (McGuffee et al. 2013)
+type bigBed 8 +
+visibility pack
+color 26,82,118
 priority 5
+
+track ov_fd
+parent oridb_overview
+bigDataUrl mcguffee2013/okseq.directionality.bw
+shortLabel Fork dir (McGuffee 2013)
+longLabel Replication fork directionality from Okazaki fragment strand ratio (McGuffee et al. 2013)
+type bigWig
+visibility full
+color 26,82,118
+viewLimits -1:1
+autoScale off
+alwaysZero off
+graphTypeDefault bar
+maxHeightPixels 100:100:8
+yLineOnOff on
+yLineMark 0.0
+priority 6
+
+track ov_timing
+parent oridb_overview
+bigDataUrl muller2014/syncseq.trep.bw
+shortLabel Trep (Muller 2014)
+longLabel Replication timing: Trep in minutes from sync-seq (Muller et al. 2014); early replication plots high
+type bigWig
+visibility full
+color 106,61,154
+viewLimits -85:-25
+autoScale off
+alwaysZero off
+graphTypeDefault points
+maxHeightPixels 100:100:8
+negateValues on
+priority 7
 
 track oridb_annotation
 superTrack on
 shortLabel Genes
 longLabel Reference gene annotation: protein-coding and tRNA genes from SGD
-priority 9
+priority 1
+
+track oridb_v3
+superTrack on
+shortLabel OriDB v3 records
+longLabel OriDB v3: origin intervals, origin elements and fragments that failed an ARS assay
+priority 2
+
+track oridb_timing
+superTrack on
+shortLabel Replication timing
+longLabel Replication timing and copy-number profiles through S phase
+priority 3
+
+track oridb_initiation
+superTrack on
+shortLabel Initiation mapping
+longLabel Origin position and efficiency: initiation site and zone mapping
+priority 4
+
+track oridb_footprint
+superTrack on
+shortLabel Licensing footprints
+longLabel ORC and MCM2-7 occupancy, replisome protein footprints
+priority 5
+
+track oridb_forkdir
+superTrack on
+shortLabel Fork direction
+longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
+priority 6
 

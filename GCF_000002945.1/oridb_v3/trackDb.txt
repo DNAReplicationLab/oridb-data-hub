@@ -4,7 +4,7 @@
 track oridb_v3_origins
 parent oridb_v3
 bigDataUrl oridb_v3/origins.bb
-shortLabel OriDB origins
+shortLabel Origins (OriDB v3)
 longLabel OriDB v3 origin records on ASM294v2, drawn on UCSC's GenArk copy of that assembly (GCF_000002945.1); coloured by evidence tier
 type bigBed 9 +
 visibility pack

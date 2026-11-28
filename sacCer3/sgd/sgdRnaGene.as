@@ -1,5 +1,5 @@
-table sgdTrna
-"tRNA genes from the SGD chromosomal-feature GFF3"
+table sgdRnaGene
+"Non-coding RNA genes from the SGD chromosomal-feature GFF3"
     (
     string  chrom;              "Reference sequence chromosome"
     uint    chromStart;         "Start position in chromosome"
@@ -7,14 +7,14 @@ table sgdTrna
     string  name;               "Systematic name, e.g. YNCA0002W"
     uint    score;              "Unused, always 0"
     char[1] strand;             "+ or -"
-    uint    thickStart;         "Equal to chromStart: a tRNA gene is not translated"
+    uint    thickStart;         "Equal to chromStart: an RNA gene is not translated"
     uint    thickEnd;           "Equal to chromStart"
-    uint    reserved;           "Colour"
+    uint    reserved;           "Colour, by RNA class"
     int     blockCount;         "Number of exons"
     int[blockCount] blockSizes; "Block sizes"
     int[blockCount] chromStarts; "Block starts relative to chromStart"
     string  geneName;           "Common gene name, e.g. TRN1, or empty"
-    string  isotype;            "Amino acid carried, parsed from the SGD alias"
+    string  rnaClass;           "tRNA, snoRNA, ncRNA, rRNA, snRNA or telomerase RNA"
     string  sgdid;              "SGD accession"
     string  description;        "SGD display description"
     )

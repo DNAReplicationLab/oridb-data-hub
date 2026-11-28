@@ -6,7 +6,7 @@
     {
       "id": "trep",
       "section": "timing",
-      "shortLabel": "Trep (Pu-seq)",
+      "shortLabel": "Trep (Daigaku 2015)",
       "longLabel": "Replication timing: Trep in minutes from polymerase usage (Daigaku et al. 2015); early replication plots high",
       "graphType": "points",
       "viewLimits": "-60:-20",
@@ -24,7 +24,7 @@
     {
       "id": "forkdir",
       "section": "forkdir",
-      "shortLabel": "Fork direction",
+      "shortLabel": "Fork dir (Daigaku 2015)",
       "longLabel": "Fraction of forks moving leftward, from polymerase usage (Daigaku et al. 2015); 0.5 is no net direction",
       "graphType": "bar",
       "viewLimits": "0:1",
@@ -42,7 +42,7 @@
     {
       "id": "termination",
       "section": "pausing",
-      "shortLabel": "Termination",
+      "shortLabel": "Termination (Daigaku 2015)",
       "longLabel": "Percentage of termination events, from polymerase usage (Daigaku et al. 2015); published as a 1 kb window every 300 bp and drawn in 300 bp bins at the window centre",
       "graphType": "bar",
       "viewLimits": "0:14",
@@ -62,7 +62,7 @@
       "id": "origins",
       "section": "initiation",
       "file": "puseq.origins.bb",
-      "shortLabel": "Pu-seq origins",
+      "shortLabel": "Origins (Daigaku 2015)",
       "longLabel": "Origin calls with firing efficiency from polymerase usage (Daigaku et al. 2015); shaded by efficiency, 0.07 to 83.8 per cent",
       "type": "bigBed 6 +",
       "visibility": "pack",

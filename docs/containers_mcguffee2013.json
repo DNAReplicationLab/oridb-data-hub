@@ -4,7 +4,7 @@
   "containers": [
     {
       "id": "fd",
-      "shortLabel": "Fork direction",
+      "shortLabel": "Fork dir (McGuffee 2013)",
       "priority": 1,
       "graphType": "bar",
       "viewLimits": "-1:1",
@@ -21,7 +21,7 @@
     },
     {
       "id": "initiation",
-      "shortLabel": "Initiation signal",
+      "shortLabel": "Init signal (McGuffee 2013)",
       "priority": 2,
       "graphType": "bar",
       "viewLimits": "-0.5:0.7",
@@ -45,7 +45,7 @@
     },
     {
       "id": "strands",
-      "shortLabel": "Okazaki strands",
+      "shortLabel": "Okazaki (McGuffee 2013)",
       "priority": 3,
       "graphType": "bar",
       "viewLimits": "0:6000",
@@ -71,7 +71,7 @@
       "id": "init_sites",
       "file": "okseq.initiation_sites.bb",
       "type": "bigBed 8 +",
-      "shortLabel": "Initiation zones",
+      "shortLabel": "Init zones (McGuffee 2013)",
       "longLabel": "Initiation zones called from Okazaki fragment directionality (McGuffee et al. 2013, re-analysed by OriDB); score = 1000 x OEM",
       "color": "0,0,0",
       "spectrum": true,

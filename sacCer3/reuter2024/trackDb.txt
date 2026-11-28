@@ -6,7 +6,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 vs MCM4 in G1
+shortLabel ORC2 vs MCM4 G1 (Reuter 2024)
 longLabel Orc2-Flag against Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024): where ORC sits and where the MCM2-7 double hexamer it loaded ends up; CPM, replicate 1 of each
 type bigWig
 viewLimits 0:600
@@ -40,7 +40,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 G1 vs G2
+shortLabel ORC2 G1 vs G2 (Reuter 2024)
 longLabel Orc2-Flag ChIP-exo in G1 against G2 arrest (Reuter et al. 2024): the loss of ORC occupancy at origins once licensing is complete; CPM, replicate 1 of each
 type bigWig
 viewLimits 0:600
@@ -74,7 +74,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel MCM4 G1 replicates
+shortLabel MCM4 G1 reps (Reuter 2024)
 longLabel Mcm4-Flag ChIP-exo in G1, the two biological replicates against each other (Reuter et al. 2024); Pearson r = 0.997 genome-wide
 type bigWig
 viewLimits 0:600
@@ -108,7 +108,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 G1 replicates
+shortLabel ORC2 G1 reps (Reuter 2024)
 longLabel Orc2-Flag ChIP-exo in G1, the two biological replicates against each other (Reuter et al. 2024); Pearson r = 0.9925 genome-wide
 type bigWig
 viewLimits 0:600
@@ -142,7 +142,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 G2 replicates
+shortLabel ORC2 G2 reps (Reuter 2024)
 longLabel Orc2-Flag ChIP-exo in G2, the two biological replicates against each other (Reuter et al. 2024); Pearson r = 0.9945 genome-wide
 type bigWig
 viewLimits 0:600
@@ -176,7 +176,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel MCM4 G1 strand
+shortLabel MCM4 G1 strands (Reuter 2024)
 longLabel Mcm4-Flag, G1 arrest (Reuter et al. 2024): plus-strand coverage above the axis and minus-strand below, both replicates; the gap between the two strand peaks is the protected footprint
 type bigWig
 viewLimits -150:150
@@ -229,7 +229,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 G1 strand
+shortLabel ORC2 G1 strands (Reuter 2024)
 longLabel Orc2-Flag, G1 arrest (Reuter et al. 2024): plus-strand coverage above the axis and minus-strand below, both replicates; the gap between the two strand peaks is the protected footprint
 type bigWig
 viewLimits -150:150
@@ -282,7 +282,7 @@ parent oridb_footprint
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel ORC2 G2 strand
+shortLabel ORC2 G2 strands (Reuter 2024)
 longLabel Orc2-Flag, G2 arrest (Reuter et al. 2024): plus-strand coverage above the axis and minus-strand below, both replicates; the gap between the two strand peaks is the protected footprint
 type bigWig
 viewLimits -150:150

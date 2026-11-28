@@ -6,7 +6,7 @@ parent oridb_timing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Trep (Pu-seq)
+shortLabel Trep (Daigaku 2015)
 longLabel Replication timing: Trep in minutes from polymerase usage (Daigaku et al. 2015); early replication plots high
 type bigWig
 viewLimits -60:-20
@@ -33,7 +33,7 @@ parent oridb_forkdir
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Fork direction
+shortLabel Fork dir (Daigaku 2015)
 longLabel Fraction of forks moving leftward, from polymerase usage (Daigaku et al. 2015); 0.5 is no net direction
 type bigWig
 viewLimits 0:1
@@ -60,7 +60,7 @@ parent oridb_pausing
 container multiWig
 aggregate solidOverlay
 showSubtrackColorOnUi on
-shortLabel Termination
+shortLabel Termination (Daigaku 2015)
 longLabel Percentage of termination events, from polymerase usage (Daigaku et al. 2015); published as a 1 kb window every 300 bp and drawn in 300 bp bins at the window centre
 type bigWig
 viewLimits 0:14
@@ -84,7 +84,7 @@ priority 10
 track daigaku2015_origins
 parent oridb_initiation
 bigDataUrl daigaku2015/puseq.origins.bb
-shortLabel Pu-seq origins
+shortLabel Origins (Daigaku 2015)
 longLabel Origin calls with firing efficiency from polymerase usage (Daigaku et al. 2015); shaded by efficiency, 0.07 to 83.8 per cent
 type bigBed 6 +
 visibility pack

@@ -9,25 +9,25 @@
       "id": "protein_coding",
       "file": "sgd.protein_coding.bb",
       "type": "bigBed 12 +",
-      "shortLabel": "SGD genes",
+      "shortLabel": "Genes (SGD)",
       "visibility": "pack",
       "itemRgb": true,
       "panelDefault": true,
       "searchIndex": "name",
-      "priority": 10,
+      "priority": 1,
       "longLabel": "Protein-coding genes from SGD (R64-4-1): 5,783 Verified in green, 147 Uncharacterized in blue, 683 Dubious in grey; CDS blocks, so introns are drawn"
     },
     {
-      "id": "trna",
-      "file": "sgd.trna.bb",
+      "id": "rna_genes",
+      "file": "sgd.rna_genes.bb",
       "type": "bigBed 12 +",
-      "shortLabel": "SGD tRNA genes",
+      "shortLabel": "RNA genes (SGD)",
       "visibility": "pack",
       "itemRgb": true,
       "panelDefault": true,
       "searchIndex": "name",
-      "priority": 11,
-      "longLabel": "tRNA genes from SGD (R64-4-1): 299 genes with their exon structure, so the intron-containing tRNAs are drawn as two blocks"
+      "priority": 2,
+      "longLabel": "Non-coding RNA genes from SGD (R64-4-1): 299 tRNA in purple, 77 snoRNA orange, 31 ncRNA green, 24 rRNA pink, 6 snRNA yellow and 1 telomerase RNA grey, with their exon structure"
     }
   ]
 }

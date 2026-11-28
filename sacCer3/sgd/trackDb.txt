@@ -4,7 +4,7 @@
 track sgd_protein_coding
 parent oridb_annotation
 bigDataUrl sgd/sgd.protein_coding.bb
-shortLabel SGD genes
+shortLabel Genes (SGD)
 longLabel Protein-coding genes from SGD (R64-4-1): 5,783 Verified in green, 147 Uncharacterized in blue, 683 Dubious in grey; CDS blocks, so introns are drawn
 type bigBed 12 +
 visibility pack
@@ -12,18 +12,18 @@ color 0,0,0
 itemRgb on
 searchIndex name
 metadata panelDefault=on
-priority 10
+priority 1
 
-track sgd_trna
+track sgd_rna_genes
 parent oridb_annotation
-bigDataUrl sgd/sgd.trna.bb
-shortLabel SGD tRNA genes
-longLabel tRNA genes from SGD (R64-4-1): 299 genes with their exon structure, so the intron-containing tRNAs are drawn as two blocks
+bigDataUrl sgd/sgd.rna_genes.bb
+shortLabel RNA genes (SGD)
+longLabel Non-coding RNA genes from SGD (R64-4-1): 299 tRNA in purple, 77 snoRNA orange, 31 ncRNA green, 24 rRNA pink, 6 snRNA yellow and 1 telomerase RNA grey, with their exon structure
 type bigBed 12 +
 visibility pack
 color 0,0,0
 itemRgb on
 searchIndex name
 metadata panelDefault=on
-priority 11
+priority 2
 

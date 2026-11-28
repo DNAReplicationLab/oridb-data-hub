@@ -16,18 +16,26 @@
   },
   "provenance": {
     "pipeline": "pipelines/genes-sgd",
-    "generated": "2026-11-28T12:55:03Z",
+    "generated": "2026-11-28T13:52:31Z",
     "validation": "the GFF is R64-4-1 while sacCer3 is built on R64-1-1; those differ in annotation and not in sequence, and the pipeline verifies it rather than assuming it - all 17 chromosome features match sacCer3.chrom.sizes exactly, and the run aborts otherwise. Only chrmt is renamed, to chrM.",
     "caveat": "UCSC serves its own SGD Genes track on sacCer3, built from a different release by a different pipeline; these tracks exist for the embedded JBrowse panel, which has no native annotation, and are not added to the hub overview for that reason"
   },
   "calls": null,
   "counts": {
     "protein_coding": 6613,
-    "tRNA": 299,
+    "rna_genes": 438,
     "orf_classification": {
       "Dubious": 683,
       "Verified": 5783,
       "Uncharacterized": 147
+    },
+    "rna_class": {
+      "ncRNA": 31,
+      "tRNA": 299,
+      "snoRNA": 77,
+      "telomerase RNA": 1,
+      "snRNA": 6,
+      "rRNA": 24
     }
   }
 }
