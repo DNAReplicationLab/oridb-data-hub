@@ -242,7 +242,15 @@ def render_sections(sections, used, datasets=(), group=False):
                  f"visibility {t.get('visibility', 'full')}",
                  f"color {t.get('color', '0,0,0')}"]
         if t.get("viewLimits"):
-            lines += [f"viewLimits {t['viewLimits']}", "autoScale off", "alwaysZero off",
+            # Same autoScale choice as a container, with one difference: an overview
+            # entry is a stand-alone track, so there is no group of siblings to share a
+            # scale with and "group" would be meaningless here.
+            auto = t.get("autoScale", "off")
+            if auto not in ("off", "on"):
+                sys.exit(f"overview track '{t['id']}' has autoScale {auto!r}; a "
+                         f"stand-alone track takes only off or on")
+            lines += [f"viewLimits {t['viewLimits']}", f"autoScale {auto}",
+                      "alwaysZero " + ("on" if auto != "off" else "off"),
                       f"graphTypeDefault {t.get('graphType', 'bar')}",
                       "maxHeightPixels 100:100:8"]
         if t.get("negateValues"):

@@ -58,6 +58,20 @@
         "longLabel": "Initiation zones called from the Okazaki-fragment initiation signal (McGuffee et al. 2013)"
       },
       {
+        "id": "ov_mcm",
+        "dataset": "reuter2024",
+        "file": "chipexo.mcm4_g1_rep1.bw",
+        "shortLabel": "MCM4 occupancy",
+        "longLabel": "MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024); replicate 1, CPM, auto-scaled to the window",
+        "type": "bigWig",
+        "visibility": "full",
+        "color": "27,120,55",
+        "viewLimits": "0:600",
+        "autoScale": "on",
+        "graphType": "bar",
+        "priority": 10
+      },
+      {
         "id": "ov_sp_timing",
         "dataset": "daigaku2015",
         "file": "puseq.trep.bw",
