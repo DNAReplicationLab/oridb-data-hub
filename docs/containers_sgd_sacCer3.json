@@ -1,0 +1,33 @@
+{
+  "dataset": "sgd",
+  "genome": "sacCer3",
+  "note": "Gene annotation from the Saccharomyces Genome Database, built by pipelines/genes-sgd/convert.py. Reference annotation rather than a measurement, so it has a section of its own and no container: a feature set has nothing to overlay. UCSC already serves SGD Genes on sacCer3 from its own pipeline, so these tracks are deliberately NOT in the hub overview, where they would be drawn on top of UCSC's copy; they are marked panelDefault instead, which the embedded JBrowse panel in oridb-v3 reads to draw them by default. The panel has no native annotation of its own and an origin without its neighbouring genes is hard to place. Protein-coding features are coloured by SGD's orf_classification in the site's evidence-tier palette - green Verified, blue Uncharacterized, grey Dubious - so the 683 Dubious ORFs are present but visibly dubious.",
+  "section": "annotation",
+  "containers": [],
+  "tracks": [
+    {
+      "id": "protein_coding",
+      "file": "sgd.protein_coding.bb",
+      "type": "bigBed 12 +",
+      "shortLabel": "SGD genes",
+      "visibility": "pack",
+      "itemRgb": true,
+      "panelDefault": true,
+      "searchIndex": "name",
+      "priority": 10,
+      "longLabel": "Protein-coding genes from SGD (R64-4-1): 5,783 Verified in green, 147 Uncharacterized in blue, 683 Dubious in grey; CDS blocks, so introns are drawn"
+    },
+    {
+      "id": "trna",
+      "file": "sgd.trna.bb",
+      "type": "bigBed 12 +",
+      "shortLabel": "SGD tRNA genes",
+      "visibility": "pack",
+      "itemRgb": true,
+      "panelDefault": true,
+      "searchIndex": "name",
+      "priority": 11,
+      "longLabel": "tRNA genes from SGD (R64-4-1): 299 genes with their exon structure, so the intron-containing tRNAs are drawn as two blocks"
+    }
+  ]
+}

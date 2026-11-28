@@ -198,7 +198,67 @@ def feature_track_options(t):
             lines.append(f"urlLabel {t['urlLabel']}")
     if t.get("searchIndex"):
         lines.append(f"searchIndex {t['searchIndex']}")
+    if t.get("panelDefault"):
+        # A second, narrower notion of "drawn by default" than the overview, and the
+        # reason it exists: the embedded JBrowse panel in oridb-v3 has no annotation of
+        # its own, while UCSC serves SGD Genes on sacCer3 already. A gene track put in
+        # the overview to reach the panel would be drawn on top of UCSC's own copy for
+        # every UCSC reader. `metadata` is a free-form trackDb setting that UCSC shows
+        # in the track description and otherwise ignores, so the hub can say this
+        # without changing what UCSC draws. bin/build_datahub.php in oridb-v3 reads it.
+        lines.append("metadata panelDefault=on")
     return lines
+
+
+def render_overview_container(t, overview_id):
+    """An overview entry naming several files, rendered as a multiWig container.
+
+    Same shape as a dataset container - the overview is simply its parent instead of a
+    section - so the two kinds of overlay stay one thing to read and one thing to learn.
+    A container does have siblings to share a scale with, so unlike a stand-alone
+    overview track this one accepts autoScale group.
+    """
+    auto = t.get("autoScale", "off")
+    if auto not in ("off", "on", "group"):
+        sys.exit(f"overview container '{t['id']}' has autoScale {auto!r}; "
+                 f"UCSC accepts only off, on or group")
+    lines = [
+        f"track {t['id']}",
+        f"parent oridb_{overview_id}",
+        "container multiWig",
+        "aggregate solidOverlay",
+        "showSubtrackColorOnUi on",
+        f"shortLabel {t['shortLabel']}",
+        f"longLabel {t['longLabel']}",
+        "type bigWig",
+        f"viewLimits {t['viewLimits']}",
+        f"autoScale {auto}",
+        "alwaysZero " + ("on" if auto != "off" else "off"),
+        f"graphTypeDefault {t.get('graphType', 'bar')}",
+    ]
+    if t.get("yLineMark") is not None:
+        lines += ["yLineOnOff on", f"yLineMark {t['yLineMark']}"]
+    else:
+        lines.append("yLineOnOff off")
+    lines += ["gridDefault off",
+              f"maxHeightPixels {t.get('maxHeightPixels', '100:100:8')}",
+              f"visibility {t.get('visibility', 'full')}",
+              f"priority {t.get('priority', 10)}", "", ""]
+    out = ["\n".join(lines)]
+    for f in t["files"]:
+        sub = [f"    track {t['id']}_{os.path.basename(f['file'])[:-3].replace('.', '_')}",
+               f"    parent {t['id']} on",
+               f"    bigDataUrl {t['dataset']}/{f['file']}",
+               f"    shortLabel {f['shortLabel']}",
+               f"    longLabel {f['longLabel']}",
+               "    type bigWig",
+               f"    color {f['color']}"]
+        if f.get("altColor"):
+            # UCSC draws values below the axis in altColor, so a minus-strand
+            # subtrack without it comes out in the default colour, not its own.
+            sub.append(f"    altColor {f['altColor']}")
+        out.append("\n".join(sub) + "\n\n")
+    return "".join(out)
 
 
 def render_sections(sections, used, datasets=(), group=False):
@@ -232,6 +292,14 @@ def render_sections(sections, used, datasets=(), group=False):
         # dataset is not on this genome is skipped rather than written as a stanza
         # pointing at a file that is not there.
         if datasets and t["dataset"] not in datasets:
+            continue
+        if t.get("files"):
+            # An overview entry that names several files is a comparison, not a
+            # profile, and is rendered as a multiWig container exactly as a dataset's
+            # own containers are. The case this exists for is a strand pair: plus
+            # above the axis and minus below, which only reads as one picture if the
+            # two are overlaid in a single row.
+            out.append(render_overview_container(t, ov["id"]))
             continue
         lines = [f"track {t['id']}",
                  f"parent oridb_{ov['id']}",

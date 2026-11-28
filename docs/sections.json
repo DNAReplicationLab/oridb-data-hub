@@ -60,15 +60,28 @@
       {
         "id": "ov_mcm",
         "dataset": "reuter2024",
-        "file": "chipexo.mcm4_g1_rep1.bw",
-        "shortLabel": "MCM4 occupancy",
-        "longLabel": "MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024); replicate 1, CPM, auto-scaled to the window",
-        "type": "bigWig",
-        "visibility": "full",
-        "color": "27,120,55",
-        "viewLimits": "0:600",
-        "autoScale": "on",
+        "shortLabel": "MCM4 strands",
+        "longLabel": "MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024): plus-strand coverage above the axis and minus below, replicate 1; the gap between the two peaks is the protected footprint",
+        "files": [
+          {
+            "file": "chipexo.mcm4_g1_rep1.pos.bw",
+            "shortLabel": "MCM4 plus strand",
+            "longLabel": "Mcm4-Flag ChIP-exo, G1 arrest, replicate 1, plus-strand coverage per million mapped reads",
+            "color": "27,120,55"
+          },
+          {
+            "file": "chipexo.mcm4_g1_rep1.neg.bw",
+            "shortLabel": "MCM4 minus strand",
+            "longLabel": "Mcm4-Flag ChIP-exo, G1 arrest, replicate 1, minus-strand coverage per million mapped reads",
+            "color": "27,120,55",
+            "altColor": "27,120,55"
+          }
+        ],
+        "viewLimits": "-150:150",
+        "autoScale": "group",
         "graphType": "bar",
+        "yLineMark": 0.0,
+        "visibility": "full",
         "priority": 10
       },
       {
@@ -175,6 +188,12 @@
       "shortLabel": "ssDNA, stress",
       "priority": 8,
       "longLabel": "Single-stranded DNA during S phase and under replication stress"
+    },
+    {
+      "id": "annotation",
+      "shortLabel": "Genes",
+      "priority": 9,
+      "longLabel": "Reference gene annotation: protein-coding and tRNA genes from SGD"
     }
   ]
 }

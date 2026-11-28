@@ -1,0 +1,33 @@
+{
+  "dataset_id": "sgd-saccer3",
+  "title": "Gene annotation from the Saccharomyces Genome Database (R64-4-1)",
+  "organism": "Saccharomyces cerevisiae",
+  "assembly": "sacCer3",
+  "bin_size_bp": null,
+  "measurement": "reference gene annotation, not a measurement",
+  "scale": "features, not a signal",
+  "source": {
+    "archive_series": [],
+    "url": "https://downloads.yeastgenome.org/curation/chromosomal_feature/saccharomyces_cerevisiae.gff.gz",
+    "release": "R64-4-1",
+    "date_produced": "2026-11-19 03:30:03",
+    "sha256": "1e06cb22c2d4616ad1d07215878ae13c8527a9f774c521be655139a8c5715045",
+    "citation": "Saccharomyces Genome Database (SGD), https://www.yeastgenome.org/"
+  },
+  "provenance": {
+    "pipeline": "pipelines/genes-sgd",
+    "generated": "2026-11-28T12:55:03Z",
+    "validation": "the GFF is R64-4-1 while sacCer3 is built on R64-1-1; those differ in annotation and not in sequence, and the pipeline verifies it rather than assuming it - all 17 chromosome features match sacCer3.chrom.sizes exactly, and the run aborts otherwise. Only chrmt is renamed, to chrM.",
+    "caveat": "UCSC serves its own SGD Genes track on sacCer3, built from a different release by a different pipeline; these tracks exist for the embedded JBrowse panel, which has no native annotation, and are not added to the hub overview for that reason"
+  },
+  "calls": null,
+  "counts": {
+    "protein_coding": 6613,
+    "tRNA": 299,
+    "orf_classification": {
+      "Dubious": 683,
+      "Verified": 5783,
+      "Uncharacterized": 147
+    }
+  }
+}

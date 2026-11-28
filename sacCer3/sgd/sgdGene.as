@@ -1,0 +1,20 @@
+table sgdGene
+"Protein-coding genes from the SGD chromosomal-feature GFF3"
+    (
+    string  chrom;              "Reference sequence chromosome"
+    uint    chromStart;         "Start position in chromosome"
+    uint    chromEnd;           "End position in chromosome"
+    string  name;               "Systematic name, e.g. YFL039C"
+    uint    score;              "Unused, always 0"
+    char[1] strand;             "+ or -"
+    uint    thickStart;         "Start of coding region"
+    uint    thickEnd;           "End of coding region"
+    uint    reserved;           "Colour, by ORF classification"
+    int     blockCount;         "Number of coding blocks"
+    int[blockCount] blockSizes; "Block sizes"
+    int[blockCount] chromStarts; "Block starts relative to chromStart"
+    string  geneName;           "Common gene name, e.g. ACT1, or empty"
+    string  orfClass;           "SGD orf_classification"
+    string  sgdid;              "SGD accession"
+    string  description;        "SGD display description"
+    )

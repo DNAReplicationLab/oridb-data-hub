@@ -66,18 +66,39 @@ priority 10
 
 track ov_mcm
 parent oridb_overview
-bigDataUrl reuter2024/chipexo.mcm4_g1_rep1.bw
-shortLabel MCM4 occupancy
-longLabel MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024); replicate 1, CPM, auto-scaled to the window
+container multiWig
+aggregate solidOverlay
+showSubtrackColorOnUi on
+shortLabel MCM4 strands
+longLabel MCM2-7 occupancy at licensed origins, from Mcm4-Flag ChIP-exo in G1-arrested cells (Reuter et al. 2024): plus-strand coverage above the axis and minus below, replicate 1; the gap between the two peaks is the protected footprint
 type bigWig
-visibility full
-color 27,120,55
-viewLimits 0:600
-autoScale on
+viewLimits -150:150
+autoScale group
 alwaysZero on
 graphTypeDefault bar
+yLineOnOff on
+yLineMark 0.0
+gridDefault off
 maxHeightPixels 100:100:8
+visibility full
 priority 10
+
+    track ov_mcm_chipexo_mcm4_g1_rep1_pos
+    parent ov_mcm on
+    bigDataUrl reuter2024/chipexo.mcm4_g1_rep1.pos.bw
+    shortLabel MCM4 plus strand
+    longLabel Mcm4-Flag ChIP-exo, G1 arrest, replicate 1, plus-strand coverage per million mapped reads
+    type bigWig
+    color 27,120,55
+
+    track ov_mcm_chipexo_mcm4_g1_rep1_neg
+    parent ov_mcm on
+    bigDataUrl reuter2024/chipexo.mcm4_g1_rep1.neg.bw
+    shortLabel MCM4 minus strand
+    longLabel Mcm4-Flag ChIP-exo, G1 arrest, replicate 1, minus-strand coverage per million mapped reads
+    type bigWig
+    color 27,120,55
+    altColor 27,120,55
 
 track oridb_v3
 superTrack on
@@ -108,4 +129,10 @@ superTrack on
 shortLabel Fork direction
 longLabel Fork direction and polymerase usage: Okazaki fragments, ribonucleotide mapping, strand asymmetry
 priority 5
+
+track oridb_annotation
+superTrack on
+shortLabel Genes
+longLabel Reference gene annotation: protein-coding and tRNA genes from SGD
+priority 9
 
